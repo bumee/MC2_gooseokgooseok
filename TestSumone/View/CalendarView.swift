@@ -71,11 +71,34 @@ struct CalendarView: View {
     func CardView(value: DateValue) -> some View {
         VStack{
             if value.day != -1 {
-                Text("\(value.day)")
-                    .font(.title3.bold())
+                if let task = tasks.first(where: {task in
+                    return isSameDay(date1: task.taskDate, date2: value.date)
+                }) {
+                    Text("\(value.day)")
+                        .font(.title3.bold())
+                    Spacer()
+                    
+                    Circle()
+                        .fill(Color.red)
+                        .frame(width: 8, height: 8)
+                }
+                else{
+                    Text("\(value.day)")
+                        .font(.title3.bold())
+                    Spacer()
+                }
             }
         }
+        .padding(.vertical, 8)
+        .frame(height:60, alignment: .top)
         
+    }
+    
+    // checking dates...
+    func isSameDay(date1: Date, date2: Date) -> Bool{
+        let calendar = Calendar.current
+        
+        return calendar.isDate(date1, inSameDayAs: date2)
     }
     
     // extracting year and month for display...
