@@ -43,7 +43,7 @@ struct CalendarView: View {
             }
             .padding(.horizontal)
             
-            // day view
+            // day view(mon, tue, wed, ...)
             HStack(spacing: 0){
                 ForEach(days,id: \.self){ day in
                     Text(day)
@@ -157,10 +157,16 @@ extension Date {
         let startDate = calendar.date(from: Calendar.current.dateComponents([.year,.month], from: self))!
         
         var range = calendar.range(of: .day, in: .month, for: startDate)!
-        range.removeLast()
         
         return range.compactMap { day -> Date in
-            return calendar.date(byAdding: .day, value: day == 1 ? 0 : day, to: startDate)!
+            
+            var a = calendar.date(byAdding: .day, value: day, to: startDate)!
+            
+            // 기본 시간은 utc 15시이다. gmt는 utc보다 9시간 뒤이다.
+            // 여기서 문제가 발생한다.
+            // 15 + 9 시은 24시이므로 하루가 오버플로우되는 일이 발생한다.
+            // 그래서 1시간을 빼줘서 이 문제를 해결했다.
+            return calendar.date(byAdding: .hour, value: -1, to: a)!
         }
     }
 }
