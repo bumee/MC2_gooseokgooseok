@@ -22,7 +22,7 @@ struct TalkRow: View {
             }
             
             HStack {
-                Text("지난 한 주 동안 당신의 삶에서 일어난 긍정적인 일들은 무엇입니까?")
+                Text("우리 가족이 가장 자랑스러웠던 순간은 언제인가요?")
                 
                 Spacer()
             }

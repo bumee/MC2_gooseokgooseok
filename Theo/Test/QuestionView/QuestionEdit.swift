@@ -27,7 +27,7 @@ struct QuestionEdit: View {
                 Spacer()
                 
                 Button(action: {
-                    
+                    presentation.wrappedValue.dismiss()
                 }, label: {
                     Image(systemName: "trash")
                 })

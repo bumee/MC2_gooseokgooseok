@@ -9,6 +9,7 @@ import SwiftUI
 
 struct QuestionAddModal: View {
     @State var customQuestion: String = ""
+    @Environment(\.presentationMode) var presentation
     
     var body: some View {
         NavigationView() {
@@ -16,35 +17,12 @@ struct QuestionAddModal: View {
                 TextField("질문을 입력해주세요", text: $customQuestion, axis: .vertical)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .autocorrectionDisabled()
-                
-//                VStack {
-//                    HStack {
-//                        Button(action: {
-//                            presentation.wrappedValue.dismiss()
-//                        }, label: {
-//                            Text("취소")
-//                                .foregroundColor(.red)
-//                        })
-//
-//                        Spacer()
-//
-//                        Button(action: {
-//                            presentation.wrappedValue.dismiss()
-//                        }, label: {
-//                            Text("추가")
-//                        })
-//                    }
-//                    .padding(.leading)
-//                    .padding(.trailing)
-//                    .padding(.top)
-//
-//                }
             }
             .navigationTitle("새로운 질문")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(action: {
-                        
+                        presentation.wrappedValue.dismiss()
                     }, label: {
                         Text("완료")
                     })
@@ -52,14 +30,14 @@ struct QuestionAddModal: View {
                 
                 ToolbarItem(placement: .cancellationAction) {
                     Button(action: {
-                        
+                        presentation.wrappedValue.dismiss()
                     }, label: {
                         Text("취소")
                     })
+                    .foregroundColor(Color.red)
                 }
-                
-                
             }
+            .navigationBarTitleDisplayMode(.inline)
         }
         
     }
