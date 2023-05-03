@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct TestSumoneApp: App {
+    @StateObject var questionData = QuestionData()
+    @StateObject var waitingQuestionData = WaitingQuestionData()
+
+    
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environmentObject(questionData)
+                .environmentObject(waitingQuestionData)
         }
     }
 }

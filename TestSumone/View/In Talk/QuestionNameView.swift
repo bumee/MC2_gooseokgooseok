@@ -9,10 +9,23 @@ import Foundation
 import SwiftUI
 
 struct QuestionNameView: View {
+    var text : String
+    var now = Date()
     
     var body: some View {
-        Text("Hello world")
-            .font(.largeTitle)
-            .multilineTextAlignment(.center)
+        VStack {
+            HStack {
+                Circle()
+                    .foregroundColor(.red)
+                    .frame(width: 10, height: 10)
+                Text("\(now)")
+                Spacer()
+            }
+            HStack {
+                Text(text)
+                    .font(.headline)
+                Spacer()
+            }
+        }
     }
 }
