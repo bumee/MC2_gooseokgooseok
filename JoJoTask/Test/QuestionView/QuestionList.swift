@@ -24,7 +24,7 @@ struct QuestionList: View {
                     Section(header: Text("물어본 질문")) {
                         ForEach(1..<10) {i in
                             NavigationLink {
-                                TalkDetail()
+//                                TalkDetail()
                             } label: {
                                 QuestionRow()
                             }

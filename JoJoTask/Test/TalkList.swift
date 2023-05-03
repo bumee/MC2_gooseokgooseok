@@ -12,60 +12,60 @@ struct TalkList: View {
         NavigationView {
             List {
                 NavigationLink {
-                    TalkDetail()
+                    TalkDetail(text: TextStruct())
                 } label: {
                     TalkRow()
                 }
                 NavigationLink {
-                    TalkDetail()
+                    TalkDetail(text: TextStruct())
                 } label: {
                     TalkRow2(date: todayDate[0], qustion: qustion[0])
                         .frame(height: 40)
                 }
                 NavigationLink {
-                    TalkDetail()
+                    TalkDetail(text: TextStruct())
                 } label: {
                     TalkRow2(date: todayDate[1], qustion: qustion[1])
                         .frame(height: 40)
                 }
                 NavigationLink {
-                    TalkDetail()
+                    TalkDetail(text: TextStruct())
                 } label: {
                     TalkRow2(date: todayDate[2], qustion: qustion[2])
                         .frame(height: 40)
                 }
                 NavigationLink {
-                    TalkDetail()
+                    TalkDetail(text: TextStruct())
                 } label: {
                     TalkRow2(date: todayDate[3], qustion: qustion[3])
                         .frame(height: 40)
                 }
                 NavigationLink {
-                    TalkDetail()
+                    TalkDetail(text: TextStruct())
                 } label: {
                     TalkRow2(date: todayDate[4], qustion: qustion[4])
                         .frame(height: 40)
                 }
                 NavigationLink {
-                    TalkDetail()
+                    TalkDetail(text: TextStruct())
                 } label: {
                     TalkRow2(date: todayDate[5], qustion: qustion[5])
                         .frame(height: 40)
                 }
                 NavigationLink {
-                    TalkDetail()
+                    TalkDetail(text: TextStruct())
                 } label: {
                     TalkRow2(date: todayDate[6], qustion: qustion[6])
                         .frame(height: 40)
                 }
                 NavigationLink {
-                    TalkDetail()
+                    TalkDetail(text: TextStruct())
                 } label: {
                     TalkRow2(date: todayDate[7], qustion: qustion[7])
                         .frame(height: 40)
                 }
                 NavigationLink {
-                    TalkDetail()
+                    TalkDetail(text: TextStruct())
                 } label: {
                     TalkRow2(date: todayDate[8], qustion: qustion[8])
                         .frame(height: 40)
