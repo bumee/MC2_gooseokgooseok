@@ -50,8 +50,11 @@ struct CalendarView: View {
                         .font(.callout)
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity)
+                        .padding(.vertical, 20)
                     
+                        
                 }
+                
             }
             
             // dates
@@ -59,8 +62,46 @@ struct CalendarView: View {
             LazyVGrid(columns: columns, spacing: 15) {
                 ForEach(extractDate()) { value in
                     CardView(value: value)
+                        .background(
+                            Capsule()
+                                .fill(Color.orange)
+                                .padding(.horizontal, 8)
+                                .opacity(isSameDay(date1: value.date, date2: currentDate) ? 1 : 0)
+                        )
+                        .onTapGesture{
+                            currentDate = value.date
+                        }
                 }
             }
+            
+            VStack(spacing: 20){
+                Text("Tasks")
+                    .font(.title2.bold())
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                if let task = tasks.first(where: {task in
+                    return isSameDay(date1: task.taskDate, date2: currentDate)
+                }) {
+                    ForEach(task.task) {task in
+                        VStack(alignment: .leading, spacing: 10){
+                            Text(task.time.addingTimeInterval(CGFloat
+                                .random(in:0...5000)), style: .time)
+                            
+                            Text(task.title)
+                                .font(.title2.bold())
+                        }
+                        .padding(.horizontal)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(RoundedRectangle(cornerRadius: 10).fill(.pink.opacity(0.3)))
+                    }
+                    .padding(.horizontal)
+                }
+                else{
+                    Text("No Task Found")
+                }
+                
+            }
+            
         }
         .onChange(of: currentMonth) { newValue in
             currentDate = getCurrentMonth()
@@ -76,15 +117,19 @@ struct CalendarView: View {
                 }) {
                     Text("\(value.day)")
                         .font(.title3.bold())
+                        .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .black : .black)
+                        .frame(maxWidth: .infinity)
                     Spacer()
                     
                     Circle()
-                        .fill(Color.red)
+                        .fill(isSameDay(date1:task.taskDate, date2: self.currentDate) ? .white : .red)
                         .frame(width: 8, height: 8)
                 }
                 else{
                     Text("\(value.day)")
                         .font(.title3.bold())
+                        .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .black : .black)
+                        .frame(maxWidth: .infinity)
                     Spacer()
                 }
             }
