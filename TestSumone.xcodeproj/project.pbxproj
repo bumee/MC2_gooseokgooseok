@@ -19,6 +19,8 @@
 		C5CC315929FBA603006595A6 /* SelectedTalkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC315829FBA603006595A6 /* SelectedTalkView.swift */; };
 		C5CC315B29FBB1A2006595A6 /* TalkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC315A29FBB1A2006595A6 /* TalkView.swift */; };
 		C5CC315D29FBB3C4006595A6 /* QuestionNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC315C29FBB3C4006595A6 /* QuestionNameView.swift */; };
+		C5CC31612A00DC6C006595A6 /* AddQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC31602A00DC6C006595A6 /* AddQuestionView.swift */; };
+		C5CC31642A00DE45006595A6 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC31632A00DE45006595A6 /* GlobalVariables.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		C5CC315829FBA603006595A6 /* SelectedTalkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTalkView.swift; sourceTree = "<group>"; };
 		C5CC315A29FBB1A2006595A6 /* TalkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkView.swift; sourceTree = "<group>"; };
 		C5CC315C29FBB3C4006595A6 /* QuestionNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionNameView.swift; sourceTree = "<group>"; };
+		C5CC31602A00DC6C006595A6 /* AddQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionView.swift; sourceTree = "<group>"; };
+		C5CC31632A00DE45006595A6 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,11 +144,11 @@
 		C5CC314F29FA5BF9006595A6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C5CC31622A00DC82006595A6 /* In Calendar */,
+				C5CC315F2A00DC60006595A6 /* In Question */,
 				C5CC315E29FBB3E2006595A6 /* In Talk */,
 				C5CC312529FA559E006595A6 /* MainView.swift */,
-				C5CC314D29FA5BE8006595A6 /* QuestionView.swift */,
-				C5CC315029FA5C09006595A6 /* CalendarView.swift */,
-				C5CC315829FBA603006595A6 /* SelectedTalkView.swift */,
+				C5CC31632A00DE45006595A6 /* GlobalVariables.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -152,10 +156,28 @@
 		C5CC315E29FBB3E2006595A6 /* In Talk */ = {
 			isa = PBXGroup;
 			children = (
-				C5CC315C29FBB3C4006595A6 /* QuestionNameView.swift */,
 				C5CC315A29FBB1A2006595A6 /* TalkView.swift */,
+				C5CC315C29FBB3C4006595A6 /* QuestionNameView.swift */,
+				C5CC315829FBA603006595A6 /* SelectedTalkView.swift */,
 			);
 			path = "In Talk";
+			sourceTree = "<group>";
+		};
+		C5CC315F2A00DC60006595A6 /* In Question */ = {
+			isa = PBXGroup;
+			children = (
+				C5CC314D29FA5BE8006595A6 /* QuestionView.swift */,
+				C5CC31602A00DC6C006595A6 /* AddQuestionView.swift */,
+			);
+			path = "In Question";
+			sourceTree = "<group>";
+		};
+		C5CC31622A00DC82006595A6 /* In Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				C5CC315029FA5C09006595A6 /* CalendarView.swift */,
+			);
+			path = "In Calendar";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,7 +313,9 @@
 				C5CC315B29FBB1A2006595A6 /* TalkView.swift in Sources */,
 				C5CC312629FA559E006595A6 /* MainView.swift in Sources */,
 				C5CC314E29FA5BE8006595A6 /* QuestionView.swift in Sources */,
+				C5CC31642A00DE45006595A6 /* GlobalVariables.swift in Sources */,
 				C5CC315129FA5C09006595A6 /* CalendarView.swift in Sources */,
+				C5CC31612A00DC6C006595A6 /* AddQuestionView.swift in Sources */,
 				C5CC315D29FBB3C4006595A6 /* QuestionNameView.swift in Sources */,
 				C5CC312429FA559E006595A6 /* TestSumoneApp.swift in Sources */,
 				C5CC315929FBA603006595A6 /* SelectedTalkView.swift in Sources */,

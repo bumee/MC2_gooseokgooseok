@@ -18,16 +18,18 @@ import SwiftUI
 
 struct MainView: View {
     @State private var selection = 0
+    @EnvironmentObject var questions: QuestionData
+    @EnvironmentObject var waitingQuestions: WaitingQuestionData
 
     var body: some View {
         TabView {
-            TalkView()
+            TalkView(QuestionList: _questions)
                 .tabItem {
                     Text("Talk")
                         .font(.largeTitle)
                 }
                 .tag(0)
-            Text("Second View")
+            QuestionView(WaitingQuestionList: _waitingQuestions)
                 .tabItem {
                     Text("Question")
                         .font(.largeTitle)
@@ -40,6 +42,8 @@ struct MainView: View {
                 }
                 .tag(2)
         }
+        .environmentObject(questions)
+        .environmentObject(waitingQuestions)
     }
 }
 
