@@ -37,3 +37,8 @@ class WaitingQuestionData: ObservableObject, RandomAccessCollection {
         questions.index(after: i)
     }
 }
+
+struct Person {
+    var Answered = [Int:String]()
+    
+}

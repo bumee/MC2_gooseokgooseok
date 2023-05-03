@@ -19,7 +19,8 @@ struct QuestionView: View {
                 Section(header: Text("대기중")){
                     ForEach(WaitingQuestionList.questions, id: \.self) { Question in
                         NavigationLink(
-                            destination: SelectedTalkView()
+                            destination:  SendMessageView()
+                                .previewLayout(.fixed(width: 400, height: 140))
                         ){
                             QuestionNameView(text: "\(Question)")
                         }

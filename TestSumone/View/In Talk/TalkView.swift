@@ -16,7 +16,8 @@ struct TalkView: View {
             List {
                 ForEach(QuestionList.questions, id: \.self) { Question in
                     NavigationLink(
-                        destination: SelectedTalkView()
+                        destination:  SendMessageView()
+                            .previewLayout(.fixed(width: 400, height: 140))
                     ){
                         QuestionNameView(text: "\(Question)")
                     }
