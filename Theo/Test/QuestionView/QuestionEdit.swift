@@ -10,6 +10,8 @@ import UIKit
 
 struct QuestionEdit: View {
     @Environment(\.presentationMode) var presentation
+    
+    var previousQuestion: String = "지난 한 주 동안 당신의 삶에서 일어난 긍정적인 일들은 무엇입니까?"
     @State var customQuestion: String = "지난 한 주 동안 당신의 삶에서 일어난 긍정적인 일들은 무엇입니까?"
     
     var body: some View {
@@ -37,11 +39,13 @@ struct QuestionEdit: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar() {
-            Button("완료") {
-                
+            if customQuestion != previousQuestion {
+                Button("완료") {
+                        presentation.wrappedValue.dismiss()
+                }
             }
         }
-//        .toolbar(.hidden, for: .tabBar)
+        .toolbar(.hidden, for: .tabBar)
     
     }
 }

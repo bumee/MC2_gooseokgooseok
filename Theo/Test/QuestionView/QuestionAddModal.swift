@@ -21,11 +21,19 @@ struct QuestionAddModal: View {
             .navigationTitle("새로운 질문")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(action: {
-                        presentation.wrappedValue.dismiss()
-                    }, label: {
-                        Text("완료")
-                    })
+                    if customQuestion != "" {
+                        Button(action: {
+                            presentation.wrappedValue.dismiss()
+                        }, label: {
+                            Text("완료")
+                        })
+                    } else {
+                        Button(action: {
+                        }, label: {
+                            Text("완료")
+                        })
+                        .disabled(true)
+                    }
                 }
                 
                 ToolbarItem(placement: .cancellationAction) {
