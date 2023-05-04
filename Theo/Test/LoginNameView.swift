@@ -12,14 +12,10 @@ struct LoginNameView: View {
     
     var body: some View {
         VStack {
-//            Spacer()
-            
             Text("나는 우리 가족의 ____ 입니다.").bold()
                 .font(.largeTitle)
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
-            
-//            Spacer()
             
             TextField("별명을 입력해주세요", text: $userName, axis: .vertical)
                 .frame(maxWidth: .infinity, alignment: .center)
@@ -28,7 +24,6 @@ struct LoginNameView: View {
                 .background(Color(uiColor: .secondarySystemBackground))
                 .cornerRadius(12)
             
-            Spacer()
             Spacer()
             
             Button(action: {
