@@ -12,9 +12,20 @@ struct LoginNameView: View {
     
     var body: some View {
         VStack {
+            HStack {
+                Image(systemName: "1.circle")
+                    .foregroundColor(Color.blue)
+                
+                Image(systemName: "2.circle")
+                    .foregroundColor(Color(uiColor: .systemGray3))
+                
+                Spacer()
+            }
+            .padding(.bottom, 24)
+            
             Text("나는 우리 가족의 ____ 입니다.").bold()
                 .font(.largeTitle)
-                .padding()
+                .padding(.top)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             TextField("별명을 입력해주세요", text: $userName, axis: .vertical)
@@ -28,14 +39,12 @@ struct LoginNameView: View {
             
             Button(action: {
             }, label: {
-                Text("확인").bold()
+                Text("다음").bold()
                     .frame(maxWidth: .infinity, maxHeight: 40)
             })
             .buttonStyle(.borderedProminent)
-            
         }
         .padding()
-        
     }
 }
 
