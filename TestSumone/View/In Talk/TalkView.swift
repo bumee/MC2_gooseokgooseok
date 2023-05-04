@@ -14,10 +14,9 @@ struct TalkView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(QuestionList.questions, id: \.self) { Question in
+                ForEach(QuestionList.questions.reversed(), id: \.self) { Question in
                     NavigationLink(
-                        destination:  SendMessageView()
-                            .previewLayout(.fixed(width: 400, height: 140))
+                        destination:  MessageShowingView()
                     ){
                         QuestionNameView(text: "\(Question)")
                     }
