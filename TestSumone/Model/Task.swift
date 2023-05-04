@@ -27,29 +27,46 @@ func getSampleData(offset: Int)->Date {
     return date ?? Date()
 }
 
-
-var tasks: [TaskMetaData] = [
-
-    TaskMetaData(
-     task: [
-        Task(title: "Talk to iJustine"),
-        Task(title: "Talk to iJustine"),
-        Task(title: "Talk to iJustine"),
-        ],
-     taskDate: getSampleData(offset: 0)
-    ),
-    TaskMetaData(
-     task: [
-        Task(title: "Talk to iJustine"),
-        ],
-     taskDate: getSampleData(offset: -3)
-    ),
-    TaskMetaData(
-     task: [
-        Task(title: "Talk to iJustine"),
-        Task(title: "Talk to iJustine"),
-        ],
-     taskDate: getSampleData(offset: -8)
-    ),
+class TaskManager : ObservableObject {
+    @Published var tasks: [TaskMetaData] = [
+        TaskMetaData(
+         task: [
+            Task(title: "Hello World!"),
+            ],
+         taskDate: getSampleData(offset: -3)
+        ),
+        TaskMetaData(
+         task: [
+            Task(title: "hawing"),
+            Task(title: "spring boot"),
+            ],
+         taskDate: getSampleData(offset: -8)
+        ),
+    ]
     
-]
+    
+    init() {
+        tasks.append(
+            TaskMetaData(
+             task: [ Task(title: "Meeting with Tim cook"), Task(title: "Talk to iJustine"), ],
+             taskDate: getSampleData(offset: 0)))
+        tasks.append(
+            TaskMetaData(
+             task: [ Task(title: "Meeting with Tim cook"), Task(title: "Talk to iJustine"), ],
+             taskDate: getSampleData(offset: -3)))
+        tasks.append(
+            TaskMetaData(
+             task: [ Task(title: "Meeting with Tim cook"), Task(title: "Talk to iJustine"), ],
+             taskDate: getSampleData(offset: -8)))
+    }
+    
+    func addTask(_ taskData: TaskMetaData) {
+        tasks.append(taskData)
+    }
+    
+    
+}
+
+/*
+ var tasks: [TaskMetaData] = []
+ */
