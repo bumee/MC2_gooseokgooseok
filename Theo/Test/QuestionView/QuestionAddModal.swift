@@ -42,7 +42,6 @@ struct QuestionAddModal: View {
                     }, label: {
                         Text("취소")
                     })
-                    .foregroundColor(Color.red)
                 }
             }
             .navigationBarTitleDisplayMode(.inline)

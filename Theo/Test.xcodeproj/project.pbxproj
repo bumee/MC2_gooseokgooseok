@@ -23,6 +23,7 @@
 		DE2BEA6B29FBCF700008DB86 /* TalkRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2BEA6A29FBCF700008DB86 /* TalkRow.swift */; };
 		DE2BEA6D29FBD1910008DB86 /* TalkDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2BEA6C29FBD1910008DB86 /* TalkDetail.swift */; };
 		DE2BEA6F29FBD28C0008DB86 /* TalkRow2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2BEA6E29FBD28C0008DB86 /* TalkRow2.swift */; };
+		DE3A62352A037FEB00F083F8 /* LoginNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A62342A037FEB00F083F8 /* LoginNameView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		DE2BEA6A29FBCF700008DB86 /* TalkRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkRow.swift; sourceTree = "<group>"; };
 		DE2BEA6C29FBD1910008DB86 /* TalkDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkDetail.swift; sourceTree = "<group>"; };
 		DE2BEA6E29FBD28C0008DB86 /* TalkRow2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkRow2.swift; sourceTree = "<group>"; };
+		DE3A62342A037FEB00F083F8 /* LoginNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				DE2BEA5A29FBCDA10008DB86 /* TestApp.swift */,
+				DE3A62342A037FEB00F083F8 /* LoginNameView.swift */,
 				DE2BEA5C29FBCDA10008DB86 /* ContentView.swift */,
 				DE0B83132A00DABD00B2AB71 /* CalendarView */,
 				DE0B83082A00D3DF00B2AB71 /* TalkView */,
@@ -209,6 +212,7 @@
 				DE0B830C2A00D43F00B2AB71 /* QuestionRow.swift in Sources */,
 				DE2BEA6F29FBD28C0008DB86 /* TalkRow2.swift in Sources */,
 				DE0B83182A00DDCA00B2AB71 /* QuestionAddModal.swift in Sources */,
+				DE3A62352A037FEB00F083F8 /* LoginNameView.swift in Sources */,
 				DE2BEA6929FBCE240008DB86 /* TalkList.swift in Sources */,
 				DE2BEA5B29FBCDA10008DB86 /* TestApp.swift in Sources */,
 			);
