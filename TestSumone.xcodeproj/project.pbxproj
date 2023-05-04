@@ -16,12 +16,15 @@
 		C5CC314129FA559F006595A6 /* TestSumoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC314029FA559F006595A6 /* TestSumoneUITestsLaunchTests.swift */; };
 		C5CC314E29FA5BE8006595A6 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC314D29FA5BE8006595A6 /* QuestionView.swift */; };
 		C5CC315129FA5C09006595A6 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC315029FA5C09006595A6 /* CalendarView.swift */; };
-		C5CC315929FBA603006595A6 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC315829FBA603006595A6 /* MessageView.swift */; };
+		C5CC315929FBA603006595A6 /* MessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC315829FBA603006595A6 /* MessageBubbleView.swift */; };
 		C5CC315B29FBB1A2006595A6 /* TalkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC315A29FBB1A2006595A6 /* TalkView.swift */; };
 		C5CC315D29FBB3C4006595A6 /* QuestionNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC315C29FBB3C4006595A6 /* QuestionNameView.swift */; };
 		C5CC31612A00DC6C006595A6 /* AddQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC31602A00DC6C006595A6 /* AddQuestionView.swift */; };
 		C5CC31642A00DE45006595A6 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC31632A00DE45006595A6 /* GlobalVariables.swift */; };
 		C5CC31662A023058006595A6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC31652A023058006595A6 /* LoginView.swift */; };
+		C5CC31682A023E6B006595A6 /* MessageShowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC31672A023E6B006595A6 /* MessageShowingView.swift */; };
+		C5CC316A2A024761006595A6 /* WaitingQuestionNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC31692A024761006595A6 /* WaitingQuestionNameView.swift */; };
+		C5CC316C2A0247E3006595A6 /* QuestionEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC316B2A0247E3006595A6 /* QuestionEditingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,12 +57,15 @@
 		C5CC314029FA559F006595A6 /* TestSumoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSumoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C5CC314D29FA5BE8006595A6 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		C5CC315029FA5C09006595A6 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		C5CC315829FBA603006595A6 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		C5CC315829FBA603006595A6 /* MessageBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleView.swift; sourceTree = "<group>"; };
 		C5CC315A29FBB1A2006595A6 /* TalkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkView.swift; sourceTree = "<group>"; };
 		C5CC315C29FBB3C4006595A6 /* QuestionNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionNameView.swift; sourceTree = "<group>"; };
 		C5CC31602A00DC6C006595A6 /* AddQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionView.swift; sourceTree = "<group>"; };
 		C5CC31632A00DE45006595A6 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		C5CC31652A023058006595A6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C5CC31672A023E6B006595A6 /* MessageShowingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageShowingView.swift; sourceTree = "<group>"; };
+		C5CC31692A024761006595A6 /* WaitingQuestionNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingQuestionNameView.swift; sourceTree = "<group>"; };
+		C5CC316B2A0247E3006595A6 /* QuestionEditingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionEditingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,7 +167,8 @@
 			children = (
 				C5CC315A29FBB1A2006595A6 /* TalkView.swift */,
 				C5CC315C29FBB3C4006595A6 /* QuestionNameView.swift */,
-				C5CC315829FBA603006595A6 /* MessageView.swift */,
+				C5CC315829FBA603006595A6 /* MessageBubbleView.swift */,
+				C5CC31672A023E6B006595A6 /* MessageShowingView.swift */,
 			);
 			path = "In Talk";
 			sourceTree = "<group>";
@@ -171,6 +178,8 @@
 			children = (
 				C5CC314D29FA5BE8006595A6 /* QuestionView.swift */,
 				C5CC31602A00DC6C006595A6 /* AddQuestionView.swift */,
+				C5CC31692A024761006595A6 /* WaitingQuestionNameView.swift */,
+				C5CC316B2A0247E3006595A6 /* QuestionEditingView.swift */,
 			);
 			path = "In Question";
 			sourceTree = "<group>";
@@ -319,10 +328,13 @@
 				C5CC31642A00DE45006595A6 /* GlobalVariables.swift in Sources */,
 				C5CC315129FA5C09006595A6 /* CalendarView.swift in Sources */,
 				C5CC31612A00DC6C006595A6 /* AddQuestionView.swift in Sources */,
+				C5CC31682A023E6B006595A6 /* MessageShowingView.swift in Sources */,
+				C5CC316A2A024761006595A6 /* WaitingQuestionNameView.swift in Sources */,
 				C5CC315D29FBB3C4006595A6 /* QuestionNameView.swift in Sources */,
+				C5CC316C2A0247E3006595A6 /* QuestionEditingView.swift in Sources */,
 				C5CC312429FA559E006595A6 /* TestSumoneApp.swift in Sources */,
 				C5CC31662A023058006595A6 /* LoginView.swift in Sources */,
-				C5CC315929FBA603006595A6 /* MessageView.swift in Sources */,
+				C5CC315929FBA603006595A6 /* MessageBubbleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

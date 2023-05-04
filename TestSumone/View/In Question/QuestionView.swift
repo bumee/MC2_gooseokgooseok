@@ -17,12 +17,11 @@ struct QuestionView: View {
         NavigationView {
             List {
                 Section(header: Text("대기중")){
-                    ForEach(WaitingQuestionList.questions, id: \.self) { Question in
+                    ForEach(WaitingQuestionList.questions.reversed(), id: \.self) { Question in
                         NavigationLink(
-                            destination:  SendMessageView()
-                                .previewLayout(.fixed(width: 400, height: 140))
+                            destination:  QuestionEditingView(PreviousQuestion: Question, WillChangeQuestion: Question)
                         ){
-                            QuestionNameView(text: "\(Question)")
+                            WaitingQuestionNameView(text: "\(Question)")
                         }
                     }
                 }
