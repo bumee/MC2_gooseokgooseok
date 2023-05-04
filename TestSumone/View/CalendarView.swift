@@ -11,6 +11,9 @@ struct CalendarView: View {
     @State var currentDate: Date;
     // Month update on arrow button clicks....
     @State var currentMonth: Int = 0
+    @State private var showModal = false
+    
+    @ObservedObject private var myTask: TaskManager = TaskManager()
     
     var body: some View {
         VStack {
@@ -19,10 +22,12 @@ struct CalendarView: View {
                     Text("캘린더").font(.title.bold())
                     Spacer()
                     Button{
-                        print("haiwng")
+                        self.showModal = true
                     } label: {
                         Text("추가")
-                        
+                    }
+                    .sheet(isPresented: self.$showModal) {
+                        TaskAddView(showModal: $showModal, myTask: myTask)
                     }
                 }
                 .background(Color.orange)
@@ -94,8 +99,8 @@ struct CalendarView: View {
                 
                 
                 ScrollView(){
-                    if let task = tasks.first(where: {task in
-                        return isSameMonth(date1: task.taskDate, date2: currentDate)
+                    if let task = self.myTask.tasks.first(where: {task in
+                        return isSameDay(date1: task.taskDate, date2: currentDate)
                     }) {
                         ForEach(task.task) {task in
                             VStack(alignment: .leading, spacing: 10){
@@ -129,7 +134,7 @@ struct CalendarView: View {
     func CardView(value: DateValue) -> some View {
         VStack{
             if value.day != -1 {
-                if let task = tasks.first(where: {task in
+                if let task = self.myTask.tasks.first(where: {task in
                     return isSameDay(date1: task.taskDate, date2: value.date)
                 }) {
                     Text("\(value.day)")
