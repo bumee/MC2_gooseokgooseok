@@ -15,50 +15,45 @@ struct TalkDetail: View {
     
     var body: some View {
         VStack() {
-            //            Spacer()
-            drawRectangle()
-                .overlay {
-                    VStack {
-                        Text("04/21")
-                        Text("가장 소중하게 여기는 우리 가족의 추억은 뭔가요?")
-                            .padding(.bottom, 16)
-                        
-                        VStack {
-                            Text("답변자")
-                                .padding(.leading, 250)
-                            Text("🧑👩🏼‍🦱")
-                                .padding(.leading, 250)
-                        }
-                    }
+//            drawRectangle()
+//                .overlay {
+            Form() {
+                Text("04월 21일 (토) 9:41")
+                Text("가장 소중하게 여기는 우리 가족의 추억은 뭔가요?")
+                    .padding(.bottom, 16)
+                    .listRowSeparator(.hidden)
+                
+                VStack(alignment: .trailing) {
+                    Text("답변자")
+//                        .padding(.leading, 250)
+                    Text("🧑👩🏼‍🦱")
+//                        .padding(.leading, 250)
                 }
-            //            Spacer()
-            HStack(alignment:.top) {
-                        ScrollView {
-                            TextField("Note", text: $text.note, axis: .vertical)
-                                .focused($focus, equals: true)
-                                .padding(.leading, 20)
-                        }
-                        Spacer()
-                        Button {
-                            if text.updating {
-                                
-                            } else {
+                HStack(alignment:.top) {
+                            ScrollView {
+                                TextField("Note", text: $text.note, axis: .vertical)
+                                    .focused($focus, equals: true)
+                            }
+                            Spacer()
+                            Button {
+                                if text.updating {
+                                    
+                                } else {
+                                    
+                                }
+                            } label: {
+                                Text("Send")
                                 
                             }
-                        } label: {
-                            Text("Send")
-                            
+                            .buttonStyle(.borderedProminent)
+                            .disabled(text.incomplete)
                         }
-                        .padding(.trailing, 20)
-                        .buttonStyle(.borderedProminent)
-                        .disabled(text.incomplete)
-                    }
-            .frame(height: 100)
+                .frame(height: 400)
             .padding()
+            }
             Spacer()
         }
     }
-    
     
     func drawRectangle() -> some View {
         RoundedRectangle(cornerRadius: 8)

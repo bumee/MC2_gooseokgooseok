@@ -19,6 +19,16 @@
 		C5CC315929FBA603006595A6 /* SelectedTalkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC315829FBA603006595A6 /* SelectedTalkView.swift */; };
 		C5CC315B29FBB1A2006595A6 /* TalkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC315A29FBB1A2006595A6 /* TalkView.swift */; };
 		C5CC315D29FBB3C4006595A6 /* QuestionNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC315C29FBB3C4006595A6 /* QuestionNameView.swift */; };
+<<<<<<< Updated upstream
+=======
+		C5CC31612A00DC6C006595A6 /* AddQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC31602A00DC6C006595A6 /* AddQuestionView.swift */; };
+		C5CC31642A00DE45006595A6 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC31632A00DE45006595A6 /* GlobalVariables.swift */; };
+		C5CC31662A023058006595A6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC31652A023058006595A6 /* LoginView.swift */; };
+		C5CC31682A023E6B006595A6 /* MessageShowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC31672A023E6B006595A6 /* MessageShowingView.swift */; };
+		C5CC316A2A024761006595A6 /* WaitingQuestionNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC31692A024761006595A6 /* WaitingQuestionNameView.swift */; };
+		C5CC316C2A0247E3006595A6 /* QuestionEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC316B2A0247E3006595A6 /* QuestionEditingView.swift */; };
+		EBCA237E2A03A077000DA0C4 /* MessageAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA237D2A03A077000DA0C4 /* MessageAnswerView.swift */; };
+>>>>>>> Stashed changes
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +64,16 @@
 		C5CC315829FBA603006595A6 /* SelectedTalkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTalkView.swift; sourceTree = "<group>"; };
 		C5CC315A29FBB1A2006595A6 /* TalkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkView.swift; sourceTree = "<group>"; };
 		C5CC315C29FBB3C4006595A6 /* QuestionNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionNameView.swift; sourceTree = "<group>"; };
+<<<<<<< Updated upstream
+=======
+		C5CC31602A00DC6C006595A6 /* AddQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionView.swift; sourceTree = "<group>"; };
+		C5CC31632A00DE45006595A6 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		C5CC31652A023058006595A6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C5CC31672A023E6B006595A6 /* MessageShowingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageShowingView.swift; sourceTree = "<group>"; };
+		C5CC31692A024761006595A6 /* WaitingQuestionNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingQuestionNameView.swift; sourceTree = "<group>"; };
+		C5CC316B2A0247E3006595A6 /* QuestionEditingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionEditingView.swift; sourceTree = "<group>"; };
+		EBCA237D2A03A077000DA0C4 /* MessageAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAnswerView.swift; sourceTree = "<group>"; };
+>>>>>>> Stashed changes
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,7 +173,13 @@
 			isa = PBXGroup;
 			children = (
 				C5CC315C29FBB3C4006595A6 /* QuestionNameView.swift */,
+<<<<<<< Updated upstream
 				C5CC315A29FBB1A2006595A6 /* TalkView.swift */,
+=======
+				C5CC315829FBA603006595A6 /* MessageBubbleView.swift */,
+				C5CC31672A023E6B006595A6 /* MessageShowingView.swift */,
+				EBCA237D2A03A077000DA0C4 /* MessageAnswerView.swift */,
+>>>>>>> Stashed changes
 			);
 			path = "In Talk";
 			sourceTree = "<group>";
@@ -291,6 +317,11 @@
 				C5CC315B29FBB1A2006595A6 /* TalkView.swift in Sources */,
 				C5CC312629FA559E006595A6 /* MainView.swift in Sources */,
 				C5CC314E29FA5BE8006595A6 /* QuestionView.swift in Sources */,
+<<<<<<< Updated upstream
+=======
+				C5CC31642A00DE45006595A6 /* GlobalVariables.swift in Sources */,
+				EBCA237E2A03A077000DA0C4 /* MessageAnswerView.swift in Sources */,
+>>>>>>> Stashed changes
 				C5CC315129FA5C09006595A6 /* CalendarView.swift in Sources */,
 				C5CC315D29FBB3C4006595A6 /* QuestionNameView.swift in Sources */,
 				C5CC312429FA559E006595A6 /* TestSumoneApp.swift in Sources */,
@@ -460,6 +491,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -488,6 +520,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

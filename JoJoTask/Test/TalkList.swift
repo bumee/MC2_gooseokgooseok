@@ -16,18 +16,21 @@ struct TalkList: View {
                 } label: {
                     TalkRow()
                 }
+                
                 NavigationLink {
-                    TalkDetail(text: TextStruct())
+                    MessageShowingView()
                 } label: {
                     TalkRow2(date: todayDate[0], qustion: qustion[0])
                         .frame(height: 40)
                 }
+                
                 NavigationLink {
-                    TalkDetail(text: TextStruct())
+                    MessageAnswerView(text: TextStruct())
                 } label: {
                     TalkRow2(date: todayDate[1], qustion: qustion[1])
                         .frame(height: 40)
                 }
+                
                 NavigationLink {
                     TalkDetail(text: TextStruct())
                 } label: {

@@ -20,20 +20,15 @@
 		DE2BEA6229FBCDA20008DB86 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE2BEA6129FBCDA20008DB86 /* Preview Assets.xcassets */; };
 		DE2BEA6929FBCE240008DB86 /* TalkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2BEA6829FBCE240008DB86 /* TalkList.swift */; };
 		DE2BEA6B29FBCF700008DB86 /* TalkRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2BEA6A29FBCF700008DB86 /* TalkRow.swift */; };
-<<<<<<< Updated upstream
 		DE2BEA6D29FBD1910008DB86 /* TalkDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2BEA6C29FBD1910008DB86 /* TalkDetail.swift */; };
-		DE2BEA6F29FBD28C0008DB86 /* TalkRow2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2BEA6E29FBD28C0008DB86 /* TalkRow2.swift */; };
-		EB739D222A00F83400362EF1 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB739D212A00F83400362EF1 /* Data.swift */; };
-		EB739D242A02AC6900362EF1 /* TextStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB739D232A02AC6900362EF1 /* TextStruct.swift */; };
-		EB739D262A02B7D000362EF1 /* text.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB739D252A02B7D000362EF1 /* text.swift */; };
-=======
-		DE2BEA6D29FBD1910008DB86 /* TalkAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2BEA6C29FBD1910008DB86 /* TalkAnswer.swift */; };
 		DE2BEA6F29FBD28C0008DB86 /* TalkRow2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2BEA6E29FBD28C0008DB86 /* TalkRow2.swift */; };
 		EB739D222A00F83400362EF1 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB739D212A00F83400362EF1 /* Data.swift */; };
 		EB739D242A02AC6900362EF1 /* TextStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB739D232A02AC6900362EF1 /* TextStruct.swift */; };
 		EBCA23762A037920000DA0C4 /* TalkAnswerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA23752A037920000DA0C4 /* TalkAnswerList.swift */; };
 		EBCA23782A0382A3000DA0C4 /* TalkAnswer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA23772A0382A3000DA0C4 /* TalkAnswer2.swift */; };
->>>>>>> Stashed changes
+		EBCA237A2A039A7B000DA0C4 /* MessageShowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA23792A039A7B000DA0C4 /* MessageShowingView.swift */; };
+		EBCA237C2A039A9F000DA0C4 /* MessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA237B2A039A9F000DA0C4 /* MessageBubbleView.swift */; };
+		EBCA23802A03A498000DA0C4 /* MessageAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA237F2A03A498000DA0C4 /* MessageAnswerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,20 +46,15 @@
 		DE2BEA6129FBCDA20008DB86 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DE2BEA6829FBCE240008DB86 /* TalkList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkList.swift; sourceTree = "<group>"; };
 		DE2BEA6A29FBCF700008DB86 /* TalkRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkRow.swift; sourceTree = "<group>"; };
-<<<<<<< Updated upstream
 		DE2BEA6C29FBD1910008DB86 /* TalkDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkDetail.swift; sourceTree = "<group>"; };
-		DE2BEA6E29FBD28C0008DB86 /* TalkRow2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkRow2.swift; sourceTree = "<group>"; };
-		EB739D212A00F83400362EF1 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		EB739D232A02AC6900362EF1 /* TextStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStruct.swift; sourceTree = "<group>"; };
-		EB739D252A02B7D000362EF1 /* text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = text.swift; sourceTree = "<group>"; };
-=======
-		DE2BEA6C29FBD1910008DB86 /* TalkAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkAnswer.swift; sourceTree = "<group>"; };
 		DE2BEA6E29FBD28C0008DB86 /* TalkRow2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkRow2.swift; sourceTree = "<group>"; };
 		EB739D212A00F83400362EF1 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		EB739D232A02AC6900362EF1 /* TextStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStruct.swift; sourceTree = "<group>"; };
 		EBCA23752A037920000DA0C4 /* TalkAnswerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkAnswerList.swift; sourceTree = "<group>"; };
 		EBCA23772A0382A3000DA0C4 /* TalkAnswer2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkAnswer2.swift; sourceTree = "<group>"; };
->>>>>>> Stashed changes
+		EBCA23792A039A7B000DA0C4 /* MessageShowingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageShowingView.swift; sourceTree = "<group>"; };
+		EBCA237B2A039A9F000DA0C4 /* MessageBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleView.swift; sourceTree = "<group>"; };
+		EBCA237F2A03A498000DA0C4 /* MessageAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAnswerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,18 +72,16 @@
 			isa = PBXGroup;
 			children = (
 				DE2BEA6829FBCE240008DB86 /* TalkList.swift */,
-<<<<<<< Updated upstream
 				DE2BEA6C29FBD1910008DB86 /* TalkDetail.swift */,
-				EB739D252A02B7D000362EF1 /* text.swift */,
-=======
-				DE2BEA6C29FBD1910008DB86 /* TalkAnswer.swift */,
 				EBCA23772A0382A3000DA0C4 /* TalkAnswer2.swift */,
 				EBCA23752A037920000DA0C4 /* TalkAnswerList.swift */,
->>>>>>> Stashed changes
 				DE2BEA6A29FBCF700008DB86 /* TalkRow.swift */,
 				DE2BEA6E29FBD28C0008DB86 /* TalkRow2.swift */,
 				EB739D212A00F83400362EF1 /* Data.swift */,
 				EB739D232A02AC6900362EF1 /* TextStruct.swift */,
+				EBCA23792A039A7B000DA0C4 /* MessageShowingView.swift */,
+				EBCA237B2A039A9F000DA0C4 /* MessageBubbleView.swift */,
+				EBCA237F2A03A498000DA0C4 /* MessageAnswerView.swift */,
 			);
 			name = TalkView;
 			sourceTree = "<group>";
@@ -231,21 +219,17 @@
 				DE0B831A2A00E6BE00B2AB71 /* CalendarAddModal.swift in Sources */,
 				DE0B83122A00DA5400B2AB71 /* CalendarRow.swift in Sources */,
 				EB739D242A02AC6900362EF1 /* TextStruct.swift in Sources */,
+				EBCA237C2A039A9F000DA0C4 /* MessageBubbleView.swift in Sources */,
 				DE0B830E2A00D6CB00B2AB71 /* CalendarList.swift in Sources */,
 				DE2BEA6B29FBCF700008DB86 /* TalkRow.swift in Sources */,
+				EBCA23802A03A498000DA0C4 /* MessageAnswerView.swift in Sources */,
+				EBCA237A2A039A7B000DA0C4 /* MessageShowingView.swift in Sources */,
 				DE0B830A2A00D3FD00B2AB71 /* QuestionList.swift in Sources */,
-<<<<<<< Updated upstream
+				EBCA23762A037920000DA0C4 /* TalkAnswerList.swift in Sources */,
+				EBCA23782A0382A3000DA0C4 /* TalkAnswer2.swift in Sources */,
 				DE2BEA6D29FBD1910008DB86 /* TalkDetail.swift in Sources */,
 				DE2BEA5D29FBCDA10008DB86 /* ContentView.swift in Sources */,
 				DE0B830C2A00D43F00B2AB71 /* QuestionRow.swift in Sources */,
-				EB739D262A02B7D000362EF1 /* text.swift in Sources */,
-=======
-				EBCA23762A037920000DA0C4 /* TalkAnswerList.swift in Sources */,
-				EBCA23782A0382A3000DA0C4 /* TalkAnswer2.swift in Sources */,
-				DE2BEA6D29FBD1910008DB86 /* TalkAnswer.swift in Sources */,
-				DE2BEA5D29FBCDA10008DB86 /* ContentView.swift in Sources */,
-				DE0B830C2A00D43F00B2AB71 /* QuestionRow.swift in Sources */,
->>>>>>> Stashed changes
 				DE2BEA6F29FBD28C0008DB86 /* TalkRow2.swift in Sources */,
 				EB739D222A00F83400362EF1 /* Data.swift in Sources */,
 				DE0B83182A00DDCA00B2AB71 /* QuestionAddModal.swift in Sources */,

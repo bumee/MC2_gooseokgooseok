@@ -11,7 +11,14 @@ import SwiftUI
 struct TestSumoneApp: App {
     var body: some Scene {
         WindowGroup {
+<<<<<<< Updated upstream
             MainView()
+=======
+//            MainView()
+//                .environmentObject(questionData)
+//                .environmentObject(waitingQuestionData)
+            MessageAnswerView()
+>>>>>>> Stashed changes
         }
     }
 }
