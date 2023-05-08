@@ -27,7 +27,7 @@ struct CalendarView: View {
             
             VStack {
                 
-                List() {
+                List{
                     
                     VStack{
                         
@@ -104,24 +104,8 @@ struct CalendarView: View {
                                 Text(task.title)
                                     .font(.system(size: 24))
                             }
-                            // .background(Color.green.opacity(0.3))
-                            /*
-                            VStack(alignment: .leading, spacing: 10){
-                                Text(task.time.addingTimeInterval(CGFloat
-                                    .random(in:0...5000)), style: .time)
-                                
-                                Text(task.title)
-                                    .truncationMode(.middle)
-                                    .font(.title2.bold())
-                            }
-                            .padding()
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(RoundedRectangle(cornerRadius: 10).fill(.pink.opacity(0.3)))
-                             */
                         }
-                        
                     }
-                    
                 }
                 .onChange(of: currentMonth) { newValue in
                     currentDate = getCurrentMonth()
@@ -134,16 +118,9 @@ struct CalendarView: View {
                     .sheet(isPresented: self.$showModal) {
                         TaskAddView(showModal: $showModal, myTask: myTask)
                     }
-                          
                 }
             }
-            
-            
-            
-            
         }
-        
-        
     }
     
     @ViewBuilder
@@ -258,17 +235,17 @@ extension Date {
         
         let startDate = calendar.date(from: Calendar.current.dateComponents([.year,.month], from: self))!
         
-        var range = calendar.range(of: .day, in: .month, for: startDate)!
+        let range = calendar.range(of: .day, in: .month, for: startDate)!
         
         return range.compactMap { day -> Date in
             
-            var a = calendar.date(byAdding: .day, value: day, to: startDate)!
+            let nxtDay = calendar.date(byAdding: .day, value: day, to: startDate)!
             
             // 기본 시간은 utc 15시이다. gmt는 utc보다 9시간 뒤이다.
             // 여기서 문제가 발생한다.
             // 15 + 9 시은 24시이므로 하루가 오버플로우되는 일이 발생한다.
             // 그래서 1시간을 빼줘서 이 문제를 해결했다.
-            return calendar.date(byAdding: .hour, value: -1, to: a)!
+            return calendar.date(byAdding: .hour, value: -1, to: nxtDay)!
         }
     }
 }
