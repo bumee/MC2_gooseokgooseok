@@ -43,18 +43,18 @@ struct MessageBubbleView: View {
             HStack {
                 Spacer()
                 Text(message)
-                    .padding()
+                    .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
                     .background(Color.blue)
-                    .multilineTextAlignment(.center)
+                    .multilineTextAlignment(.leading)
                     .foregroundColor(.white)
-                .clipShape(MessageBubble(isFromCurrentUser: true))}
+                .cornerRadius(12)}
         } else {
             HStack {
                 Text(message)
-                    .padding()
-                    .background(Color.gray)
-                    .multilineTextAlignment(.center)
-                .clipShape(MessageBubble(isFromCurrentUser: false))
+                    .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
+                    .background(Color(uiColor: .secondarySystemBackground))
+                    .multilineTextAlignment(.leading)
+                    .cornerRadius(12)
                 Spacer()
             }
         }

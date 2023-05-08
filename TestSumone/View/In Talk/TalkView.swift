@@ -14,16 +14,23 @@ struct TalkView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(QuestionList.questions.reversed(), id: \.self) { Question in
+//                ForEach(QuestionList.questions.reversed(), id: \.self) { Question in
                     NavigationLink(
-                        destination:  MessageShowingView()
-                    ){
-                        QuestionNameView(text: "\(Question)")
+                        destination:  MessageBlockView(text: AnswerTextData())
+                    )
+                {
+                        QuestionNameView(text: "질문")
                     }
+                NavigationLink(
+                    destination:  MessageShowingView()
+                ){
+                    QuestionNameView(text: "답변")
                 }
+//                }
             }
             .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
             .navigationTitle("Talk")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

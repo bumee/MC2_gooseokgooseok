@@ -15,9 +15,10 @@ struct TestSumoneApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
-                .environmentObject(questionData)
-                .environmentObject(waitingQuestionData)
+//            MainView()
+//                .environmentObject(questionData)
+//                .environmentObject(waitingQuestionData)
+            TalkView()
         }
     }
 }

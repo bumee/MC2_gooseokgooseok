@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50AD72D52A08DAE000D88824 /* AnswerTextData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AD72D42A08DAE000D88824 /* AnswerTextData.swift */; };
+		50C09C852A039D340008E765 /* MessageBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C09C842A039D340008E765 /* MessageBlockView.swift */; };
 		C5CC312429FA559E006595A6 /* TestSumoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC312329FA559E006595A6 /* TestSumoneApp.swift */; };
 		C5CC312629FA559E006595A6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC312529FA559E006595A6 /* MainView.swift */; };
 		C5CC312829FA559F006595A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5CC312729FA559F006595A6 /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		50AD72D42A08DAE000D88824 /* AnswerTextData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerTextData.swift; sourceTree = "<group>"; };
+		50C09C842A039D340008E765 /* MessageBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBlockView.swift; sourceTree = "<group>"; };
 		C5CC312029FA559E006595A6 /* TestSumone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestSumone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5CC312329FA559E006595A6 /* TestSumoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSumoneApp.swift; sourceTree = "<group>"; };
 		C5CC312529FA559E006595A6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -168,7 +172,9 @@
 				C5CC315A29FBB1A2006595A6 /* TalkView.swift */,
 				C5CC315C29FBB3C4006595A6 /* QuestionNameView.swift */,
 				C5CC315829FBA603006595A6 /* MessageBubbleView.swift */,
+				50C09C842A039D340008E765 /* MessageBlockView.swift */,
 				C5CC31672A023E6B006595A6 /* MessageShowingView.swift */,
+				50AD72D42A08DAE000D88824 /* AnswerTextData.swift */,
 			);
 			path = "In Talk";
 			sourceTree = "<group>";
@@ -330,10 +336,12 @@
 				C5CC31612A00DC6C006595A6 /* AddQuestionView.swift in Sources */,
 				C5CC31682A023E6B006595A6 /* MessageShowingView.swift in Sources */,
 				C5CC316A2A024761006595A6 /* WaitingQuestionNameView.swift in Sources */,
+				50AD72D52A08DAE000D88824 /* AnswerTextData.swift in Sources */,
 				C5CC315D29FBB3C4006595A6 /* QuestionNameView.swift in Sources */,
 				C5CC316C2A0247E3006595A6 /* QuestionEditingView.swift in Sources */,
 				C5CC312429FA559E006595A6 /* TestSumoneApp.swift in Sources */,
 				C5CC31662A023058006595A6 /* LoginView.swift in Sources */,
+				50C09C852A039D340008E765 /* MessageBlockView.swift in Sources */,
 				C5CC315929FBA603006595A6 /* MessageBubbleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,6 +508,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -528,6 +537,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
