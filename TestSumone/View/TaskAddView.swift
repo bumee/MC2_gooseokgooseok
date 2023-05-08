@@ -32,10 +32,7 @@ struct TaskAddView: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(action: {
-                        var task = Task(title: self.anni_name, time: anni_date)
-                        var taskMetaData = TaskMetaData(task: [task], taskDate: anni_date)
-                        
-                        myTask.addTask(taskMetaData)
+                        myTask.addTask(self.anni_date, self.anni_name)
                         
                         self.showModal = false
                         
