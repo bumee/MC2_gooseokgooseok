@@ -7,10 +7,14 @@
 
 import SwiftUI
 
-struct Task: Identifiable {
+struct Task: Identifiable, Comparable {
     var id = UUID().uuidString
     var title: String
     var time: Date = Date()
+    
+    static func <(lhs: Task, rhs: Task) -> Bool {
+        return lhs.time < rhs.time
+    }
 }
 
 /*
@@ -29,24 +33,26 @@ func getSampleData(offset: Int)->Date {
 }
 
 class TaskManager : ObservableObject {
-    @Published var tasks: [Task] = []
+    @Published var tasks : Dictionary<Int, Array<Task>> = [0:[], 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[], 10:[], 11:[], 12:[]]
     
     init() {
-        tasks.append(Task(title: "hawing", time: Date()))
-        tasks.append(Task(title: "hawing", time: getSampleData(offset: 0)))
-        tasks.append(Task(title: "hawing", time: getSampleData(offset: 1)))
-        tasks.append(Task(title: "hawing", time: getSampleData(offset: 2)))
-        tasks.append(Task(title: "hawing", time: getSampleData(offset: 20)))
-        tasks.append(Task(title: "hawing", time: getSampleData(offset: 30)))
+        addTask(Date(), "hawing")
+        addTask(getSampleData(offset: 2), "2222222")
+        addTask(getSampleData(offset: 32), "3232323232")
+        addTask(getSampleData(offset: 52), "52525252525252")
+        addTask(getSampleData(offset: 72), "7272727272")
     }
     
-    func addTask(_ newTask: Task) {
-        tasks.append(newTask)
+    func addTask(_ date: Date, _ title: String) {
+        let monthAsInt = Calendar.current.component(.month, from: date)
+        
+        let newTask = Task(title:title, time: date)
+        
+        tasks[monthAsInt]!.append(newTask)
+        
+        tasks[monthAsInt]!.sort()
     }
     
     
 }
 
-/*
- var tasks: [TaskMetaData] = []
- */

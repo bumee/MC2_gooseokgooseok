@@ -16,148 +16,145 @@ struct CalendarView: View {
     @ObservedObject private var myTask: TaskManager = TaskManager()
     
     var body: some View {
-        VStack {
-            VStack{
-                HStack{
-                    Text("캘린더").font(.title.bold())
-                    Spacer()
-                    Button{
-                        self.showModal = true
-                    } label: {
-                        Text("추가")
-                    }
-                    .sheet(isPresented: self.$showModal) {
-                        TaskAddView(showModal: $showModal, myTask: myTask)
-                    }
-                }
-                .background(Color.orange)
-                let days: [String] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-                HStack (spacing: 20){
-                    HStack(spacing:10){
-                        Text(extraDate()[1]) // May
-                            .fontWeight(.semibold)
-                            .background(Color.red)
-                        Text(extraDate()[0]) // 2023
-                            .fontWeight(.semibold)
-                    }
-                    Spacer(minLength: 0)
-                    Button {
-                        withAnimation{
-                            currentMonth -= 1
-                        }
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .font(.title2)
-                    }
-                    Button {
-                        withAnimation{
-                            currentMonth += 1
-                        }
-                    } label: {
-                        Image(systemName: "chevron.right")
-                            .font(.title2)
-                    }
-                }
-                    .padding(.horizontal, 4)
-                
-                // day view(mon, tue, wed, ...)
-                let columns = Array(repeating: GridItem(.flexible()), count: 7)
-                LazyVGrid(columns: columns) {
-                    ForEach(days,id: \.self){ day in
-                        Text(day)
-                            .font(.system(size:20))
-                            .font(.callout)
-                            .fontWeight(.semibold)
-                            // .frame(maxWidth: .infinity)
-                            .background(Color.red)
-                    }
-                }
-                
-                // dates
-                LazyVGrid(columns: columns) {
-                    ForEach(extractDate()) { value in
-                        CardView(value: value)
-                            .background(
-                                Capsule()
-                                    .fill(Color.orange)
-                                    .padding(.horizontal, 8)
-                                    .opacity(isSameDay(date1: value.date, date2: currentDate) ? 1 : 0)
-                            )
-                            .onTapGesture{
-                                currentDate = value.date
-                            }
-                    }
-                }
-            }
-            .background(Color.red.opacity(0.3))
+        NavigationView() {
             
-            
-            VStack(spacing: 20){
-                Text("Tasks")
-                    .font(.title2.bold())
-                    .frame(maxWidth: .infinity, alignment: .leading)
+            VStack {
                 
-                
-                ScrollView(){
-                    if let task = self.myTask.tasks.first(where: {task in
-                        return isSameDay(date1: task.taskDate, date2: currentDate)
-                    }) {
-                        ForEach(task.task) {task in
-                            VStack(alignment: .leading, spacing: 10){
-                                Text(task.time.addingTimeInterval(CGFloat
-                                    .random(in:0...5000)), style: .time)
-                                
-                                Text(task.title)
-                                    .truncationMode(.middle)
-                                    .font(.title2.bold())
+                List() {
+                    
+                    VStack{
+                        
+                        let days: [String] = ["일", "월", "화", "수", "목", "금", "토"]
+                        
+                        HStack {
+                            HStack {
+                                Text("\(extraDate()[0])년") // 2023
+                                Text("\(extraDate()[1])") // May
                             }
-                            .padding()
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(RoundedRectangle(cornerRadius: 10).fill(.pink.opacity(0.3)))
+                            .fontWeight(.bold)
+                            .padding(EdgeInsets(top: 16, leading: 12, bottom: 12, trailing: 0))
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.left")
+                                .padding(.trailing, 16)
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.blue)
+                                .onTapGesture{
+                                    currentMonth -= 1
+                                }
+                            
+                            Image(systemName: "chevron.right")
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.blue)
+                                .onTapGesture{
+                                    currentMonth += 1
+                                }
+                        }
+                        
+                        // day view(mon, tue, wed, ...)
+                        let columns = Array(repeating: GridItem(.flexible()), count: 7)
+                        LazyVGrid(columns: columns) {
+                            ForEach(days,id: \.self){ day in
+                                Text(day)
+                                    .font(.subheadline).bold()
+                                    .foregroundColor(Color(uiColor: .systemGray2))
+                            }
+                        }
+                        
+                        // dates
+                        LazyVGrid(columns: columns) {
+                            ForEach(extractDate()) { value in
+                                CardView(value: value)
+                                    .background(
+                                        Capsule()
+                                            .fill(Color.blue)
+                                            .opacity(isSameDay(date1: value.date, date2: currentDate) ? 1 : 0)
+                                            .position(x:19, y: 16)
+                                    )
+                                    .onTapGesture{
+                                        currentDate = value.date
+                                    }
+                            }
                         }
                     }
-                    else{
-                        Text("No Task Found")
+                    
+                    Section(header: Text("가까운 기념일")) {
+                        ScrollView(){
+                            let tasks = myTask.tasks[getCurrentMonthAsInt()] // 어떻게 수정하지?
+                            
+                            ForEach(tasks!) {task in
+                                VStack(alignment: .leading, spacing: 10){
+                                    Text(task.time.addingTimeInterval(CGFloat
+                                        .random(in:0...5000)), style: .time)
+                                    
+                                    Text(task.title)
+                                        .truncationMode(.middle)
+                                        .font(.title2.bold())
+                                }
+                                .padding()
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .background(RoundedRectangle(cornerRadius: 10).fill(.pink.opacity(0.3)))
+                            }
+                            
+                        }
+                        
                     }
                     
                 }
+                .onChange(of: currentMonth) { newValue in
+                    currentDate = getCurrentMonth()
+                }
+                .navigationTitle("캘린더")
+                .toolbar {
+                    Button("추가") {
+                        
+                    }
+                }
             }
             
+            
+            
+            
         }
-        .padding(.horizontal)
-        .onChange(of: currentMonth) { newValue in
-            currentDate = getCurrentMonth()
-        }
+        
+        
     }
     
     @ViewBuilder
     func CardView(value: DateValue) -> some View {
+        let tasks = myTask.tasks[currentMonth]! // 어떻게 수정하지?
+        
         VStack{
             if value.day != -1 {
-                if let task = self.myTask.tasks.first(where: {task in
-                    return isSameDay(date1: task.taskDate, date2: value.date)
+                if let task = tasks.first(where: {task in
+                    return isSameDay(date1: task.time, date2: value.date)
                 }) {
                     Text("\(value.day)")
-                        .font(.title3.bold())
-                        .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .black : .black)
+                        .font(.title3)
+                        .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .white : .black)
+                        .fontWeight(isSameDay(date1: value.date, date2: currentDate) ? .semibold : .regular)
                         .frame(maxWidth: .infinity)
-                    Spacer()
+                        .padding(.bottom, -8)
                     
                     Circle()
-                        .fill(isSameDay(date1:task.taskDate, date2: self.currentDate) ? .white : .red)
-                        .frame(width: 8, height: 8)
+                        .fill(isSameDay(date1:task.time, date2: self.currentDate) ? .white : .red)
+                        .frame(width: 6, height: 6)
                 }
                 else{
                     Text("\(value.day)")
-                        .font(.title3.bold())
-                        .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .black : .black)
+                        .font(.title3)
+                        .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .white : .black)
+                        .fontWeight(isSameDay(date1: value.date, date2: currentDate) ? .semibold : .regular)
                         .frame(maxWidth: .infinity)
                     Spacer()
                 }
             }
         }
-        .padding(.vertical, 8)
-        .frame(height:50, alignment: .top)
+        //        .padding(.vertical, 8)
+        .frame(height:40, alignment: .top)
         
     }
     
@@ -189,6 +186,18 @@ struct CalendarView: View {
         return currentMonth
     }
     
+    func getCurrentMonthAsInt() -> Int {
+        let calendar = Calendar.current
+        
+        
+        guard let currentMonth = calendar.date(byAdding: .month, value: self.currentMonth, to: Date())
+        else { print("getCurrentMonthAsInt() is wrong"); return 1 }
+        
+        let monthAsInt = calendar.component(.month, from: currentMonth)
+        
+        return monthAsInt
+    }
+    
     func extractDate()-> [DateValue]{
         
         let calendar = Calendar.current
@@ -211,12 +220,6 @@ struct CalendarView: View {
         }
         return days
         
-    }
-}
-
-struct CustomDatePicker_Previews: PreviewProvider {
-    static var previews: some View {
-        CalendarView(currentDate: Date())
     }
 }
 
