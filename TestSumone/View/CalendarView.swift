@@ -159,6 +159,7 @@ struct CalendarView: View {
                 }) {
                     Text("\(value.day)")
                         .font(.title3)
+                        .foregroundColor(isSameDay(date1: value.date, date2: Date()) ? .gray : .black)
                         .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .white : .black)
                         .fontWeight(isSameDay(date1: value.date, date2: currentDate) ? .semibold : .regular)
                         .frame(maxWidth: .infinity)
@@ -171,6 +172,7 @@ struct CalendarView: View {
                 else{
                     Text("\(value.day)")
                         .font(.title3)
+                        .foregroundColor(isSameDay(date1: value.date, date2: Date()) ? .gray : .black)
                         .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .white : .black)
                         .fontWeight(isSameDay(date1: value.date, date2: currentDate) ? .semibold : .regular)
                         .frame(maxWidth: .infinity)
