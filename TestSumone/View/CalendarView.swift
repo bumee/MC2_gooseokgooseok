@@ -8,12 +8,19 @@
 import SwiftUI
 
 struct CalendarView: View {
-    @State var currentDate: Date;
+    @State var currentDate: Date = Date()
     // Month update on arrow button clicks....
     @State var currentMonth: Int = 0
     @State private var showModal = false
     
     @ObservedObject private var myTask: TaskManager = TaskManager()
+    
+    let dateFormatter : DateFormatter = DateFormatter()
+    
+    init(){
+        currentDate = Date()
+        dateFormatter.dateFormat = "MM/dd"
+    }
     
     var body: some View {
         NavigationView() {
@@ -82,23 +89,35 @@ struct CalendarView: View {
                     }
                     
                     Section(header: Text("가까운 기념일")) {
-                        ScrollView(){
-                            let tasks = myTask.tasks[getCurrentMonthAsInt()] // 어떻게 수정하지?
+                        let tasks = myTask.tasks[getCurrentMonthAsInt()] // 어떻게 수정하지?
+                        let a = myTask.tasks[getCurrentMonthAsInt() % 12 + 1]
+                        let b = myTask.tasks[getCurrentMonthAsInt() % 12 + 2]
+                        
+                        
+                        ForEach(tasks!) {task in
                             
-                            ForEach(tasks!) {task in
-                                VStack(alignment: .leading, spacing: 10){
-                                    Text(task.time.addingTimeInterval(CGFloat
-                                        .random(in:0...5000)), style: .time)
-                                    
-                                    Text(task.title)
-                                        .truncationMode(.middle)
-                                        .font(.title2.bold())
-                                }
-                                .padding()
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(RoundedRectangle(cornerRadius: 10).fill(.pink.opacity(0.3)))
+                            VStack(alignment: .leading, spacing: 0){
+                                Text(dateFormatter.string(from: task.time))
+                                    .font(.system(size: 12, weight: .light))
+                                    .padding(.vertical, 2)
+                                    // .background(Color.red.opacity(0.3))
+                                Text(task.title)
+                                    .font(.system(size: 24))
                             }
-                            
+                            // .background(Color.green.opacity(0.3))
+                            /*
+                            VStack(alignment: .leading, spacing: 10){
+                                Text(task.time.addingTimeInterval(CGFloat
+                                    .random(in:0...5000)), style: .time)
+                                
+                                Text(task.title)
+                                    .truncationMode(.middle)
+                                    .font(.title2.bold())
+                            }
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(RoundedRectangle(cornerRadius: 10).fill(.pink.opacity(0.3)))
+                             */
                         }
                         
                     }
@@ -110,8 +129,12 @@ struct CalendarView: View {
                 .navigationTitle("캘린더")
                 .toolbar {
                     Button("추가") {
-                        
+                        self.showModal = true
                     }
+                    .sheet(isPresented: self.$showModal) {
+                        TaskAddView(showModal: $showModal, myTask: myTask)
+                    }
+                          
                 }
             }
             
@@ -125,10 +148,12 @@ struct CalendarView: View {
     
     @ViewBuilder
     func CardView(value: DateValue) -> some View {
-        let tasks = myTask.tasks[currentMonth]! // 어떻게 수정하지?
+        let tasks = myTask.tasks[getCurrentMonthAsInt()]! // 어떻게 수정하지?
         
-        VStack{
-            if value.day != -1 {
+        if value.day == -1 { EmptyView() }
+        else {
+            
+            VStack{
                 if let task = tasks.first(where: {task in
                     return isSameDay(date1: task.time, date2: value.date)
                 }) {
@@ -152,9 +177,10 @@ struct CalendarView: View {
                     Spacer()
                 }
             }
+            .frame(height:40, alignment: .top)
+            // .background(isSameDay(date1: value.date, date2: Date()) ? Color.red : Color.white.opacity(0))
         }
         //        .padding(.vertical, 8)
-        .frame(height:40, alignment: .top)
         
     }
     
@@ -243,4 +269,10 @@ extension Date {
             return calendar.date(byAdding: .hour, value: -1, to: a)!
         }
     }
+}
+
+struct ContentView_Previews: PreviewProvider {
+  static var previews: some View {
+      CalendarView()
+  }
 }
