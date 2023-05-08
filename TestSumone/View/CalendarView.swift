@@ -90,9 +90,6 @@ struct CalendarView: View {
                     
                     Section(header: Text("가까운 기념일")) {
                         let tasks = myTask.tasks[getCurrentMonthAsInt()] // 어떻게 수정하지?
-                        let a = myTask.tasks[getCurrentMonthAsInt() % 12 + 1]
-                        let b = myTask.tasks[getCurrentMonthAsInt() % 12 + 2]
-                        
                         
                         ForEach(tasks!) {task in
                             
@@ -104,6 +101,9 @@ struct CalendarView: View {
                                 Text(task.title)
                                     .font(.system(size: 24))
                             }
+                        }
+                        .onDelete{ idx in
+                            myTask.remove(getCurrentMonthAsInt(), idx)
                         }
                     }
                 }
