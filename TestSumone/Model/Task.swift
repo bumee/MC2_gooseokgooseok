@@ -11,14 +11,15 @@ struct Task: Identifiable {
     var id = UUID().uuidString
     var title: String
     var time: Date = Date()
-    
 }
 
+/*
 struct TaskMetaData: Identifiable {
     var id = UUID().uuidString
     var task: [Task]
     var taskDate: Date
 }
+ */
 
 func getSampleData(offset: Int)->Date {
     let calendar = Calendar.current
@@ -28,40 +29,19 @@ func getSampleData(offset: Int)->Date {
 }
 
 class TaskManager : ObservableObject {
-    @Published var tasks: [TaskMetaData] = [
-        TaskMetaData(
-         task: [
-            Task(title: "Hello World!"),
-            ],
-         taskDate: getSampleData(offset: -3)
-        ),
-        TaskMetaData(
-         task: [
-            Task(title: "hawing"),
-            Task(title: "spring boot"),
-            ],
-         taskDate: getSampleData(offset: -8)
-        ),
-    ]
-    
+    @Published var tasks: [Task] = []
     
     init() {
-        tasks.append(
-            TaskMetaData(
-             task: [ Task(title: "Meeting with Tim cook"), Task(title: "Talk to iJustine"), ],
-             taskDate: getSampleData(offset: 0)))
-        tasks.append(
-            TaskMetaData(
-             task: [ Task(title: "Meeting with Tim cook"), Task(title: "Talk to iJustine"), ],
-             taskDate: getSampleData(offset: -3)))
-        tasks.append(
-            TaskMetaData(
-             task: [ Task(title: "Meeting with Tim cook"), Task(title: "Talk to iJustine"), ],
-             taskDate: getSampleData(offset: -8)))
+        tasks.append(Task(title: "hawing", time: Date()))
+        tasks.append(Task(title: "hawing", time: getSampleData(offset: 0)))
+        tasks.append(Task(title: "hawing", time: getSampleData(offset: 1)))
+        tasks.append(Task(title: "hawing", time: getSampleData(offset: 2)))
+        tasks.append(Task(title: "hawing", time: getSampleData(offset: 20)))
+        tasks.append(Task(title: "hawing", time: getSampleData(offset: 30)))
     }
     
-    func addTask(_ taskData: TaskMetaData) {
-        tasks.append(taskData)
+    func addTask(_ newTask: Task) {
+        tasks.append(newTask)
     }
     
     
