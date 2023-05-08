@@ -12,6 +12,8 @@ struct CalendarView: View {
     // Month update on arrow button clicks....
     @State var currentMonth: Int = 0
     
+    @ObservedObject private var myTask: TaskManager = TaskManager()
+    
     var body: some View {
         NavigationView() {
             
@@ -79,33 +81,29 @@ struct CalendarView: View {
                     }
                     
                     Section(header: Text("가까운 기념일")) {
-                        CalendarRow()
-                        CalendarRow()
-                        CalendarRow()
-                        CalendarRow()
-                        //                            ScrollView(){
-                        //                                if let task = tasks.first(where: {task in
-                        //                                    return isSameMonth(date1: task.taskDate, date2: currentDate)
-                        //                                }) {
-                        //                                    ForEach(task.task) {task in
-                        //                                        VStack(alignment: .leading, spacing: 10){
-                        //                                            Text(task.time.addingTimeInterval(CGFloat
-                        //                                                .random(in:0...5000)), style: .time)
-                        //
-                        //                                            Text(task.title)
-                        //                                                .truncationMode(.middle)
-                        //                                                .font(.title2.bold())
-                        //                                        }
-                        //                                        .padding()
-                        //                                        .frame(maxWidth: .infinity, alignment: .leading)
-                        //                                        .background(RoundedRectangle(cornerRadius: 10).fill(.pink.opacity(0.3)))
-                        //                                    }
-                        //                                }
-                        //                                else{
-                        //                                    Text("No Task Found")
-                        //                                }
-                        //
-                        //                            }
+                        ScrollView(){
+                            if let task = myTask.tasks.first(where: {task in
+                                return isSameMonth(date1: task.taskDate, date2: currentDate)
+                            }) {
+                                ForEach(task.task) {task in
+                                    VStack(alignment: .leading, spacing: 10){
+                                        Text(task.time.addingTimeInterval(CGFloat
+                                            .random(in:0...5000)), style: .time)
+                                        
+                                        Text(task.title)
+                                            .truncationMode(.middle)
+                                            .font(.title2.bold())
+                                    }
+                                    .padding()
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .background(RoundedRectangle(cornerRadius: 10).fill(.pink.opacity(0.3)))
+                                }
+                            }
+                            else{
+                                Text("No Task Found")
+                            }
+                            
+                        }
                         
                     }
                     
@@ -133,7 +131,7 @@ struct CalendarView: View {
     func CardView(value: DateValue) -> some View {
         VStack{
             if value.day != -1 {
-                if let task = tasks.first(where: {task in
+                if let task = myTask.tasks.first(where: {task in
                     return isSameDay(date1: task.taskDate, date2: value.date)
                 }) {
                     Text("\(value.day)")
@@ -157,7 +155,7 @@ struct CalendarView: View {
                 }
             }
         }
-//        .padding(.vertical, 8)
+        //        .padding(.vertical, 8)
         .frame(height:40, alignment: .top)
         
     }
