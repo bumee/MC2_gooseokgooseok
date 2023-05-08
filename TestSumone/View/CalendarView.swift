@@ -82,10 +82,9 @@ struct CalendarView: View {
                     
                     Section(header: Text("가까운 기념일")) {
                         ScrollView(){
-                            if let task = myTask.tasks.first(where: {task in
-                                return isSameMonth(date1: task.taskDate, date2: currentDate)
-                            }) {
-                                ForEach(task.task) {task in
+                            let tasks = myTask.tasks[getCurrentMonthAsInt()] // 어떻게 수정하지?
+                                
+                                ForEach(tasks!) {task in
                                     VStack(alignment: .leading, spacing: 10){
                                         Text(task.time.addingTimeInterval(CGFloat
                                             .random(in:0...5000)), style: .time)
@@ -98,10 +97,6 @@ struct CalendarView: View {
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .background(RoundedRectangle(cornerRadius: 10).fill(.pink.opacity(0.3)))
                                 }
-                            }
-                            else{
-                                Text("No Task Found")
-                            }
                             
                         }
                         
@@ -129,10 +124,12 @@ struct CalendarView: View {
     
     @ViewBuilder
     func CardView(value: DateValue) -> some View {
+        let tasks = myTask.tasks[currentMonth]! // 어떻게 수정하지?
+        
         VStack{
             if value.day != -1 {
-                if let task = myTask.tasks.first(where: {task in
-                    return isSameDay(date1: task.taskDate, date2: value.date)
+                if let task = tasks.first(where: {task in
+                    return isSameDay(date1: task.time, date2: value.date)
                 }) {
                     Text("\(value.day)")
                         .font(.title3)
@@ -142,7 +139,7 @@ struct CalendarView: View {
                         .padding(.bottom, -8)
                     
                     Circle()
-                        .fill(isSameDay(date1:task.taskDate, date2: self.currentDate) ? .white : .red)
+                        .fill(isSameDay(date1:task.time, date2: self.currentDate) ? .white : .red)
                         .frame(width: 6, height: 6)
                 }
                 else{
@@ -186,6 +183,18 @@ struct CalendarView: View {
         else { return Date()}
         
         return currentMonth
+    }
+    
+    func getCurrentMonthAsInt() -> Int {
+        let calendar = Calendar.current
+        
+        
+        guard let currentMonth = calendar.date(byAdding: .month, value: self.currentMonth, to: Date())
+        else { print("getCurrentMonthAsInt() is wrong"); return 1 }
+        
+        let monthAsInt = calendar.component(.month, from: currentMonth)
+        
+        return monthAsInt
     }
     
     func extractDate()-> [DateValue]{
