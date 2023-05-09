@@ -95,11 +95,10 @@ struct CalendarView: View {
                             
                             VStack(alignment: .leading, spacing: 0){
                                 Text(dateFormatter.string(from: task.time))
-                                    .font(.system(size: 12, weight: .light))
-                                    .padding(.vertical, 2)
-                                    // .background(Color.red.opacity(0.3))
+                                    .font(.footnote)
+                                    .foregroundColor(Color(uiColor: .systemGray))
+                                    .padding(.bottom, 6)
                                 Text(task.title)
-                                    .font(.system(size: 24))
                             }
                         }
                         .onDelete{ idx in
@@ -127,10 +126,8 @@ struct CalendarView: View {
     func CardView(value: DateValue) -> some View {
         let tasks = myTask.tasks[getCurrentMonthAsInt()]! // 어떻게 수정하지?
         
-        if value.day == -1 { EmptyView() }
-        else {
-            
-            VStack{
+        VStack{
+            if value.day != -1{
                 if let task = tasks.first(where: {task in
                     return isSameDay(date1: task.time, date2: value.date)
                 }) {
@@ -150,15 +147,15 @@ struct CalendarView: View {
                     Text("\(value.day)")
                         .font(.title3)
                         .foregroundColor(isSameDay(date1: value.date, date2: Date()) ? .gray : .black)
-                        .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .white : .black)
+                        .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .white : Color(uiColor: .systemBlue))
                         .fontWeight(isSameDay(date1: value.date, date2: currentDate) ? .semibold : .regular)
                         .frame(maxWidth: .infinity)
                     Spacer()
                 }
             }
-            .frame(height:40, alignment: .top)
-            // .background(isSameDay(date1: value.date, date2: Date()) ? Color.red : Color.white.opacity(0))
         }
+        .frame(height:40, alignment: .top)
+        // .background(isSameDay(date1: value.date, date2: Date()) ? Color.red : Color.white.opacity(0))
         //        .padding(.vertical, 8)
         
     }
