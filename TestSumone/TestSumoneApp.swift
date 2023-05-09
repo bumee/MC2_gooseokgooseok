@@ -6,18 +6,27 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct TestSumoneApp: App {
-    @StateObject var questionData = QuestionData()
-    @StateObject var waitingQuestionData = WaitingQuestionData()
-
+    @StateObject var questionData = PreviousQuestionData()
+    @StateObject var Emojis = EmojiList()
+    @StateObject var dataBase = DataManager()
+    
+    
+    init(){
+        FirebaseApp.configure()
+    }
+    
+    var islog = false
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(userName: "", isLoggedIn: false, SelectedEmojiIdx: 0)
                 .environmentObject(questionData)
-                .environmentObject(waitingQuestionData)
+                .environmentObject(Emojis)
+                .environmentObject(dataBase)
         }
     }
 }

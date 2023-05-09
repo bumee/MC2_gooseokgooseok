@@ -15,25 +15,30 @@
 //}
 
 import SwiftUI
+import Firebase
 
 struct MainView: View {
     @State private var selection = 0
-    @EnvironmentObject var questions: QuestionData
-    @EnvironmentObject var waitingQuestions: WaitingQuestionData
-    @State private var nickname = ""
-    @State private var isLoggedIn = false
-
+    @EnvironmentObject var questions: PreviousQuestionData
+    @State var WaitingQuestionList : [String] = []
+    @EnvironmentObject var Emojis : EmojiList
+    @EnvironmentObject var dataBase : DataManager
+    
+    @State var userName: String = ""
+    @State var isLoggedIn : Bool
+    @State var SelectedEmojiIdx : Int
+    
     var body: some View {
-        NavigationView {
-            if isLoggedIn {
+        if isLoggedIn {
+            NavigationView {
                 TabView {
-                    TalkView(QuestionList: _questions)
+                    TalkView(userName: userName)
                         .tabItem {
                             Text("Talk")
                                 .font(.largeTitle)
                         }
                         .tag(0)
-                    QuestionView(WaitingQuestionList: _waitingQuestions)
+                    QuestionView(WaitingQuestionList: dataBase.WaitingQuestions, userName: userName)
                         .tabItem {
                             Text("Question")
                                 .font(.largeTitle)
@@ -44,29 +49,53 @@ struct MainView: View {
                             Text("Calendar")
                                 .font(.largeTitle)
                         }
+    
                         .tag(2)
                 }
             }
-            else {
+            .toolbar(.hidden, for: .navigationBar)
+            .onAppear {
+                WaitingQuestionList = dataBase.fetchWaitingQuestions(PersonName: userName)
+                dataBase.addPerson(PersonName: userName, Emoji: Emojis[SelectedEmojiIdx], WaitingQuestionList: Array(WaitingQuestionList))
+                dataBase.fetchPersons()
+                questions.fetchPreviousQuestions()
+            }
+        }
+        else {
+            NavigationView {
                 VStack {
-                    Text("가족썸원 ㅋㅋ")
-                        .font(.title)
+                    HStack {
+                        Image(systemName: "1.circle")
+                            .foregroundColor(Color.blue)
+                        
+                        Image(systemName: "2.circle")
+                            .foregroundColor(Color(uiColor: .systemGray3))
+                        
+                        Spacer()
+                    }
+                    .padding(.bottom, 24)
+                    
+                    Text("나는 우리 가족의 ____ 입니다.").bold()
+                        .font(.largeTitle)
                         .padding()
-                    TextField("이름", text: $nickname)
-                    Button(action: {
-                        // 로그인 버튼이 눌렸을 때 처리해야 할 작업을 구현합니다.
-                        print("로그인 버튼이 눌렸습니다.")
-                        self.isLoggedIn = true
-                    }) {
-                        Text("로그인")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(width: 220, height: 60)
-                            .background(Color.blue)
-                            .cornerRadius(15.0)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    TextField("별명을 입력해주세요", text: $userName, axis: .vertical)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .autocorrectionDisabled()
+                        .padding()
+                        .background(Color(uiColor: .secondarySystemBackground))
+                        .cornerRadius(12)
+                    
+                    Spacer()
+                    
+                    NavigationLink(destination: LoginEmojiView(emojiList: _Emojis, userName: userName)){
+                        Text("다음").bold()
+                            .frame(maxWidth: .infinity, maxHeight: 40)
+                            .buttonStyle(.borderedProminent)
                     }
                 }
+                .padding()
             }
         }
     }
@@ -94,6 +123,6 @@ struct AnotherView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(userName: "데키", isLoggedIn: false, SelectedEmojiIdx: 0)
     }
 }

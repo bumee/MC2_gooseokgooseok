@@ -10,20 +10,22 @@ import SwiftUI
 
 struct QuestionEditingView : View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var dataBase: DataManager
     @State var PreviousQuestion : String = ""
-    @EnvironmentObject var WaitingQuestionList : WaitingQuestionData
+    @State var userName : String
     @State var WillChangeQuestion : String = ""
     @State private var showActionSheet = false
     @State private var isHidden = true
     
     var body: some View {
+
         ZStack {
             VStack {
                 TextField("질문을 입력해주세요", text: $WillChangeQuestion, axis: .vertical)
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .autocorrectionDisabled()
-                    
+                
                 Spacer()
             }
             
@@ -42,9 +44,8 @@ struct QuestionEditingView : View {
                     title: Text("삭제"), buttons: [
                         .destructive(Text("메모 삭제"), action: {
                             // Delete the memo here
-                            if let idx = WaitingQuestionList.questions.firstIndex(of: PreviousQuestion) {
-                                WaitingQuestionList.questions.remove(at: idx)
-                            }
+                            dataBase.WaitingQuestions.removeAll { $0 == PreviousQuestion }
+                            dataBase.deleteWaitingQuestions(PersonName: userName, Statement: PreviousQuestion)
                             presentationMode.wrappedValue.dismiss()
                         }),
                         .cancel(Text("취소"))
@@ -62,13 +63,14 @@ struct QuestionEditingView : View {
         }
         .toolbar(isHidden ? .hidden : .visible, for: .tabBar)
         .onDisappear{
-            if let idx = WaitingQuestionList.questions.firstIndex(of: PreviousQuestion) {
-                WaitingQuestionList.questions[idx] = WillChangeQuestion
+            if let idx = dataBase.WaitingQuestions.firstIndex(of: PreviousQuestion) {
+                dataBase.WaitingQuestions[idx] = WillChangeQuestion
             }
+            dataBase.fixWaitingQuestions(PersonName: userName, OrigianlStatement: PreviousQuestion, FixStatement: WillChangeQuestion)
             isHidden = false
         }
         //        .toolbar(.hidden, for: .tabBar)
-        
+            
     }
 }
 

@@ -11,10 +11,12 @@ import UserNotifications
 
 struct AddQuestionView: View {
     @Environment(\.presentationMode) var presentationMode
-    @State private var customQuestion = ""
-    @EnvironmentObject var WaitingQuestionList : WaitingQuestionData
-
-
+    @EnvironmentObject var dataBase : DataManager
+    @State var customQuestion : String =  ""
+    @State var userName : String
+    
+    var WaitingQuestionList : [String]
+    
     var body: some View {
         NavigationView() {
             List {
@@ -29,31 +31,9 @@ struct AddQuestionView: View {
                         Button(action: {
                             // Perform some action with the entered text
                             print("Entered text: \(self.customQuestion)")
-                            WaitingQuestionList.questions.append(self.customQuestion)
-                            print(WaitingQuestionList.questions)
+                            dataBase.AddWaitingQuestions(Statement: customQuestion)
 
-                            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
-                                if granted {
-                                    // Step 2: Create a notification content object
-                                    let content = UNMutableNotificationContent()
-                                    content.title = "질문 등록 완료!"
-                                    content.subtitle = "작성하신 질문이 성공적으로 등록되었습니다!"
-                                    content.body = "알림을 눌러 작성하신 질문을 확인해보세요!"
-                                    content.sound = UNNotificationSound.default
-
-                                    // Step 3: Create a notification trigger object
-                                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-
-                                    // Step 4: Create a notification request object
-                                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-
-                                    // Step 5: Add the notification request to the notification center
-                                    UNUserNotificationCenter.current().add(request)
-                                    print("알림 성공인데?")
-                                } else {
-                                    print("Notification permission denied")
-                                }
-                            }
+                            SendLocalNotification(Title: "성공적인 등록", Subtitle: "와우", body: "확인해보세요!")
                             // Dismiss the modal view
                             self.presentationMode.wrappedValue.dismiss()
                         }, label: {
