@@ -24,7 +24,7 @@ struct CalendarList: View {
                 }
                 
                 Section(header: Text("가까운 기념일")) {
-                    ForEach(1..<2) {i in
+                    ForEach(1..<10) {i in
                         CalendarRow()
                     }
                 }

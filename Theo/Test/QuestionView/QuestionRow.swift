@@ -13,7 +13,7 @@ struct QuestionRow: View {
             HStack {
                 Text("04/24")
                     .font(.footnote)
-                    .opacity(0.6)
+                    .foregroundColor(Color(uiColor: .systemGray))
                     .padding(.bottom, 1)
                 
                 Spacer()

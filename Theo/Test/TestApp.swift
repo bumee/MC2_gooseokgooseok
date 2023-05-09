@@ -11,7 +11,8 @@ import SwiftUI
 struct TestApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+             ContentView()
+                .environment(\.locale, .init(identifier: "kr"))
         }
     }
 }

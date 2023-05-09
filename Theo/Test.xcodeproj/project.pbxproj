@@ -25,6 +25,9 @@
 		DE2BEA6F29FBD28C0008DB86 /* TalkRow2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2BEA6E29FBD28C0008DB86 /* TalkRow2.swift */; };
 		DE3A62352A037FEB00F083F8 /* LoginNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A62342A037FEB00F083F8 /* LoginNameView.swift */; };
 		DE3A62372A0388DD00F083F8 /* LoginEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A62362A0388DD00F083F8 /* LoginEmojiView.swift */; };
+		DE3A62392A0390D000F083F8 /* CalendarViewPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A62382A0390D000F083F8 /* CalendarViewPlus.swift */; };
+		DE3A623B2A0391EF00F083F8 /* DataValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A623A2A0391EF00F083F8 /* DataValue.swift */; };
+		DE3A623D2A03925800F083F8 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3A623C2A03925800F083F8 /* Task.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +50,9 @@
 		DE2BEA6E29FBD28C0008DB86 /* TalkRow2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkRow2.swift; sourceTree = "<group>"; };
 		DE3A62342A037FEB00F083F8 /* LoginNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNameView.swift; sourceTree = "<group>"; };
 		DE3A62362A0388DD00F083F8 /* LoginEmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEmojiView.swift; sourceTree = "<group>"; };
+		DE3A62382A0390D000F083F8 /* CalendarViewPlus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewPlus.swift; sourceTree = "<group>"; };
+		DE3A623A2A0391EF00F083F8 /* DataValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataValue.swift; sourceTree = "<group>"; };
+		DE3A623C2A03925800F083F8 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +83,9 @@
 				DE0B830D2A00D6CB00B2AB71 /* CalendarList.swift */,
 				DE0B83112A00DA5400B2AB71 /* CalendarRow.swift */,
 				DE0B83192A00E6BE00B2AB71 /* CalendarAddModal.swift */,
+				DE3A62382A0390D000F083F8 /* CalendarViewPlus.swift */,
+				DE3A623C2A03925800F083F8 /* Task.swift */,
+				DE3A623A2A0391EF00F083F8 /* DataValue.swift */,
 			);
 			path = CalendarView;
 			sourceTree = "<group>";
@@ -91,6 +100,15 @@
 				DE0B83172A00DDCA00B2AB71 /* QuestionAddModal.swift */,
 			);
 			path = QuestionView;
+			sourceTree = "<group>";
+		};
+		DE0BD9452A08B9C200B2B797 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				DE3A62342A037FEB00F083F8 /* LoginNameView.swift */,
+				DE3A62362A0388DD00F083F8 /* LoginEmojiView.swift */,
+			);
+			path = LoginView;
 			sourceTree = "<group>";
 		};
 		DE2BEA4E29FBCDA00008DB86 = {
@@ -113,9 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				DE2BEA5A29FBCDA10008DB86 /* TestApp.swift */,
-				DE3A62342A037FEB00F083F8 /* LoginNameView.swift */,
-				DE3A62362A0388DD00F083F8 /* LoginEmojiView.swift */,
 				DE2BEA5C29FBCDA10008DB86 /* ContentView.swift */,
+				DE0BD9452A08B9C200B2B797 /* LoginView */,
 				DE0B83132A00DABD00B2AB71 /* CalendarView */,
 				DE0B83082A00D3DF00B2AB71 /* TalkView */,
 				DE0B83142A00DB0F00B2AB71 /* QuestionView */,
@@ -206,13 +223,16 @@
 				DE0B83162A00DD0D00B2AB71 /* QuestionRowQue.swift in Sources */,
 				DE0B831A2A00E6BE00B2AB71 /* CalendarAddModal.swift in Sources */,
 				DE0B83122A00DA5400B2AB71 /* CalendarRow.swift in Sources */,
+				DE3A62392A0390D000F083F8 /* CalendarViewPlus.swift in Sources */,
 				DE0B830E2A00D6CB00B2AB71 /* CalendarList.swift in Sources */,
 				DE2BEA6B29FBCF700008DB86 /* TalkRow.swift in Sources */,
 				DE0B830A2A00D3FD00B2AB71 /* QuestionList.swift in Sources */,
+				DE3A623D2A03925800F083F8 /* Task.swift in Sources */,
 				DE2BEA6D29FBD1910008DB86 /* TalkDetail.swift in Sources */,
 				DE3A62372A0388DD00F083F8 /* LoginEmojiView.swift in Sources */,
 				DE0B831C2A00FC0A00B2AB71 /* QuestionEdit.swift in Sources */,
 				DE2BEA5D29FBCDA10008DB86 /* ContentView.swift in Sources */,
+				DE3A623B2A0391EF00F083F8 /* DataValue.swift in Sources */,
 				DE0B830C2A00D43F00B2AB71 /* QuestionRow.swift in Sources */,
 				DE2BEA6F29FBD28C0008DB86 /* TalkRow2.swift in Sources */,
 				DE0B83182A00DDCA00B2AB71 /* QuestionAddModal.swift in Sources */,
