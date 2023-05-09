@@ -23,7 +23,7 @@ struct CalendarList: View {
                     .datePickerStyle(.graphical)
                 }
                 
-                Section(header: Text("가까운 기념일")) {
+                Section(header: Text("그날의 기념일")) {
                     ForEach(1..<10) {i in
                         CalendarRow()
                     }

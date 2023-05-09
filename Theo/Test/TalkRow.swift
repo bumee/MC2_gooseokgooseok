@@ -19,6 +19,7 @@ struct TalkRow: View {
             }
             .padding(.top, 8)
             .padding(.bottom, 6)
+            .frame(height: 30)
             
             HStack {
                 Text("오늘")
