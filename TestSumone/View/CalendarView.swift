@@ -77,8 +77,8 @@ struct CalendarView: View {
                                 CardView(value: value)
                                     .background(
                                         Capsule()
-                                            .fill(Color.blue)
-                                            .opacity(isSameDay(date1: value.date, date2: currentDate) ? 1 : 0)
+                                            .fill(Color(uiColor: .systemBlue))
+                                            .opacity(isSameDay(date1: value.date, date2: currentDate) ? 0.5 : 0)
                                             .position(x:19, y: 16)
                                     )
                                     .onTapGesture{
@@ -88,17 +88,18 @@ struct CalendarView: View {
                         }
                     }
                     
-                    Section(header: Text("가까운 기념일")) {
+                    Section(header: Text("기념일")) {
                         let tasks = myTask.tasks[getCurrentMonthAsInt()] // 어떻게 수정하지?
                         
                         ForEach(tasks!) {task in
-                            
-                            VStack(alignment: .leading, spacing: 0){
-                                Text(dateFormatter.string(from: task.time))
-                                    .font(.footnote)
-                                    .foregroundColor(Color(uiColor: .systemGray))
-                                    .padding(.bottom, 6)
-                                Text(task.title)
+                            if isSameDay(date1: task.time, date2: currentDate) {
+                                VStack(alignment: .leading, spacing: 0){
+                                    Text(dateFormatter.string(from: task.time))
+                                        .font(.footnote)
+                                        .foregroundColor(Color(uiColor: .systemGray))
+                                        .padding(.bottom, 6)
+                                    Text(task.title)
+                                }
                             }
                         }
                         .onDelete{ idx in
@@ -131,9 +132,11 @@ struct CalendarView: View {
                 if let task = tasks.first(where: {task in
                     return isSameDay(date1: task.time, date2: value.date)
                 }) {
+                    
+                        
                     Text("\(value.day)")
                         .font(.title3)
-                        .foregroundColor(isSameDay(date1: value.date, date2: Date()) ? .gray : .black)
+                        .foregroundColor(isSameDay(date1: value.date, date2: Date()) ? Color(uiColor: .systemBlue) : .black)
                         .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .white : .black)
                         .fontWeight(isSameDay(date1: value.date, date2: currentDate) ? .semibold : .regular)
                         .frame(maxWidth: .infinity)
@@ -146,7 +149,7 @@ struct CalendarView: View {
                 else{
                     Text("\(value.day)")
                         .font(.title3)
-                        .foregroundColor(isSameDay(date1: value.date, date2: Date()) ? .gray : .black)
+                        .foregroundColor(isSameDay(date1: value.date, date2: Date()) ? Color(uiColor: .systemBlue) : .black)
                         .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .white : Color(uiColor: .systemBlue))
                         .fontWeight(isSameDay(date1: value.date, date2: currentDate) ? .semibold : .regular)
                         .frame(maxWidth: .infinity)
