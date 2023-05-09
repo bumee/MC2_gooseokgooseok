@@ -10,8 +10,8 @@ import SwiftUI
 
 struct TaskAddView: View {
     
-    @State var anni_name: String = ""
-    @State var anni_date: Date = Date()
+    @State var anniName: String = ""
+    @State var anniDate: Date = Date()
     @Binding var showModal : Bool
     
     var myTask: TaskManager
@@ -20,10 +20,12 @@ struct TaskAddView: View {
         NavigationView() {
             List {
                 Section() {
-                    DatePicker("날짜", selection: $anni_date, displayedComponents: [.date] )
+                    DatePicker("날짜", selection: $anniDate, displayedComponents: [.date] )
+                        .environment(\.locale, Locale(identifier: "ko_KR"))
+                        .datePickerStyle(.compact)
                 }
                 Section(){
-                    TextField("제목", text: $anni_name)
+                    TextField("제목", text: $anniName)
                 }
             }
             
@@ -32,14 +34,14 @@ struct TaskAddView: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(action: {
-                        myTask.addTask(self.anni_date, self.anni_name)
+                        myTask.addTask(self.anniDate, self.anniName)
                         
                         self.showModal = false
                         
                     }, label: {
                         Text("완료")
                     })
-                    .disabled(self.anni_name == "" ? true : false)
+                    .disabled(self.anniName == "" ? true : false)
                 }
                 
                 ToolbarItem(placement: .cancellationAction) {
@@ -54,11 +56,3 @@ struct TaskAddView: View {
         }
     }
 }
-
-/*
- struct TaskAddView_Previews: PreviewProvider {
- static var previews: some View {
- TaskAddView(showModal: true, myTask: TaskManager())
- }
- }
- */
