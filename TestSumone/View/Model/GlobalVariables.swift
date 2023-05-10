@@ -10,8 +10,101 @@ import SwiftUI
 import UserNotifications
 import Firebase
 
+class TodayQuestionData: ObservableObject, RandomAccessCollection {
+    
+    @Published var real_questions: [String:[String:String]] = [:]
+    @Published var real_qeustions_bool : [String:Bool] = [:]
+    @Published var questions: [String] = []
+    @Published var isSimulated: Bool = false
+    
+    init() {
+        fetchTodayQuestions()
+    }
+    
+    func fetchTodayQuestions() {
+        real_questions.removeAll()
+        let db = Firestore.firestore()
+        let refs = db.collection("TodayQuestion")
+        refs.getDocuments {snapshot, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            if let snapshot = snapshot {
+                for document in snapshot.documents {
+                    let data = document.data()
+                    let Today_Question = data["Question"] as? String ?? ""
+                    let Daughter = data["딸"] as? String ?? ""
+                    let Father = data["아빠"] as? String ?? ""
+                    let Mother = data["엄마"] as? String ?? ""
+                    
+                    var InnerInnerDict = [String:String]()
+                    let fieldNames = Array(data.keys)
+                    for Name in fieldNames {
+                        if Name != "Question" {
+                            var it = data[Name] as? String ?? ""
+                            InnerInnerDict[Name] = it
+                        }
+                    }
+                    self.real_questions[Today_Question] = InnerInnerDict
+                    self.real_qeustions_bool[Today_Question] = false
+                }
+            }
+        }
+        print(real_questions)
+    }
+    
+    func addAnswerTodayQuestion(TodayQuestion: String, Statement: String, userName: String) {
+        let db = Firestore.firestore()
+        let refs = db.collection("TodayQuestion").document(TodayQuestion)
+        refs.updateData([userName: Statement]) { (error) in
+            if let error = error {
+                print("Error updating document: \(error)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+    
+    func saveTodayQuestions(TodayQuestion: String) {
+        let db = Firestore.firestore()
+        let refs = db.collection("TodayQuestion").document(TodayQuestion)
+        refs.setData(["Question": TodayQuestion]) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func deleteTodayQuestions(TodayQuestion: String) {
+        let db = Firestore.firestore()
+        let refs = db.collection("TodayQuestion").document(TodayQuestion)
+        refs.delete() { error in
+            if let error = error {
+                print("\(error)")
+            }
+            else {
+                print("성공적으로 지워짐")
+            }
+        }
+    }
+
+    var startIndex: Int { questions.startIndex }
+    var endIndex: Int { questions.endIndex }
+
+    subscript(index: Int) -> String {
+        questions[index]
+    }
+
+    func index(after i: Int) -> Int {
+        questions.index(after: i)
+    }
+}
+
 class PreviousQuestionData: ObservableObject, RandomAccessCollection {
-    @Published var questions : [String] = []
+    
+    @Published var questions : [String:[String:String]] = [:]
     @Published var Dates: [String] = []
     
     
@@ -34,8 +127,9 @@ class PreviousQuestionData: ObservableObject, RandomAccessCollection {
                     let data = document.data()
                     let Previous_Question = data["PreviousQuestion"] as? String ?? ""
                     let Dates = data["Date"] as? String ?? ""
+                    let Answer = data["Answer"] as? [String:String] ?? [String:String]()
+                    self.questions[Previous_Question] = Answer
                     
-                    self.questions.append(Previous_Question)
                     self.Dates.append(Dates)
                 }
             }
@@ -45,7 +139,7 @@ class PreviousQuestionData: ObservableObject, RandomAccessCollection {
     
     func addLocal_PreviousQuestion(Date: String, Previous_Question: String) {
         self.Dates.append(Date)
-        self.questions.append(Previous_Question)
+        self.questions[Previous_Question] = [String:String]()
     }
     
     func addingToServer_PreviousQuestion(Date: String, Previous_Question: String) {
@@ -58,15 +152,15 @@ class PreviousQuestionData: ObservableObject, RandomAccessCollection {
         }
     }
 
-    var startIndex: Int { questions.startIndex }
-    var endIndex: Int { questions.endIndex }
+    var startIndex: Int { Dates.startIndex }
+    var endIndex: Int { Dates.endIndex }
 
     subscript(index: Int) -> String {
-        questions[index]
+        Dates[index]
     }
 
     func index(after i: Int) -> Int {
-        questions.index(after: i)
+        Dates.index(after: i)
     }
 }
     

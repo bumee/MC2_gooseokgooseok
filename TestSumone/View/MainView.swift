@@ -44,7 +44,7 @@ struct MainView: View {
                                 .font(.largeTitle)
                         }
                         .tag(1)
-                    Text("Third View")
+                    CalendarView()
                         .tabItem {
                             Text("Calendar")
                                 .font(.largeTitle)

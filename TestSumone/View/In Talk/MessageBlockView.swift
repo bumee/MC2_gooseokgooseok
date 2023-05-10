@@ -15,9 +15,11 @@ struct MessageBlockView: View {
     var Title: String
     @EnvironmentObject var PreviousQuestionList : PreviousQuestionData
     @EnvironmentObject var dataBase: DataManager
+    @EnvironmentObject var TodayQuestionList: TodayQuestionData
     var userName: String
     @State var Q_idx = 0
     @State var isWritten = false
+    var AnswerList: [String:String]
     
     var body: some View {
         VStack{
@@ -41,45 +43,20 @@ struct MessageBlockView: View {
             }
             Divider()
             
-            VStack{
-                HStack {
-                    Text("사용자1")
-                        .font(.footnote)
-                        .padding(.leading, 20)
-                        .padding(.bottom, -4)
-                    Spacer()
+            ForEach(AnswerList.keys.sorted(), id: \.self) { key in
+                VStack{
+                    HStack {
+                        Text(isWritten ? key : "의문의 사용자")
+                            .font(.footnote)
+                            .padding(.leading, 20)
+                            .padding(.bottom, -4)
+                        
+                        Spacer()
+                    }
+                    MessageBubbleView(message: (!isWritten ? "답변을 작성했습니다." : AnswerList[key])!, isFromCurrentUser: false)
+                        .padding(.leading, 16)
+                        .padding(.bottom, 16)
                 }
-                MessageBubbleView(message: "답변을 작성했습니다.", isFromCurrentUser: false)
-                    .padding(.leading, 16)
-                    .padding(.bottom, 16)
-            }
-            .padding(.top, 16)
-            
-            VStack{
-                HStack {
-                    Text("사용자2")
-                        .font(.footnote)
-                        .padding(.leading, 20)
-                        .padding(.bottom, -4)
-                    
-                    Spacer()
-                }
-                MessageBubbleView(message: "답변을 작성했습니다.", isFromCurrentUser: false)
-                    .padding(.leading, 16)
-                    .padding(.bottom, 16)
-            }
-            
-            VStack{
-                HStack {
-                    Text("사용자3")
-                        .font(.footnote)
-                        .padding(.leading, 20)
-                        .padding(.bottom, -4)
-                    Spacer()
-                }
-                MessageBubbleView(message: "답변을 작성했습니다.", isFromCurrentUser: false)
-                    .padding(.leading, 16)
-                    .padding(.bottom, 16)
             }
             
             VStack {
@@ -111,6 +88,8 @@ struct MessageBlockView: View {
                     Button {
                         if text.updating {
                             isWritten = true
+                            TodayQuestionList.addAnswerTodayQuestion(TodayQuestion: Title, Statement: text.note, userName: userName)
+                            TodayQuestionList.real_qeustions_bool[Title] = true
                         } else {
                             
                         }

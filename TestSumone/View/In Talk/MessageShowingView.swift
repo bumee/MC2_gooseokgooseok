@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MessageShowingView: View {
     var Title: String
+    var MessageList: [String:String]
     
     var body: some View {
         VStack{
@@ -34,57 +35,19 @@ struct MessageShowingView: View {
             Divider()
 
             ScrollView {
-                VStack{
-                    HStack {
-                        Text("사용자1")
-                            .font(.footnote)
-                            .padding(.leading, 20)
-                            .padding(.bottom, -4)
-                        Spacer()
+                ForEach(MessageList.keys.sorted(), id: \.self) { key in
+                    VStack{
+                        HStack {
+                            Text(key)
+                                .font(.footnote)
+                                .padding(.leading, 20)
+                                .padding(.bottom, -4)
+                            Spacer()
+                        }
+                        MessageBubbleView(message: MessageList[key]!, isFromCurrentUser: false)
+                            .padding(.leading, 16)
+                            .padding(.bottom, 16)
                     }
-                    MessageBubbleView(message: "답변1", isFromCurrentUser: false)
-                        .padding(.leading, 16)
-                        .padding(.bottom, 16)
-                }
-                .padding(.top, 16)
-                
-                VStack{
-                    HStack {
-                        Text("사용자2")
-                            .font(.footnote)
-                            .padding(.leading, 20)
-                            .padding(.bottom, -4)
-                        Spacer()
-                    }
-                    MessageBubbleView(message: "답변2", isFromCurrentUser: false)
-                        .padding(.leading, 16)
-                        .padding(.bottom, 16)
-                }
-                
-                VStack{
-                    HStack {
-                        Text("사용자3")
-                            .font(.footnote)
-                            .padding(.leading, 20)
-                            .padding(.bottom, -4)
-                        Spacer()
-                    }
-                    MessageBubbleView(message: "답변3", isFromCurrentUser: false)
-                        .padding(.leading, 16)
-                        .padding(.bottom, 16)
-                }
-                
-                VStack{
-                    HStack {
-                        Spacer()
-                        Text("사용자4")
-                            .font(.footnote)
-                            .padding(.trailing, 20)
-                            .padding(.bottom, -4)
-                    }
-                    MessageBubbleView(message: "내가 작성한 답변입니다.", isFromCurrentUser: true)
-                        .padding(.trailing, 16)
-                        .padding(.bottom, 16)
                 }
             }
             

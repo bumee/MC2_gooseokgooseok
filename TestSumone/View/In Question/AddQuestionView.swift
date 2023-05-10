@@ -12,6 +12,7 @@ import UserNotifications
 struct AddQuestionView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var dataBase : DataManager
+    @EnvironmentObject var TodayQuestion: TodayQuestionData
     @State var customQuestion : String =  ""
     @State var userName : String
     
@@ -32,8 +33,19 @@ struct AddQuestionView: View {
                             // Perform some action with the entered text
                             print("Entered text: \(self.customQuestion)")
                             dataBase.AddWaitingQuestions(Statement: customQuestion)
-
-                            SendLocalNotification(Title: "성공적인 등록", Subtitle: "와우", body: "확인해보세요!")
+                            if !TodayQuestion.isSimulated{
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                                    dataBase.WaitingQuestions.remove(at: 0)
+//                                    TodayQuestion.real_questions[customQuestion] = [String:String]()
+                                    TodayQuestion.saveTodayQuestions(TodayQuestion: customQuestion)
+                                    TodayQuestion.real_qeustions_bool[customQuestion] = false
+                                    TodayQuestion.isSimulated = true
+                                    print(TodayQuestion.real_questions)
+                                }
+                            }
+                            else {
+                                SendLocalNotification(Title: "성공적인 등록", Subtitle: "와우", body: "확인해보세요!")
+                            }
                             // Dismiss the modal view
                             self.presentationMode.wrappedValue.dismiss()
                         }, label: {

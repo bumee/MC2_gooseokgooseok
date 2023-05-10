@@ -8,29 +8,33 @@
 import SwiftUI
 
 struct TodayQuestionView: View {
+    @EnvironmentObject var TodayQuestion: TodayQuestionData
+    var Question: String
     var body: some View {
         VStack {
-            HStack{
-                Circle()
-                    .frame(width: 8)
-                    .foregroundColor(.red)
-                
-                Spacer()
+            if TodayQuestion.real_qeustions_bool[Question] == false {
+                HStack{
+                    Circle()
+                        .frame(width: 8)
+                        .foregroundColor(.red)
+                    
+                    Spacer()
+                }
+                .padding(.top, 8)
+                .padding(.bottom, 6)
             }
-            .padding(.top, 8)
-            .padding(.bottom, 6)
             
             HStack {
                 Text("오늘")
                     .font(.footnote)
                     .foregroundColor(Color(uiColor: .systemGray))
                 
-                    Spacer()
+                Spacer()
             }
             .padding(.bottom, -4)
             
             HStack {
-                Text("우리 가족이 가장 자랑스러웠던 순간은 언제인가요?")
+                Text(Question)
                     .font(.title).bold()
                 
                 Spacer()

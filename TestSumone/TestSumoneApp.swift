@@ -13,7 +13,7 @@ struct TestSumoneApp: App {
     @StateObject var questionData = PreviousQuestionData()
     @StateObject var Emojis = EmojiList()
     @StateObject var dataBase = DataManager()
-    
+    @StateObject var TodayQuestions = TodayQuestionData()
     
     init(){
         FirebaseApp.configure()
@@ -27,6 +27,7 @@ struct TestSumoneApp: App {
                 .environmentObject(questionData)
                 .environmentObject(Emojis)
                 .environmentObject(dataBase)
+                .environmentObject(TodayQuestions)
         }
     }
 }
