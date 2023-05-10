@@ -79,8 +79,8 @@ func QuestionInfo(index: Int, infoType: InfoType) -> Array<String> {
         return questiondata[index]["date"]!
     case InfoType.question:
         return questiondata[index]["question"]!
-//    case InfoType.answer:
-//        return answer[index]
+        //    case InfoType.answer:
+        //        return answer[index]
     default:
         return ["Error"]
     }
@@ -90,27 +90,50 @@ struct TalkList: View {
     
     var body: some View {
         NavigationView {
-            List {
+            ScrollView {
+                
+//                Divider()
+                
                 NavigationLink {
                     TalkDetail()
                 } label: {
                     TalkRow()
+                        .cornerRadius(12)
                 }
+                .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                 
-                Section(header: Text("지난 대화")) {
+                
+//                Divider()
+                
+//                HStack {
+//                    Text("지난 대화")
+//                        .font(.title).bold()
+//
+//                    Spacer()
+//                }
+//
+//                Divider()
+                
+                Section() {
                     ForEach(0..<8) {i in
                         NavigationLink {
                             TalkDetail()
                         } label: {
+//                            TalkRow2(Date: "05/24", Question: "안녕 세상")
                             TalkRow2(Date: QuestionInfo(index: i, infoType: InfoType.date)[0], Question: QuestionInfo(index: i, infoType: InfoType.question)[0])
+                        }
+                        if i < 7 {
+                            Divider()
                         }
                     }
                 }
+                .padding(EdgeInsets(top: 0, leading: 32, bottom: 0, trailing: 0))
 
             }
             .navigationTitle(
                 Text("대화")
             )
+//            .ignoresSafeArea(edges: [.leading, .trailing])
         }
     }
 }

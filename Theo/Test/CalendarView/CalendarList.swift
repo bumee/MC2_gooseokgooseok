@@ -32,11 +32,19 @@ struct CalendarList: View {
             }
             .navigationTitle("캘린더")
             .toolbar {
-                Button("추가") {
+                Button() {
                     self.showModal = true
+                } label: {
+                    Image(systemName: "plus").bold()
+                        .font(.footnote)
+                    Text("추가")
+                        .font(.footnote)
+                        .fontWeight(.black)
                 }
+                .buttonStyle(.borderedProminent)
+                .cornerRadius(16)
                 .sheet(isPresented: self.$showModal) {
-                    CalendarAddModal()
+                    QuestionAddModal()
                 }
             }
             

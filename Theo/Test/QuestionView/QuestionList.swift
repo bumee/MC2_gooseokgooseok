@@ -10,6 +10,8 @@ import SwiftUI
 struct QuestionList: View {
     @State private var showModal = false
     
+    
+    
     var body: some View {
         ZStack {
             NavigationView {
@@ -39,9 +41,17 @@ struct QuestionList: View {
                 .toolbar(.visible, for: .tabBar)
                 .navigationTitle("나의 질문")
                 .toolbar() {
-                    Button("추가") {
+                    Button() {
                         self.showModal = true
+                    } label: {
+                        Image(systemName: "plus").bold()
+                            .font(.footnote)
+                        Text("추가")
+                            .font(.footnote)
+                            .fontWeight(.black)
                     }
+                    .buttonStyle(.borderedProminent)
+                    .cornerRadius(16)
                     .sheet(isPresented: self.$showModal) {
                         QuestionAddModal()
                     }

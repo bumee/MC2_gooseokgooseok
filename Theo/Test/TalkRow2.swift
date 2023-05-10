@@ -15,19 +15,28 @@ struct TalkRow2: View {
         VStack {
             HStack {
                 Text(Date)
-                    .font(.footnote)
-                    .foregroundColor(Color(uiColor: .systemGray))
+                    .font(.caption2)
+                    .foregroundColor(Color(uiColor: .systemGray2))
                 
                 Spacer()
+                
+                
             }
-            .padding(.bottom, -1)
+            .padding(.bottom, -6)
             
             HStack {
                 Text(Question)
+                    .foregroundColor(.black)
                 
                 Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .font(.footnote)
+                    .foregroundColor(Color(uiColor: .systemGray))
             }
         }
+        .frame(height: 48)
+        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
     }
 }
 
