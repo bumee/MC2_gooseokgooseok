@@ -15,6 +15,7 @@ struct TestSumoneApp: App {
     @StateObject var dataBase = DataManager()
     @StateObject var TodayQuestions = TodayQuestionData()
     @StateObject var WaitingQuestions = WaitingQuestionData()
+    @StateObject var HistoryQuestions = HistoryQuestionData()
     
     init(){
         FirebaseApp.configure()
@@ -30,6 +31,7 @@ struct TestSumoneApp: App {
                 .environmentObject(dataBase)
                 .environmentObject(TodayQuestions)
                 .environmentObject(WaitingQuestions)
+                .environmentObject(HistoryQuestions)
         }
     }
 }

@@ -13,6 +13,7 @@ struct AddQuestionView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var dataBase : DataManager
     @EnvironmentObject var TodayQuestion: TodayQuestionData
+    @EnvironmentObject var HistoryQuestion: HistoryQuestionData
     @State var customQuestion : String =  ""
     @State var userName : String
     
@@ -43,9 +44,17 @@ struct AddQuestionView: View {
                                     if let idx = WaitingQuestionList.WaitingQuestions[userName]!.firstIndex(of: customQuestion) {
                                         WaitingQuestionList.WaitingQuestions[userName]?.remove(at: idx)
                                     }
-                                    WaitingQuestionList.deleteWaitingQuestions(WaitingQuestion: customQuestion)
+                                    HistoryQuestion.HistoryQuestions[userName]?.append(customQuestion)
+                                    
+                                    if TodayQuestion.real_questions.keys.count == 1 {
+                                        TodayQuestion.MoveToPreviousQuestionData(DocumentId: TodayQuestion.real_questions.keys.sorted()[0])
+                                        WaitingQuestionList.MoveToHistoryQuestionData(DocumentId: customQuestion)
+                                        SendLocalNotification(Title: "오늘의 질문은 무엇일까요?", Subtitle: "오늘의 질문이 도착했습니다!", body: "다른 사람들은 무엇이라고 적었을지 확인해보세요!")
+                                        print("질문 도착 알림 보냄")
+                                    }
                                     TodayQuestion.saveTodayQuestions(TodayQuestion: customQuestion)
                                     TodayQuestion.real_qeustions_bool[customQuestion] = false
+                                    
                                     TodayQuestion.isSimulated = true
                                 }
                             }

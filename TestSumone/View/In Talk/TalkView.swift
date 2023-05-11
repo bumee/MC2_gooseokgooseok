@@ -53,6 +53,7 @@ struct TalkView: View {
         }
         .onAppear {
             TodayQuestions.fetchTodayQuestions()
+            PreviousQuestions.fetchPreviousQuestions()
         }
     }
 }

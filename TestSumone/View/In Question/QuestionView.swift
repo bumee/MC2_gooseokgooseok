@@ -12,6 +12,7 @@ struct QuestionView: View {
     let items = [1,2,3]
     @State private var isModalShown = false
     @EnvironmentObject var WaitingQuestionList: WaitingQuestionData
+    @EnvironmentObject var HistoryQuestionList: HistoryQuestionData
     var userName : String
     @EnvironmentObject var dataBase: DataManager
 
@@ -29,7 +30,9 @@ struct QuestionView: View {
                 }
                 
                 Section(header: Text("과거의 질문")){
-                    
+                    ForEach(HistoryQuestionList.HistoryQuestions[userName]?.reversed() ?? [String](), id:\.self) { Question in
+                        WaitingQuestionNameView(text: "\(Question)")
+                    }
                 }
             }
             .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))

@@ -10,6 +10,61 @@ import SwiftUI
 import UserNotifications
 import Firebase
 
+class HistoryQuestionData: ObservableObject, RandomAccessCollection {
+    
+    @Published var HistoryQuestions : [String:[String]] = [:]
+    @Published var questions: [String] = []
+    
+    init() {
+        fetchHistoryQuestions()
+    }
+    
+    func fetchHistoryQuestions() {
+        HistoryQuestions.removeAll()
+        let db = Firestore.firestore()
+        let refs = db.collection("HistoryQuestions")
+        refs.getDocuments {snapshot, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            if let snapshot = snapshot {
+                for document in snapshot.documents {
+                    let data = document.data()
+                    let HistoryQuestion = data["Question"] as? String ?? ""
+                    let Person = data["Person"] as? String ?? ""
+                    if !self.HistoryQuestions.keys.contains(Person){
+                        self.HistoryQuestions[Person] = [String]()
+                    }
+                    self.HistoryQuestions[Person]?.append(HistoryQuestion)
+                }
+            }
+        }
+    }
+    
+    func addHistoryQuestions(HistoryQuestion: String, userName: String) {
+        let db = Firestore.firestore()
+        let refs = db.collection("HistoryQuestions").document(HistoryQuestion)
+        refs.setData(["Question": HistoryQuestion, "Person": userName]) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    var startIndex: Int { questions.startIndex }
+    var endIndex: Int { questions.endIndex }
+
+    subscript(index: Int) -> String {
+        questions[index]
+    }
+
+    func index(after i: Int) -> Int {
+        questions.index(after: i)
+    }
+}
+
 class WaitingQuestionData: ObservableObject, RandomAccessCollection {
     
     @Published var WaitingQuestions : [String:[String]] = [:]
@@ -62,6 +117,47 @@ class WaitingQuestionData: ObservableObject, RandomAccessCollection {
             }
             else {
                 print("성공적으로 지워짐")
+            }
+        }
+    }
+    
+    func MoveToHistoryQuestionData(DocumentId: String) {
+        let sourceCollection = Firestore.firestore().collection("WaitingQuestions")
+
+        // 이동할 문서의 대상 콜렉션 참조
+        let destinationCollection = Firestore.firestore().collection("HistoryQuestions")
+
+        // 이동할 문서의 고유 식별자
+        let documentID = DocumentId
+
+        // 문서 가져오기
+        sourceCollection.document(documentID).getDocument { (snapshot, error) in
+            if let error = error {
+                print("문서 가져오기 오류: \(error.localizedDescription)")
+                return
+            }
+
+            guard let documentData = snapshot?.data() else {
+                print("문서가 존재하지 않습니다.")
+                return
+            }
+
+            // 대상 콜렉션에 문서 복사하기
+            destinationCollection.document(documentID).setData(documentData) { (error) in
+                if let error = error {
+                    print("문서 복사 오류: \(error.localizedDescription)")
+                    return
+                }
+
+                // 원본 콜렉션에서 문서 삭제하기
+                sourceCollection.document(documentID).delete { (error) in
+                    if let error = error {
+                        print("문서 삭제 오류: \(error.localizedDescription)")
+                        return
+                    }
+
+                    print("문서 이동 완료")
+                }
             }
         }
     }
@@ -154,6 +250,47 @@ class TodayQuestionData: ObservableObject, RandomAccessCollection {
             }
         }
     }
+    
+    func MoveToPreviousQuestionData(DocumentId: String) {
+        let sourceCollection = Firestore.firestore().collection("TodayQuestion")
+
+        // 이동할 문서의 대상 콜렉션 참조
+        let destinationCollection = Firestore.firestore().collection("PreviousQuestions")
+
+        // 이동할 문서의 고유 식별자
+        let documentID = DocumentId
+
+        // 문서 가져오기
+        sourceCollection.document(documentID).getDocument { (snapshot, error) in
+            if let error = error {
+                print("문서 가져오기 오류: \(error.localizedDescription)")
+                return
+            }
+
+            guard let documentData = snapshot?.data() else {
+                print("문서가 존재하지 않습니다.")
+                return
+            }
+
+            // 대상 콜렉션에 문서 복사하기
+            destinationCollection.document(documentID).setData(documentData) { (error) in
+                if let error = error {
+                    print("문서 복사 오류: \(error.localizedDescription)")
+                    return
+                }
+
+                // 원본 콜렉션에서 문서 삭제하기
+                sourceCollection.document(documentID).delete { (error) in
+                    if let error = error {
+                        print("문서 삭제 오류: \(error.localizedDescription)")
+                        return
+                    }
+
+                    print("문서 이동 완료")
+                }
+            }
+        }
+    }
 
     var startIndex: Int { questions.startIndex }
     var endIndex: Int { questions.endIndex }
@@ -190,12 +327,17 @@ class PreviousQuestionData: ObservableObject, RandomAccessCollection {
             if let snapshot = snapshot {
                 for document in snapshot.documents {
                     let data = document.data()
-                    let Previous_Question = data["PreviousQuestion"] as? String ?? ""
-                    let Dates = data["Date"] as? String ?? ""
-                    let Answer = data["Answer"] as? [String:String] ?? [String:String]()
-                    self.questions[Previous_Question] = Answer
+                    let Previous_Question = data["Question"] as? String ?? ""
                     
-                    self.Dates.append(Dates)
+                    var InnerInnerDict = [String:String]()
+                    let fieldNames = Array(data.keys)
+                    for Name in fieldNames {
+                        if Name != "Question" {
+                            let it = data[Name] as? String ?? ""
+                            InnerInnerDict[Name] = it
+                        }
+                    }
+                    self.questions[Previous_Question] = InnerInnerDict
                 }
             }
         }
@@ -326,7 +468,6 @@ func SendLocalNotification(Title: String, Subtitle: String, body: String) {
 
             // Step 5: Add the notification request to the notification center
             UNUserNotificationCenter.current().add(request)
-            print("알림 성공인데?")
         } else {
             print("Notification permission denied")
         }
