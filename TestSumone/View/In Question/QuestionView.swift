@@ -11,7 +11,7 @@ import SwiftUI
 struct QuestionView: View {
     let items = [1,2,3]
     @State private var isModalShown = false
-    var WaitingQuestionList : [String]
+    @EnvironmentObject var WaitingQuestionList: WaitingQuestionData
     var userName : String
     @EnvironmentObject var dataBase: DataManager
 
@@ -19,7 +19,7 @@ struct QuestionView: View {
         NavigationView {
             List {
                 Section(header: Text("대기중")){
-                    ForEach(WaitingQuestionList.reversed(), id:\.self) { Question in
+                    ForEach(WaitingQuestionList.WaitingQuestions[userName]?.reversed() ?? [String](), id:\.self) { Question in
                         NavigationLink(
                             destination:  QuestionEditingView(PreviousQuestion: Question, userName: userName, WillChangeQuestion: Question)
                         ){
@@ -43,11 +43,13 @@ struct QuestionView: View {
                 }
             }
             .sheet(isPresented: $isModalShown) {
-                AddQuestionView(userName: userName, WaitingQuestionList: WaitingQuestionList)
+                AddQuestionView(userName: userName)
             })
         }
-        .onDisappear {
-            dataBase.SaveWaitingQuestion(PersonName: userName, NewWaitingQuestionList: dataBase.WaitingQuestions)
+        .onAppear {
+            // 서버에 fetching하는 코드 필요
+            WaitingQuestionList.fetchWaitingQuestions()
+            print(WaitingQuestionList.WaitingQuestions)
         }
     }
 }

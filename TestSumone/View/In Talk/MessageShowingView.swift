@@ -11,6 +11,7 @@ import SwiftUI
 struct MessageShowingView: View {
     var Title: String
     var MessageList: [String:String]
+    var userName: String
     
     var body: some View {
         VStack{
@@ -38,13 +39,18 @@ struct MessageShowingView: View {
                 ForEach(MessageList.keys.sorted(), id: \.self) { key in
                     VStack{
                         HStack {
+                            if key == userName {
+                                Spacer()
+                            }
                             Text(key)
                                 .font(.footnote)
-                                .padding(.leading, 20)
+                                .padding(key == userName ? .trailing : .leading, 20)
                                 .padding(.bottom, -4)
-                            Spacer()
+                            if key != userName {
+                                Spacer()
+                            }
                         }
-                        MessageBubbleView(message: MessageList[key]!, isFromCurrentUser: false)
+                        MessageBubbleView(message: MessageList[key]!, isFromCurrentUser: key == userName ? true : false)
                             .padding(.leading, 16)
                             .padding(.bottom, 16)
                     }

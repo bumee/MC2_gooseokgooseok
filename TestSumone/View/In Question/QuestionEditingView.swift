@@ -11,6 +11,7 @@ import SwiftUI
 struct QuestionEditingView : View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var dataBase: DataManager
+    @EnvironmentObject var WaitingQuestionList: WaitingQuestionData
     @State var PreviousQuestion : String = ""
     @State var userName : String
     @State var WillChangeQuestion : String = ""
@@ -44,8 +45,8 @@ struct QuestionEditingView : View {
                     title: Text("삭제"), buttons: [
                         .destructive(Text("메모 삭제"), action: {
                             // Delete the memo here
-                            dataBase.WaitingQuestions.removeAll { $0 == PreviousQuestion }
-                            dataBase.deleteWaitingQuestions(PersonName: userName, Statement: PreviousQuestion)
+                            WaitingQuestionList.WaitingQuestions[userName]!.removeAll { $0 == PreviousQuestion }
+                            WaitingQuestionList.deleteWaitingQuestions(WaitingQuestion: PreviousQuestion)
                             presentationMode.wrappedValue.dismiss()
                         }),
                         .cancel(Text("취소"))
@@ -63,10 +64,12 @@ struct QuestionEditingView : View {
         }
         .toolbar(isHidden ? .hidden : .visible, for: .tabBar)
         .onDisappear{
-            if let idx = dataBase.WaitingQuestions.firstIndex(of: PreviousQuestion) {
-                dataBase.WaitingQuestions[idx] = WillChangeQuestion
+            if let idx = WaitingQuestionList.WaitingQuestions[userName]!.firstIndex(of: PreviousQuestion) {
+                WaitingQuestionList.WaitingQuestions[userName]![idx] = WillChangeQuestion
             }
-            dataBase.fixWaitingQuestions(PersonName: userName, OrigianlStatement: PreviousQuestion, FixStatement: WillChangeQuestion)
+            //서버 fix 코드 필요
+            WaitingQuestionList.deleteWaitingQuestions(WaitingQuestion: PreviousQuestion)
+            WaitingQuestionList.addWaitingQuestions(WaitingQuestion: WillChangeQuestion, userName: userName)
             isHidden = false
         }
         //        .toolbar(.hidden, for: .tabBar)

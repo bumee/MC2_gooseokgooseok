@@ -20,7 +20,7 @@ import Firebase
 struct MainView: View {
     @State private var selection = 0
     @EnvironmentObject var questions: PreviousQuestionData
-    @State var WaitingQuestionList : [String] = []
+    @EnvironmentObject var WaitingQuestionLists: WaitingQuestionData
     @EnvironmentObject var Emojis : EmojiList
     @EnvironmentObject var dataBase : DataManager
     
@@ -38,7 +38,7 @@ struct MainView: View {
                                 .font(.largeTitle)
                         }
                         .tag(0)
-                    QuestionView(WaitingQuestionList: dataBase.WaitingQuestions, userName: userName)
+                    QuestionView(userName: userName)
                         .tabItem {
                             Text("Question")
                                 .font(.largeTitle)
@@ -55,8 +55,7 @@ struct MainView: View {
             }
             .toolbar(.hidden, for: .navigationBar)
             .onAppear {
-                WaitingQuestionList = dataBase.fetchWaitingQuestions(PersonName: userName)
-                dataBase.addPerson(PersonName: userName, Emoji: Emojis[SelectedEmojiIdx], WaitingQuestionList: Array(WaitingQuestionList))
+                dataBase.addPerson(PersonName: userName, Emoji: Emojis[SelectedEmojiIdx], WaitingQuestionList: Array([String]()))
                 dataBase.fetchPersons()
                 questions.fetchPreviousQuestions()
             }

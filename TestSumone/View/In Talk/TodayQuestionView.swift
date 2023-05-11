@@ -26,19 +26,31 @@ struct TodayQuestionView: View {
             
             HStack {
                 Text("오늘")
-                    .font(.footnote)
-                    .foregroundColor(Color(uiColor: .systemGray))
+                    .font(.footnote).bold()
+                    .foregroundColor(Color(uiColor: .white))
+                //                    .foregroundColor(Color(uiColor: .black))
                 
                 Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .font(.footnote).bold()
+                    .foregroundColor(Color(uiColor: .white))
+                //                    .foregroundColor(Color(uiColor: .black))
             }
             .padding(.bottom, -4)
             
             HStack {
                 Text(Question)
                     .font(.title).bold()
-                
+                    .foregroundColor(.white)
+                //                    .foregroundColor(.black)
+                    .multilineTextAlignment(.leading)
+                    .lineSpacing(-4)
                 Spacer()
             }
         }
+        .padding()
+        .cornerRadius(12)
+        .background(Color(uiColor: .systemGreen))
     }
 }

@@ -16,7 +16,7 @@ struct AddQuestionView: View {
     @State var customQuestion : String =  ""
     @State var userName : String
     
-    var WaitingQuestionList : [String]
+    @EnvironmentObject var WaitingQuestionList : WaitingQuestionData
     
     var body: some View {
         NavigationView() {
@@ -32,15 +32,21 @@ struct AddQuestionView: View {
                         Button(action: {
                             // Perform some action with the entered text
                             print("Entered text: \(self.customQuestion)")
-                            dataBase.AddWaitingQuestions(Statement: customQuestion)
+                            if !WaitingQuestionList.WaitingQuestions.keys.contains(userName) {
+                                WaitingQuestionList.WaitingQuestions[userName] = [String]()
+                            }
+                            WaitingQuestionList.WaitingQuestions[userName]!.append(customQuestion)
+                            print(WaitingQuestionList.WaitingQuestions)
+                            WaitingQuestionList.addWaitingQuestions(WaitingQuestion: customQuestion, userName: userName)
                             if !TodayQuestion.isSimulated{
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                                    dataBase.WaitingQuestions.remove(at: 0)
-//                                    TodayQuestion.real_questions[customQuestion] = [String:String]()
+                                    if let idx = WaitingQuestionList.WaitingQuestions[userName]!.firstIndex(of: customQuestion) {
+                                        WaitingQuestionList.WaitingQuestions[userName]?.remove(at: idx)
+                                    }
+                                    WaitingQuestionList.deleteWaitingQuestions(WaitingQuestion: customQuestion)
                                     TodayQuestion.saveTodayQuestions(TodayQuestion: customQuestion)
                                     TodayQuestion.real_qeustions_bool[customQuestion] = false
                                     TodayQuestion.isSimulated = true
-                                    print(TodayQuestion.real_questions)
                                 }
                             }
                             else {
@@ -71,6 +77,5 @@ struct AddQuestionView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
         }
-        
     }
 }

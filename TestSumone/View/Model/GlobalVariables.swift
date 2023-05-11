@@ -10,6 +10,74 @@ import SwiftUI
 import UserNotifications
 import Firebase
 
+class WaitingQuestionData: ObservableObject, RandomAccessCollection {
+    
+    @Published var WaitingQuestions : [String:[String]] = [:]
+    @Published var questions: [String] = []
+    
+    init() {
+        fetchWaitingQuestions()
+    }
+    
+    func fetchWaitingQuestions() {
+        WaitingQuestions.removeAll()
+        let db = Firestore.firestore()
+        let refs = db.collection("WaitingQuestions")
+        refs.getDocuments {snapshot, error in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            if let snapshot = snapshot {
+                for document in snapshot.documents {
+                    let data = document.data()
+                    let WaitingQuestion = data["Question"] as? String ?? ""
+                    let Person = data["Person"] as? String ?? ""
+                    if !self.WaitingQuestions.keys.contains(Person){
+                        self.WaitingQuestions[Person] = [String]()
+                    }
+                    self.WaitingQuestions[Person]?.append(WaitingQuestion)
+                }
+            }
+        }
+    }
+    
+    func addWaitingQuestions(WaitingQuestion: String, userName: String) {
+        let db = Firestore.firestore()
+        let refs = db.collection("WaitingQuestions").document(WaitingQuestion)
+        refs.setData(["Question": WaitingQuestion, "Person": userName]) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func deleteWaitingQuestions(WaitingQuestion: String) {
+        let db = Firestore.firestore()
+        let refs = db.collection("WaitingQuestions").document(WaitingQuestion)
+        refs.delete() { error in
+            if let error = error {
+                print("\(error)")
+            }
+            else {
+                print("성공적으로 지워짐")
+            }
+        }
+    }
+
+    var startIndex: Int { questions.startIndex }
+    var endIndex: Int { questions.endIndex }
+
+    subscript(index: Int) -> String {
+        questions[index]
+    }
+
+    func index(after i: Int) -> Int {
+        questions.index(after: i)
+    }
+}
+
 class TodayQuestionData: ObservableObject, RandomAccessCollection {
     
     @Published var real_questions: [String:[String:String]] = [:]
@@ -35,15 +103,12 @@ class TodayQuestionData: ObservableObject, RandomAccessCollection {
                 for document in snapshot.documents {
                     let data = document.data()
                     let Today_Question = data["Question"] as? String ?? ""
-                    let Daughter = data["딸"] as? String ?? ""
-                    let Father = data["아빠"] as? String ?? ""
-                    let Mother = data["엄마"] as? String ?? ""
                     
                     var InnerInnerDict = [String:String]()
                     let fieldNames = Array(data.keys)
                     for Name in fieldNames {
                         if Name != "Question" {
-                            var it = data[Name] as? String ?? ""
+                            let it = data[Name] as? String ?? ""
                             InnerInnerDict[Name] = it
                         }
                     }
@@ -186,13 +251,10 @@ struct Person {
     var NickName : String = ""
     
     var Answer = [String:String]()
-    
-    var WaitingQuestions = [String]()
 }
 
 class DataManager: ObservableObject, RandomAccessCollection {
     @Published var Persons : [Person] = []
-    @Published var WaitingQuestions : [String] = []
     
     init() {
         fetchPersons()
@@ -215,77 +277,11 @@ class DataManager: ObservableObject, RandomAccessCollection {
                     let NickName = data["NickName"] as? String ?? ""
                     let Emoji = data["Emoji"] as? String ?? ""
                     let Answer = data["Answer"] as? Dictionary ?? [String:String]()
-                    let WaitingQuestions = data["WaitingQuestions"] as? [String] ?? [String]()
                     
-                    let person = Person(Emoji: Emoji, NickName: NickName, Answer: Answer, WaitingQuestions: WaitingQuestions)
+                    let person = Person(Emoji: Emoji, NickName: NickName, Answer: Answer)
                     print(person)
                     self.Persons.append(person)
                 }
-            }
-        }
-    }
-    
-    func fetchWaitingQuestions(PersonName: String) -> [String] {
-        let db = Firestore.firestore()
-        let refs = db.collection("Persons").document(PersonName)
-        var WaitingQuestionList : [String] = []
-        refs.getDocument { (document, error) in
-            if let document = document, document.exists {
-                let data = document.data()
-                WaitingQuestionList = data?["WaitingQuestions"] as? [String] ?? [String]()
-            }
-            else {
-                print("잘못 입력된 문서 이름입니다.")
-            }
-        }
-        print(WaitingQuestionList)
-        return WaitingQuestionList
-    }
-    
-    func AddWaitingQuestions(Statement: String) {
-        WaitingQuestions.append(Statement)
-    }
-
-    func SaveWaitingQuestion(PersonName: String, NewWaitingQuestionList: [String]) {
-        let db = Firestore.firestore()
-        let refs = db.collection("Persons").document(PersonName)
-        refs.updateData(["WaitingQuestions": NewWaitingQuestionList]) { (error) in
-            if let error = error {
-                print("Error updating document: \(error)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-    }
-    
-    func fixWaitingQuestions(PersonName: String, OrigianlStatement: String, FixStatement: String) {
-        let db = Firestore.firestore()
-        let refs = db.collection("Persons").document(PersonName)
-        var OriginalQuestions = self.fetchWaitingQuestions(PersonName: PersonName)
-        if let idx = OriginalQuestions.firstIndex(of: OrigianlStatement) {
-            OriginalQuestions[idx] = FixStatement
-        }
-        refs.updateData(["WaitingQuestions": OriginalQuestions]) { (error) in
-            if let error = error {
-                print("Error updating document: \(error)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-    }
-    
-    func deleteWaitingQuestions(PersonName: String, Statement: String) {
-        let db = Firestore.firestore()
-        let refs = db.collection("Persons").document(PersonName)
-        var OriginalQuestions = self.fetchWaitingQuestions(PersonName: PersonName)
-        if let idx = OriginalQuestions.firstIndex(of: Statement) {
-            OriginalQuestions.remove(at: idx)
-        }
-        refs.updateData(["WaitingQuestions": OriginalQuestions]) { (error) in
-            if let error = error {
-                print("Error updating document: \(error)")
-            } else {
-                print("Document successfully updated")
             }
         }
     }
