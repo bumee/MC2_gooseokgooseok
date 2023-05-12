@@ -9,13 +9,13 @@ import Foundation
 import SwiftUI
 
 struct PreviousQuestionNameView: View {
-    var Date: String
+    var date : String
     var Question: String
     
     var body: some View {
         VStack {
             HStack {
-                Text(Date)
+                Text(date)
                     .font(.caption2)
                     .foregroundColor(Color(uiColor: .systemGray2))
                 

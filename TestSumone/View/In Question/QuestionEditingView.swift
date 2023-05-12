@@ -17,6 +17,7 @@ struct QuestionEditingView : View {
     @State var WillChangeQuestion : String = ""
     @State private var showActionSheet = false
     @State private var isHidden = true
+    @State private var isDeleted = false
     
     var body: some View {
 
@@ -47,6 +48,7 @@ struct QuestionEditingView : View {
                             // Delete the memo here
                             WaitingQuestionList.WaitingQuestions[userName]!.removeAll { $0 == PreviousQuestion }
                             WaitingQuestionList.deleteWaitingQuestions(WaitingQuestion: PreviousQuestion)
+                            isDeleted = true
                             presentationMode.wrappedValue.dismiss()
                         }),
                         .cancel(Text("취소"))
@@ -69,7 +71,9 @@ struct QuestionEditingView : View {
             }
             //서버 fix 코드 필요
             WaitingQuestionList.deleteWaitingQuestions(WaitingQuestion: PreviousQuestion)
-            WaitingQuestionList.addWaitingQuestions(WaitingQuestion: WillChangeQuestion, userName: userName)
+            if !isDeleted {
+                WaitingQuestionList.addWaitingQuestions(WaitingQuestion: WillChangeQuestion, userName: userName)
+            }
             isHidden = false
         }
         //        .toolbar(.hidden, for: .tabBar)

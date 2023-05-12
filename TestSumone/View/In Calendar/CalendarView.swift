@@ -44,21 +44,24 @@ struct CalendarView: View {
                             Spacer()
                             
                             Image(systemName: "chevron.left")
+                                .padding(.top, 2)
                                 .padding(.trailing, 16)
-                                .font(.title3)
+                                .font(.body)
                                 .fontWeight(.semibold)
-                                .foregroundColor(.blue)
+                                .foregroundColor(Color(uiColor: .systemGreen))
                                 .onTapGesture{
                                     currentMonth -= 1
                                 }
                             
                             Image(systemName: "chevron.right")
-                                .font(.title3)
+                                .padding(.top, 2)
+                                .font(.body)
                                 .fontWeight(.semibold)
-                                .foregroundColor(.blue)
+                                .foregroundColor(Color(uiColor: .systemGreen))
                                 .onTapGesture{
                                     currentMonth += 1
                                 }
+                                .padding(.trailing, 12)
                         }
                         
                         // day view(mon, tue, wed, ...)
@@ -66,7 +69,7 @@ struct CalendarView: View {
                         LazyVGrid(columns: columns) {
                             ForEach(days,id: \.self){ day in
                                 Text(day)
-                                    .font(.subheadline).bold()
+                                    .font(.caption).bold()
                                     .foregroundColor(Color(uiColor: .systemGray2))
                             }
                         }
@@ -77,9 +80,9 @@ struct CalendarView: View {
                                 CardView(value: value)
                                     .background(
                                         Capsule()
-                                            .fill(Color(uiColor: .systemBlue))
-                                            .opacity(isSameDay(date1: value.date, date2: currentDate) ? 0.5 : 0)
-                                            .position(x:19, y: 16)
+                                            .fill(Color(uiColor: .systemGreen))
+                                            .opacity(isSameDay(date1: value.date, date2: currentDate) ? 1 : 0)
+                                            .position(x:19.5, y: 16)
                                     )
                                     .onTapGesture{
                                         currentDate = value.date
@@ -112,9 +115,17 @@ struct CalendarView: View {
                 }
                 .navigationTitle("캘린더")
                 .toolbar {
-                    Button("추가") {
+                    Button() {
                         self.showModal = true
+                    } label: {
+                        Image(systemName: "plus").bold()
+                            .font(.footnote)
+                        Text("추가")
+                            .font(.footnote)
+                            .fontWeight(.black)
                     }
+                    .buttonStyle(.borderedProminent)
+                    .cornerRadius(16)
                     .sheet(isPresented: self.$showModal) {
                         TaskAddView(showModal: $showModal, myTask: myTask)
                     }
@@ -133,10 +144,9 @@ struct CalendarView: View {
                     return isSameDay(date1: task.time, date2: value.date)
                 }) {
                     
-                        
                     Text("\(value.day)")
                         .font(.title3)
-                        .foregroundColor(isSameDay(date1: value.date, date2: Date()) ? Color(uiColor: .systemBlue) : .black)
+                       // .foregroundColor(isSameDay(date1: value.date, date2: Date()) ? .white : .black)
                         .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .white : .black)
                         .fontWeight(isSameDay(date1: value.date, date2: currentDate) ? .semibold : .regular)
                         .frame(maxWidth: .infinity)
@@ -149,8 +159,8 @@ struct CalendarView: View {
                 else{
                     Text("\(value.day)")
                         .font(.title3)
-                        .foregroundColor(isSameDay(date1: value.date, date2: Date()) ? Color(uiColor: .systemBlue) : .black)
-                        .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .white : Color(uiColor: .systemBlue))
+                       // .foregroundColor(isSameDay(date1: value.date, date2: Date()) ? Color(uiColor: .systemGreen) : .black)
+                        .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .white : .black)
                         .fontWeight(isSameDay(date1: value.date, date2: currentDate) ? .semibold : .regular)
                         .frame(maxWidth: .infinity)
                     Spacer()

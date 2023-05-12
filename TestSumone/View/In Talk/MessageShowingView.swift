@@ -12,13 +12,15 @@ struct MessageShowingView: View {
     var Title: String
     var MessageList: [String:String]
     var userName: String
+    var date: String
+    @State var isHidden = true
     
     var body: some View {
         VStack{
             HStack {
                 
                 VStack {
-                    Text("05/25")
+                    Text(date)
                         .font(.footnote)
                         .foregroundColor(Color(uiColor: .systemGray))
                     
@@ -29,12 +31,13 @@ struct MessageShowingView: View {
                             .multilineTextAlignment(.center)
                             .font(.title)
                             .bold()
-
+                        
                     }
                 }
             }
             Divider()
-
+                .padding(.bottom, 8)
+            
             ScrollView {
                 ForEach(MessageList.keys.sorted(), id: \.self) { key in
                     VStack{
@@ -52,14 +55,20 @@ struct MessageShowingView: View {
                         }
                         MessageBubbleView(message: MessageList[key]!, isFromCurrentUser: key == userName ? true : false)
                             .padding(.leading, 16)
+                            .padding(.trailing, 16)
                             .padding(.bottom, 16)
                     }
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
             
             Spacer()
             
         }
+        .onDisappear {
+            isHidden = false
+        }
+        .toolbar(isHidden ? .hidden : .visible, for: .tabBar)
     }
 }
 

@@ -44,7 +44,7 @@ struct MessageBubbleView: View {
                 Spacer()
                 Text(message)
                     .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
-                    .background(Color.blue)
+                    .background(Color.init(uiColor: .systemGreen))
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.white)
                 .cornerRadius(12)}
@@ -55,6 +55,7 @@ struct MessageBubbleView: View {
                     .background(Color(uiColor: .secondarySystemBackground))
                     .multilineTextAlignment(.leading)
                     .cornerRadius(12)
+                    
                 Spacer()
             }
         }

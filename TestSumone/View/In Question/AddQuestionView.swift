@@ -52,7 +52,9 @@ struct AddQuestionView: View {
                                         SendLocalNotification(Title: "오늘의 질문은 무엇일까요?", Subtitle: "오늘의 질문이 도착했습니다!", body: "다른 사람들은 무엇이라고 적었을지 확인해보세요!")
                                         print("질문 도착 알림 보냄")
                                     }
-                                    TodayQuestion.saveTodayQuestions(TodayQuestion: customQuestion)
+//                                    TodayQuestion.saveTodayQuestions(TodayQuestion: customQuestion)
+                                    //WaitingQuestions 에서 Today로 무빙해야함.
+                                    WaitingQuestionList.MoveToTodayQuestionData(DocumentId: customQuestion)
                                     TodayQuestion.real_qeustions_bool[customQuestion] = false
                                     
                                     TodayQuestion.isSimulated = true

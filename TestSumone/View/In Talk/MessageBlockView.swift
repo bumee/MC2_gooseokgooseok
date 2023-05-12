@@ -16,17 +16,19 @@ struct MessageBlockView: View {
     @EnvironmentObject var PreviousQuestionList : PreviousQuestionData
     @EnvironmentObject var dataBase: DataManager
     @EnvironmentObject var TodayQuestionList: TodayQuestionData
+    @State var isHidden = true
     var userName: String
     @State var Q_idx = 0
     @State var isWritten = false
     var AnswerList: [String:String]
+    var date: String
     
     var body: some View {
         VStack{
             HStack {
                 
                 VStack {
-                    Text("05/25")
+                    Text(date)
                         .font(.footnote)
                         .foregroundColor(Color(uiColor: .systemGray))
                     
@@ -42,6 +44,7 @@ struct MessageBlockView: View {
                 }
             }
             Divider()
+                .padding(.bottom, 8)
             
             ForEach(AnswerList.keys.sorted(), id: \.self) { key in
                 VStack{
@@ -58,6 +61,7 @@ struct MessageBlockView: View {
                         .padding(.bottom, 16)
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
             
             VStack {
                 if isWritten {
@@ -81,8 +85,8 @@ struct MessageBlockView: View {
             
             if !isWritten {
                 HStack{
-                    TextField("답변을 입력하면 다른 답변을 확인할 수 있습니다.", text: $text.note, axis: .vertical)
-                        .padding()
+                    TextField("답변을 입력해주세요!", text: $text.note, axis: .vertical)
+                        .padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 4))
                         .textFieldStyle(.roundedBorder)
                         .focused($focus, equals:  true)
                     Button {
@@ -94,14 +98,21 @@ struct MessageBlockView: View {
                             
                         }
                     } label: {
-                        Image(systemName: "arrow.up")
+                        Image(systemName: "arrow.up").bold()
                     }
                     .buttonStyle(.borderedProminent)
+                    .cornerRadius(20)
                     .disabled(text.incomplete)
                     .padding(.trailing, 10)
                 }
             }
+            
+            
         }
+        .onDisappear {
+            isHidden = false
+        }
+        .toolbar(isHidden ? .hidden : .visible, for: .tabBar)
     }
 }
 

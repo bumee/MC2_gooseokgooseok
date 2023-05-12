@@ -34,22 +34,18 @@ struct MainView: View {
                 TabView {
                     TalkView(userName: userName)
                         .tabItem {
-                            Text("Talk")
-                                .font(.largeTitle)
+                            Label("대화", systemImage: "message")
                         }
                         .tag(0)
                     QuestionView(userName: userName)
                         .tabItem {
-                            Text("Question")
-                                .font(.largeTitle)
+                            Label("질문", systemImage: "plus.message.fill")
                         }
                         .tag(1)
                     CalendarView()
                         .tabItem {
-                            Text("Calendar")
-                                .font(.largeTitle)
+                            Label("캘린더", systemImage: "calendar")
                         }
-    
                         .tag(2)
                 }
             }
@@ -65,7 +61,7 @@ struct MainView: View {
                 VStack {
                     HStack {
                         Image(systemName: "1.circle")
-                            .foregroundColor(Color.blue)
+                            .foregroundColor(Color.init(uiColor: .systemGreen))
                         
                         Image(systemName: "2.circle")
                             .foregroundColor(Color(uiColor: .systemGray3))

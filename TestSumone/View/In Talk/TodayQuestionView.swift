@@ -12,17 +12,17 @@ struct TodayQuestionView: View {
     var Question: String
     var body: some View {
         VStack {
-            if TodayQuestion.real_qeustions_bool[Question] == false {
-                HStack{
-                    Circle()
-                        .frame(width: 8)
-                        .foregroundColor(.red)
-                    
-                    Spacer()
-                }
-                .padding(.top, 8)
-                .padding(.bottom, 6)
-            }
+//            if TodayQuestion.real_qeustions_bool[Question] == false {
+//                HStack{
+//                    Circle()
+//                        .frame(width: 8)
+//                        .foregroundColor(.red)
+//
+//                    Spacer()
+//                }
+//                .padding(.top, 8)
+//                .padding(.bottom, 6)
+//            }
             
             HStack {
                 Text("오늘")

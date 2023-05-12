@@ -36,15 +36,18 @@ struct QuestionView: View {
                 }
             }
             .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-            .navigationTitle("Question")
+            .navigationTitle("나의 질문")
             .navigationBarItems(trailing: Button(action: {
                 self.isModalShown = true
             }){
-                HStack{
-                    Text("Add")
-                    Image(systemName: "plus")
-                }
+                Image(systemName: "plus").bold()
+                    .font(.footnote)
+                Text("추가")
+                    .font(.footnote)
+                    .fontWeight(.black)
             }
+            .buttonStyle(.borderedProminent)
+            .cornerRadius(16)
             .sheet(isPresented: $isModalShown) {
                 AddQuestionView(userName: userName)
             })
@@ -52,6 +55,7 @@ struct QuestionView: View {
         .onAppear {
             // 서버에 fetching하는 코드 필요
             WaitingQuestionList.fetchWaitingQuestions()
+            HistoryQuestionList.fetchHistoryQuestions()
             print(WaitingQuestionList.WaitingQuestions)
         }
     }

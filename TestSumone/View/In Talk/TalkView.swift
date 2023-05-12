@@ -15,9 +15,9 @@ struct TalkView: View {
     
     private func WhereToGo(key: String) -> some View {
         if !TodayQuestions.real_questions[key]!.keys.contains(userName) {
-            return AnyView(MessageBlockView(text: AnswerTextData(), Title: key, userName: userName, AnswerList: TodayQuestions.real_questions[key]!))
+            return AnyView(MessageBlockView(text: AnswerTextData(), Title: key, userName: userName, AnswerList: TodayQuestions.real_questions[key]!, date: TodayQuestions.real_questions_Date[key]!))
         }
-        return AnyView(MessageShowingView(Title: key, MessageList: TodayQuestions.real_questions[key]!, userName: userName))
+        return AnyView(MessageShowingView(Title: key, MessageList: TodayQuestions.real_questions[key]!, userName: userName, date: TodayQuestions.real_questions_Date[key]!))
     }
     
     var body: some View {
@@ -35,21 +35,23 @@ struct TalkView: View {
                 
                 Spacer()
                 
-                Section(header: Text("지난 대화")) {
+                Section() {
                     ForEach(PreviousQuestions.questions.keys.sorted(), id: \.self) { key in
+                        
                         NavigationLink(
-                            destination:  MessageShowingView(Title: key, MessageList: PreviousQuestions.questions[key]!, userName: userName)
+                            destination: MessageShowingView(Title: key, MessageList: PreviousQuestions.questions[key]!, userName: userName, date: PreviousQuestions.questions_Date[key]!)
                         )
                         {
-                            PreviousQuestionNameView(Date: key, Question: key)
+                            PreviousQuestionNameView(date: PreviousQuestions.questions_Date[key]!, Question: key)
                         }
-                        .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+                        
+                        Divider()
+                        
                     }
                 }
+                .padding(EdgeInsets(top: 0, leading: 32, bottom: 0, trailing: 0))
             }
-//            .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-            .navigationTitle("Talk")
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("대화")
         }
         .onAppear {
             TodayQuestions.fetchTodayQuestions()

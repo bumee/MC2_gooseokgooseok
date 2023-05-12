@@ -7,10 +7,9 @@ struct ClickedButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()
-            .background(isSelected ? Color.blue : Color.gray)
+            .background(isSelected ? Color.init(uiColor: .systemGreen) : Color.init(uiColor: .secondarySystemBackground))
             .foregroundColor(.white)
-            .clipShape(Capsule())
-            .scaleEffect(isSelected ? 1.2 : 1.0)
+            .cornerRadius(12)
     }
 }
 
@@ -28,7 +27,7 @@ struct LoginEmojiView: View {
                     .foregroundColor(Color(uiColor: .systemGray3))
                 
                 Image(systemName: "2.circle")
-                    .foregroundColor(Color.blue)
+                    .foregroundColor(Color(uiColor: .systemGreen))
                 
                 Spacer()
             }
@@ -64,7 +63,7 @@ struct LoginEmojiView: View {
                         }
                     }
                 }
-                .padding(EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16))
+                .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
                 
                 HStack {
                     ForEach(4..<8) { emoji_idx in
@@ -90,16 +89,18 @@ struct LoginEmojiView: View {
                         }
                     }
                 }
-                .padding(EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16))
+                .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
             }
             
             Spacer()
             
             NavigationLink(destination: MainView(userName: userName, isLoggedIn: true, SelectedEmojiIdx: SelectedEmojiIdx))
             {
-                Text("다음").bold()
-                    .frame(maxWidth: .infinity, maxHeight: 40)
-                    .buttonStyle(.borderedProminent)
+                Text("완료").bold()
+                    .frame(maxWidth: .infinity, maxHeight: 60)
+                    .background(Color(uiColor: .systemGreen))
+                    .foregroundColor(.white)
+                    .cornerRadius(16)
             }
         }
         .padding()
