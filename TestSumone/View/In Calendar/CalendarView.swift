@@ -146,8 +146,7 @@ struct CalendarView: View {
                     
                     Text("\(value.day)")
                         .font(.title3)
-                       // .foregroundColor(isSameDay(date1: value.date, date2: Date()) ? .white : .black)
-                        .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .white : .black)
+                        .modifier(ColorFromDate(val: value, selectedDate: currentDate))
                         .fontWeight(isSameDay(date1: value.date, date2: currentDate) ? .semibold : .regular)
                         .frame(maxWidth: .infinity)
                         .padding(.bottom, -8)
@@ -159,8 +158,7 @@ struct CalendarView: View {
                 else{
                     Text("\(value.day)")
                         .font(.title3)
-                       // .foregroundColor(isSameDay(date1: value.date, date2: Date()) ? Color(uiColor: .systemGreen) : .black)
-                        .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .white : .black)
+                        .modifier(ColorFromDate(val: value, selectedDate: currentDate))
                         .fontWeight(isSameDay(date1: value.date, date2: currentDate) ? .semibold : .regular)
                         .frame(maxWidth: .infinity)
                     Spacer()
@@ -168,8 +166,6 @@ struct CalendarView: View {
             }
         }
         .frame(height:40, alignment: .top)
-        // .background(isSameDay(date1: value.date, date2: Date()) ? Color.red : Color.white.opacity(0))
-        //        .padding(.vertical, 8)
         
     }
     
@@ -264,4 +260,24 @@ struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
       CalendarView()
   }
+}
+
+struct ColorFromDate: ViewModifier {
+    var val: DateValue
+    var selectedDate: Date
+    
+    func body(content: Content) -> some View {
+        // val.date == Date(), 날짜가 같아도 문제가 발생한다.
+        // 한국시간에 맞추겠다고 val.date을 1시간 뺐기 때문이다.
+        
+        if Calendar.current.isDate(val.date, inSameDayAs: Date()){
+            content.foregroundColor(Color(uiColor: .systemGray))
+        }
+        else if Calendar.current.isDate(val.date, inSameDayAs: selectedDate){
+            content.foregroundColor(Color.white)
+        }
+        else {
+            content.foregroundColor(Color.black)
+        }
+    }
 }
