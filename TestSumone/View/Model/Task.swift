@@ -36,11 +36,10 @@ class TaskManager : ObservableObject {
     @Published var tasks : Dictionary<Int, Array<Task>> = [0:[], 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[], 10:[], 11:[], 12:[]]
     
     init() {
-        addTask(Date(), "hawing")
-        addTask(getSampleData(offset: 2), "2222222")
-        addTask(getSampleData(offset: 32), "3232323232")
-        addTask(getSampleData(offset: 52), "52525252525252")
-        addTask(getSampleData(offset: 72), "7272727272")
+        addTask(dateFrom(5, 5), "어린이날")
+        addTask(dateFrom(5, 8), "어버이날")
+        addTask(dateFrom(5, 15), "스승의날")
+        addTask(dateFrom(5, 25), "할머니 생신")
     }
     
     func addTask(_ date: Date, _ title: String) {
@@ -55,6 +54,15 @@ class TaskManager : ObservableObject {
     
     func remove(_ month: Int, _ idx: IndexSet) {
         tasks[month]!.remove(atOffsets: idx)
+    }
+    
+    func dateFrom(_ month: Int,_ day: Int) -> Date {
+        let calendar = Calendar.current
+        var dateComponents = DateComponents()
+        dateComponents.month = month
+        dateComponents.day = day
+        dateComponents.year = calendar.component(.year, from: Date())
+        return calendar.date(from: dateComponents)!
     }
     
     
