@@ -6,12 +6,32 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct TestSumoneApp: App {
+    @StateObject var questionData = PreviousQuestionData()
+    @StateObject var Emojis = EmojiList()
+    @StateObject var dataBase = DataManager()
+    @StateObject var TodayQuestions = TodayQuestionData()
+    @StateObject var WaitingQuestions = WaitingQuestionData()
+    @StateObject var HistoryQuestions = HistoryQuestionData()
+    
+    init(){
+        FirebaseApp.configure()
+    }
+    
+    var islog = false
+    
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(userName: "", isLoggedIn: false, SelectedEmojiIdx: 0)
+                .environmentObject(questionData)
+                .environmentObject(Emojis)
+                .environmentObject(dataBase)
+                .environmentObject(TodayQuestions)
+                .environmentObject(WaitingQuestions)
+                .environmentObject(HistoryQuestions)
         }
     }
 }
