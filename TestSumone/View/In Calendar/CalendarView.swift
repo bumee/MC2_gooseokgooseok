@@ -11,7 +11,9 @@ struct CalendarView: View {
     @State var currentDate: Date = Date()
     // Month update on arrow button clicks....
     @State var currentMonth: Int = 0
-    @State private var showModal = false
+    @State private var isAddSheetPresented = false
+    @State private var isEditSheetPresented = false
+    @State private var testTitle: String = ""
     
     @ObservedObject private var myTask: TaskManager = calendarManager
     
@@ -96,15 +98,31 @@ struct CalendarView: View {
                         
                         ForEach(tasks!) {task in
                             if isSameDay(date1: task.time, date2: currentDate) {
-                                VStack(alignment: .leading, spacing: 0){
-                                    Text(dateFormatter.string(from: task.time))
-                                        .font(.footnote)
-                                        .foregroundColor(Color(uiColor: .systemGray))
-                                        .padding(.bottom, 6)
-                                    Text(task.title)
+                                Button(){
+                                    self.isEditSheetPresented = true
+                                    print("haiwng")
+                                } label:{
+                                    VStack(alignment: .leading, spacing: 0){
+                                        Text(dateFormatter.string(from: task.time))
+                                            .font(.footnote)
+                                            .foregroundColor(Color(uiColor: .systemGray))
+                                            .padding(.bottom, 6)
+                                        Text(task.title)
+                                    }
                                 }
+                                /*
+                                .sheet(isPresented: self.$isEditSheetPresented) {
+                                    TaskAddView(uuidStr: task.id, anniName: task.title, anniDate: task.time, isEditting: true, showModal: $isEditSheetPresented)
+                                }
+                                 */
+                                .fullScreenCover(isPresented: self.$isEditSheetPresented){
+                                    TaskAddView(uuidStr: task.id, anniName: task.title, anniDate: task.time, isEditting: true, showModal: $isEditSheetPresented)
+                                }
+
                             }
+
                         }
+
                         .onDelete{ idx in
                             myTask.remove(getCurrentMonthAsInt(), idx)
                         }
@@ -113,10 +131,10 @@ struct CalendarView: View {
                 .onChange(of: currentMonth) { newValue in
                     currentDate = getCurrentMonth()
                 }
-                .navigationTitle("캘린더")
+                .navigationTitle("가족 캘린더")
                 .toolbar {
                     Button() {
-                        self.showModal = true
+                        self.isAddSheetPresented = true
                     } label: {
                         Image(systemName: "plus").bold()
                             .font(.footnote)
@@ -126,8 +144,8 @@ struct CalendarView: View {
                     }
                     .buttonStyle(.borderedProminent)
                     .cornerRadius(16)
-                    .sheet(isPresented: self.$showModal) {
-                        TaskAddView(showModal: $showModal, myTask: myTask)
+                    .sheet(isPresented: self.$isAddSheetPresented) {
+                        TaskAddView(anniDate: currentDate, showModal: $isAddSheetPresented)
                     }
                 }
             }
