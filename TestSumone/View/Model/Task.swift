@@ -56,6 +56,16 @@ class TaskManager : ObservableObject {
         tasks[month]!.remove(atOffsets: idx)
     }
     
+    func updateTask(_ uuid: String, _ date: Date, _ title: String) {
+        let monthAsInt = Calendar.current.component(.month, from: date)
+        
+        var events = calendarManager.tasks[getMonthFromDate(date)]!
+        if let index = events.firstIndex(where: { $0.id == uuid }) {
+            calendarManager.tasks[getMonthFromDate(date)]![index].title = title
+            calendarManager.tasks[getMonthFromDate(date)]![index].time = date
+        }
+    }
+    
     func dateFrom(_ month: Int,_ day: Int) -> Date {
         let calendar = Calendar.current
         var dateComponents = DateComponents()
@@ -65,6 +75,14 @@ class TaskManager : ObservableObject {
         return calendar.date(from: dateComponents)!
     }
     
+    func getMonthFromDate(_ date: Date) -> Int {
+        let calendar = Calendar.current
+        
+        
+        let month = calendar.dateComponents([.month], from: date)
+        
+        return month.month!
+    }
     
 }
 
