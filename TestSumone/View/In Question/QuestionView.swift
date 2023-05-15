@@ -7,10 +7,12 @@
 
 import Foundation
 import SwiftUI
+import Popovers
 
 struct QuestionView: View {
     let items = [1,2,3]
     @State private var isModalShown = false
+    @State private var isHelpPopupShown = false
     @EnvironmentObject var WaitingQuestionList: WaitingQuestionData
     @EnvironmentObject var HistoryQuestionList: HistoryQuestionData
     var userName : String
@@ -37,20 +39,50 @@ struct QuestionView: View {
             }
             .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
             .navigationTitle("나의 질문")
-            .navigationBarItems(trailing: Button(action: {
-                self.isModalShown = true
-            }){
-                Image(systemName: "plus").bold()
-                    .font(.footnote)
-                Text("추가")
-                    .font(.footnote)
-                    .fontWeight(.black)
+            .navigationBarItems(trailing: HStack(spacing: 12){
+                Button(action: {
+                    if !isHelpPopupShown {
+                        isHelpPopupShown = true
+                    }
+                }){
+                    Text("?")
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .frame(width:24, height:24)
+                        .background(Color.gray)
+                        .clipShape(Circle())
+                        .popover(
+                            present: $isHelpPopupShown,
+                            attributes: {
+                                $0.presentation.animation = .spring(response: 0.6, dampingFraction: 0.4, blendDuration: 1)
+                                $0.presentation.transition = .offset(x: 0, y: 20).combined(with: .opacity)
+                                $0.dismissal.transition = .offset(x: 0, y: 20).combined(with: .opacity)
+                                $0.rubberBandingMode = .yAxis
+                            }
+                        ) {
+                            VStack{
+                                Spacer().frame(height:4)
+                                HelpPopupView()
+                            }
+                        }
+                }
+                Button(action: {
+                    self.isModalShown = true
+                }){
+                    Image(systemName: "plus").bold()
+                        .font(.footnote)
+                    Text("추가")
+                        .font(.footnote)
+                        .fontWeight(.black)
+                }
+                .frame(height:32)
+                .buttonStyle(.borderedProminent)
+                .cornerRadius(16)
+                .sheet(isPresented: $isModalShown) {
+                    AddQuestionView(userName: userName)
+                }
             }
-            .buttonStyle(.borderedProminent)
-            .cornerRadius(16)
-            .sheet(isPresented: $isModalShown) {
-                AddQuestionView(userName: userName)
-            })
+            )
         }
         .onAppear {
             // 서버에 fetching하는 코드 필요
