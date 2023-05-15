@@ -13,7 +13,7 @@ struct CalendarView: View {
     @State var currentMonth: Int = 0
     @State private var showModal = false
     
-    @ObservedObject private var myTask: TaskManager = TaskManager()
+    @ObservedObject private var myTask: TaskManager = calendarManager
     
     let dateFormatter : DateFormatter = DateFormatter()
     

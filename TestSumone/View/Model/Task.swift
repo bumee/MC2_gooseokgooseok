@@ -69,3 +69,4 @@ class TaskManager : ObservableObject {
 }
 
 
+var calendarManager: TaskManager = TaskManager()
