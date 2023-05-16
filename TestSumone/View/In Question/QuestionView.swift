@@ -47,16 +47,18 @@ struct QuestionView: View {
                 }){
                     Text("?")
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
+                        .foregroundColor(.gray)
                         .frame(width:24, height:24)
-                        .background(Color.gray)
-                        .clipShape(Circle())
+                        .overlay(
+                                  RoundedRectangle(cornerRadius: 12)
+                                      .stroke(Color.gray, lineWidth: 2)
+                                  )
                         .popover(
                             present: $isHelpPopupShown,
                             attributes: {
                                 $0.presentation.animation = .spring(response: 0.6, dampingFraction: 0.4, blendDuration: 1)
-                                $0.presentation.transition = .offset(x: 0, y: 20).combined(with: .opacity)
-                                $0.dismissal.transition = .offset(x: 0, y: 20).combined(with: .opacity)
+                                $0.presentation.transition = .offset(x: 0, y: -20).combined(with: .opacity)
+                                $0.dismissal.transition = .offset(x: 0, y: 0).combined(with: .opacity)
                                 $0.rubberBandingMode = .yAxis
                             }
                         ) {
