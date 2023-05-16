@@ -13,7 +13,7 @@ struct CalendarView: View {
     @State var currentMonth: Int = 0
     @State private var isAddSheetPresented = false
     @State private var isEditSheetPresented = false
-    @State private var testTitle: String = ""
+    @State private var selectedTask: Task?
     
     @ObservedObject private var myTask: TaskManager = calendarManager
     
@@ -99,8 +99,7 @@ struct CalendarView: View {
                         ForEach(tasks!) {task in
                             if isSameDay(date1: task.time, date2: currentDate) {
                                 Button(){
-                                    self.isEditSheetPresented = true
-                                    print("haiwng")
+                                    selectedTask = task
                                 } label:{
                                     VStack(alignment: .leading, spacing: 0){
                                         Text(dateFormatter.string(from: task.time))
@@ -110,12 +109,7 @@ struct CalendarView: View {
                                         Text(task.title)
                                     }
                                 }
-                                /*
-                                .sheet(isPresented: self.$isEditSheetPresented) {
-                                    TaskAddView(uuidStr: task.id, anniName: task.title, anniDate: task.time, isEditting: true, showModal: $isEditSheetPresented)
-                                }
-                                 */
-                                .fullScreenCover(isPresented: self.$isEditSheetPresented){
+                                .sheet(item: $selectedTask){ task in
                                     TaskAddView(uuidStr: task.id, anniName: task.title, anniDate: task.time, isEditting: true, showModal: $isEditSheetPresented)
                                 }
 
