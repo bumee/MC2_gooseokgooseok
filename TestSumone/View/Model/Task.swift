@@ -57,12 +57,16 @@ class TaskManager : ObservableObject {
     }
     
     func updateTask(_ uuid: String, _ date: Date, _ title: String) {
-        let monthAsInt = Calendar.current.component(.month, from: date)
-        
-        var events = calendarManager.tasks[getMonthFromDate(date)]!
+        let events = calendarManager.tasks[getMonthFromDate(date)]!
         if let index = events.firstIndex(where: { $0.id == uuid }) {
             calendarManager.tasks[getMonthFromDate(date)]![index].title = title
             calendarManager.tasks[getMonthFromDate(date)]![index].time = date
+        }
+    }
+    func remove(_ uuid: String, _ date: Date) {
+        let events = calendarManager.tasks[getMonthFromDate(date)]!
+        if let index = events.firstIndex(where: { $0.id == uuid }) {
+            calendarManager.tasks[getMonthFromDate(date)]!.remove(at: index)
         }
     }
     
