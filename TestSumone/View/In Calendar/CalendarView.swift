@@ -12,7 +12,6 @@ struct CalendarView: View {
     // Month update on arrow button clicks....
     @State var currentMonth: Int = 0
     @State private var isAddSheetPresented = false
-    @State private var isEditSheetPresented = false
     @State private var selectedTask: Task?
     
     @ObservedObject private var myTask: TaskManager = calendarManager
@@ -110,7 +109,7 @@ struct CalendarView: View {
                                     }
                                 }
                                 .sheet(item: $selectedTask){ task in
-                                    TaskAddView(uuidStr: task.id, anniName: task.title, anniDate: task.time, isEditting: true, showModal: $isEditSheetPresented)
+                                    TaskAddView(uuidStr: task.id, eventTitle: task.title, eventDate: task.time, isEditting: true)
                                 }
 
                             }
@@ -139,7 +138,7 @@ struct CalendarView: View {
                     .buttonStyle(.borderedProminent)
                     .cornerRadius(16)
                     .sheet(isPresented: self.$isAddSheetPresented) {
-                        TaskAddView(anniDate: currentDate, showModal: $isAddSheetPresented)
+                        TaskAddView(eventDate: currentDate)
                     }
                 }
             }
