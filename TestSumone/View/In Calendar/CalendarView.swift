@@ -288,14 +288,20 @@ struct ColorFromDate: ViewModifier {
         // val.date == Date(), 날짜가 같아도 문제가 발생한다.
         // 한국시간에 맞추겠다고 val.date을 1시간 뺐기 때문이다.
         
-        if Calendar.current.isDate(val.date, inSameDayAs: Date()){
-            content.foregroundColor(Color(uiColor: .systemGray))
+        if isSameDate(val.date, Date()) && isSameDate(val.date, selectedDate) {
+            content.foregroundColor(Color.white)
         }
-        else if Calendar.current.isDate(val.date, inSameDayAs: selectedDate){
+        else if isSameDate(val.date, Date()){
+            content.foregroundColor(Color.accentColor)
+        }
+        else if isSameDate(val.date, selectedDate){
             content.foregroundColor(Color.white)
         }
         else {
             content.foregroundColor(Color.black)
         }
+    }
+    func isSameDate(_ dateA: Date, _ dateB: Date) -> Bool {
+        return Calendar.current.isDate(dateA, inSameDayAs: dateB)
     }
 }
