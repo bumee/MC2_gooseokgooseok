@@ -53,7 +53,7 @@ struct MessageShowingView: View {
                                 Spacer()
                             }
                         }
-                        MessageBubbleView(message: MessageList[key]!, isFromCurrentUser: key == userName ? true : false)
+                        MessageBubbleView(message: MessageList[key]!, isFromCurrentUser: key == userName ? true : false, animate: false)
                             .padding(.leading, 16)
                             .padding(.trailing, 16)
                             .padding(.bottom, 16)

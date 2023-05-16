@@ -16,27 +16,31 @@ struct PreviousQuestionNameView: View {
         VStack {
             HStack {
                 Text(date)
-                    .font(.caption2)
-                    .foregroundColor(Color(uiColor: .systemGray2))
-                
-                Spacer()
-                
-                
-            }
-            .padding(.bottom, -6)
-            
-            HStack {
-                Text(Question)
-                    .foregroundColor(.black)
+                    .font(.footnote).bold()
+                    .foregroundColor(Color(uiColor: .systemGray))
                 
                 Spacer()
                 
                 Image(systemName: "chevron.right")
-                    .font(.footnote)
+                    .font(.footnote).bold()
                     .foregroundColor(Color(uiColor: .systemGray))
             }
+            .padding(.bottom, -4)
+            
+            HStack {
+                Text(Question)
+                    .font(.title2).bold()
+                    .foregroundColor(.black).opacity(0.9)
+                    .multilineTextAlignment(.leading)
+                    .lineSpacing(-4)
+                    .lineLimit(1)
+                
+                Spacer()
+            }
+            
         }
-        .frame(height: 48)
-        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+        .padding()
+        .cornerRadius(12)
+        .background(Color(uiColor: .systemGray6))
     }
 }

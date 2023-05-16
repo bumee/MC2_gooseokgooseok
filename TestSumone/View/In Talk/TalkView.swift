@@ -13,6 +13,8 @@ struct TalkView: View {
     var userName: String
     @EnvironmentObject var TodayQuestions: TodayQuestionData
     
+    @State private var searchText = ""
+    
     private func WhereToGo(key: String) -> some View {
         if !TodayQuestions.real_questions[key]!.keys.contains(userName) {
             return AnyView(MessageBlockView(text: AnswerTextData(), Title: key, userName: userName, AnswerList: TodayQuestions.real_questions[key]!, date: TodayQuestions.real_questions_Date[key]!))
@@ -23,7 +25,8 @@ struct TalkView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                ForEach(TodayQuestions.real_questions.keys.sorted(), id: \.self) { key in
+                       
+                ForEach(TodayQuestions.real_questions.keys.sorted().filter({ searchText.isEmpty || $0.localizedStandardContains(searchText)}), id: \.self) { key in
                     NavigationLink {
                         WhereToGo(key: key)
                     } label: {
@@ -32,11 +35,12 @@ struct TalkView: View {
                     }
                     .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                 }
+                .searchable(text: $searchText, prompt: "Search")
                 
                 Spacer()
                 
                 Section() {
-                    ForEach(PreviousQuestions.questions.keys.sorted(), id: \.self) { key in
+                    ForEach(PreviousQuestions.questions.keys.sorted().filter({ searchText.isEmpty || $0.localizedStandardContains(searchText)}), id: \.self) { key in
                         
                         NavigationLink(
                             destination: MessageShowingView(Title: key, MessageList: PreviousQuestions.questions[key]!, userName: userName, date: PreviousQuestions.questions_Date[key]!)
@@ -45,13 +49,13 @@ struct TalkView: View {
                             PreviousQuestionNameView(date: PreviousQuestions.questions_Date[key]!, Question: key)
                         }
                         
-                        Divider()
-                        
                     }
                 }
-                .padding(EdgeInsets(top: 0, leading: 32, bottom: 0, trailing: 0))
+                .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+                
             }
             .navigationTitle("대화")
+//            .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear {
             TodayQuestions.fetchTodayQuestions()

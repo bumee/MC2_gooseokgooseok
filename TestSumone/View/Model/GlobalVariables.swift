@@ -93,7 +93,8 @@ class WaitingQuestionData: ObservableObject, RandomAccessCollection {
                     let data = document.data()
                     let WaitingQuestion = data["Question"] as? String ?? ""
                     let Person = data["Person"] as? String ?? ""
-                    let Date = data["Date"] as? Date ?? Date()
+                    let Timestamps = data["Date"] as? Timestamp ?? Timestamp()
+                    let Date = Timestamps.dateValue()
                     if !self.WaitingQuestions.keys.contains(Person){
                         self.WaitingQuestions[Person] = [String]()
                     }
@@ -251,7 +252,8 @@ class TodayQuestionData: ObservableObject, RandomAccessCollection {
                 for document in snapshot.documents {
                     let data = document.data()
                     let Today_Question = data["Question"] as? String ?? ""
-                    let Date = data["Date"] as? Date ?? Date()
+                    let Timestamps = data["Date"] as? Timestamp ?? Timestamp()
+                    let Date = Timestamps.dateValue()
                     self.dateString = self.dateFormatter.string(from: Date)
                     var InnerInnerDict = [String:String]()
                     let fieldNames = Array(data.keys)
@@ -361,6 +363,8 @@ class PreviousQuestionData: ObservableObject, RandomAccessCollection {
     
     @Published var questions : [String:[String:String]] = [:]
     @Published var questions_Date : [String:String] = [:]
+    @Published var question_Timestamp : [String:Timestamp] = [:]
+    @Published var sortedQuestions : [String] = []
     @Published var Dates: [String] = []
     let dateFormatter = DateFormatter()
     var dateString = String()
@@ -369,9 +373,21 @@ class PreviousQuestionData: ObservableObject, RandomAccessCollection {
         fetchPreviousQuestions()
     }
     
+    func findKey(forValue value: Int, in dictionary: [String: Int]) -> String? {
+        for (key, dictValue) in dictionary {
+            if dictValue == value {
+                return key
+            }
+        }
+        return nil
+    }
+    
     func fetchPreviousQuestions() {
         questions.removeAll()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        questions_Date.removeAll()
+        sortedQuestions.removeAll()
+        question_Timestamp.removeAll()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         let db = Firestore.firestore()
         let refs = db.collection("PreviousQuestions")
         refs.getDocuments {snapshot, error in
@@ -384,7 +400,8 @@ class PreviousQuestionData: ObservableObject, RandomAccessCollection {
                 for document in snapshot.documents {
                     let data = document.data()
                     let Previous_Question = data["Question"] as? String ?? ""
-                    let Date = data["Date"] as? Date ?? Date()
+                    let Timestamps = data["Date"] as? Timestamp ?? Timestamp()
+                    let Date = Timestamps.dateValue()
                     var InnerInnerDict = [String:String]()
                     let fieldNames = Array(data.keys)
                     for Name in fieldNames {
@@ -393,12 +410,15 @@ class PreviousQuestionData: ObservableObject, RandomAccessCollection {
                             InnerInnerDict[Name] = it
                         }
                     }
+                    self.question_Timestamp[Previous_Question] = Timestamps
+                    
                     self.dateString = self.dateFormatter.string(from: Date)
                     self.questions_Date[Previous_Question] = self.dateString
                     self.questions[Previous_Question] = InnerInnerDict
                 }
             }
         }
+//        self.sortedQuestions = self.question_Timestamp.values.sorted()
         self.Dates = self.Dates.reversed()
     }
     

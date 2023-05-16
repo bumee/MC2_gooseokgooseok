@@ -22,6 +22,7 @@ struct MessageBlockView: View {
     @State var isWritten = false
     var AnswerList: [String:String]
     var date: String
+    @State var animation = false
     
     var body: some View {
         VStack{
@@ -42,27 +43,30 @@ struct MessageBlockView: View {
                         
                     }
                 }
+                .navigationBarTitleDisplayMode(.inline)
             }
             Divider()
                 .padding(.bottom, 8)
             
-            ForEach(AnswerList.keys.sorted(), id: \.self) { key in
-                VStack{
-                    HStack {
-                        Text(isWritten ? key : "의문의 사용자")
-                            .font(.footnote)
-                            .padding(.leading, 20)
-                            .padding(.bottom, -4)
-                        
-                        Spacer()
+            ScrollView {
+                ForEach(AnswerList.keys.sorted(), id: \.self) { key in
+                    VStack{
+                        HStack {
+                            Text(isWritten ? key : "의문의 사용자")
+                                .font(.footnote)
+                                .padding(.leading, 20)
+                                .padding(.bottom, -4)
+                            
+                            Spacer()
+                        }
+                        MessageBubbleView(message: (!isWritten ? "답변을 작성했습니다." : AnswerList[key])!, isFromCurrentUser: false, animate: animation)
+                            .padding(.leading, 16)
+                            .padding(.bottom, 16)
+                            .animation(Animation.easeInOut.speed(2.0), value: animation)
                     }
-                    MessageBubbleView(message: (!isWritten ? "답변을 작성했습니다." : AnswerList[key])!, isFromCurrentUser: false)
-                        .padding(.leading, 16)
-                        .padding(.bottom, 16)
                 }
+                .navigationBarTitleDisplayMode(.inline)
             }
-            .navigationBarTitleDisplayMode(.inline)
-            
             VStack {
                 if isWritten {
                     HStack {
@@ -70,10 +74,12 @@ struct MessageBlockView: View {
                         Text(userName)
                             .font(.footnote)
                             .padding(.leading, 20)
+                            .padding(.trailing, 16)
                             .padding(.bottom, -4)
                     }
-                    MessageBubbleView(message: text.note, isFromCurrentUser: true)
+                    MessageBubbleView(message: text.note, isFromCurrentUser: true, animate: false)
                         .padding(.leading, 16)
+                        .padding(.trailing, 16)
                         .padding(.bottom, 16)
                 }
                 else {
@@ -89,9 +95,11 @@ struct MessageBlockView: View {
                         .padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 4))
                         .textFieldStyle(.roundedBorder)
                         .focused($focus, equals:  true)
+                        .submitLabel(.return)
                     Button {
                         if text.updating {
                             isWritten = true
+                            animation.toggle()
                             TodayQuestionList.addAnswerTodayQuestion(TodayQuestion: Title, Statement: text.note, userName: userName)
                             TodayQuestionList.real_qeustions_bool[Title] = true
                         } else {

@@ -14,10 +14,11 @@
 		C56EEB8F2A08E5270048124D /* AnswerTextData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56EEB8E2A08E5270048124D /* AnswerTextData.swift */; };
 		C56EEB932A0A0EE60048124D /* TodayQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56EEB922A0A0EE60048124D /* TodayQuestionView.swift */; };
 		C56EEB962A0A35340048124D /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56EEB952A0A35340048124D /* DateValue.swift */; };
-		C56EEB982A0A354A0048124D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56EEB972A0A354A0048124D /* Task.swift */; };
-		C56EEB9A2A0A35770048124D /* TaskAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56EEB992A0A35770048124D /* TaskAddView.swift */; };
 		C56EEB9C2A0CCC820048124D /* LaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C56EEB9B2A0CCC820048124D /* LaunchImage.png */; };
 		C56EEB9E2A0CCC8F0048124D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C56EEB9D2A0CCC8F0048124D /* Launch Screen.storyboard */; };
+		C56EEBA22A134BD50048124D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56EEBA12A134BD50048124D /* Task.swift */; };
+		C56EEBA62A134BF60048124D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56EEBA52A134BF60048124D /* CalendarView.swift */; };
+		C56EEBA82A134BFD0048124D /* TaskAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56EEBA72A134BFD0048124D /* TaskAddView.swift */; };
 		C5CC312429FA559E006595A6 /* TestSumoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC312329FA559E006595A6 /* TestSumoneApp.swift */; };
 		C5CC312629FA559E006595A6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC312529FA559E006595A6 /* MainView.swift */; };
 		C5CC312829FA559F006595A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5CC312729FA559F006595A6 /* Assets.xcassets */; };
@@ -26,7 +27,6 @@
 		C5CC313F29FA559F006595A6 /* TestSumoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC313E29FA559F006595A6 /* TestSumoneUITests.swift */; };
 		C5CC314129FA559F006595A6 /* TestSumoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC314029FA559F006595A6 /* TestSumoneUITestsLaunchTests.swift */; };
 		C5CC314E29FA5BE8006595A6 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC314D29FA5BE8006595A6 /* QuestionView.swift */; };
-		C5CC315129FA5C09006595A6 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC315029FA5C09006595A6 /* CalendarView.swift */; };
 		C5CC315929FBA603006595A6 /* MessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC315829FBA603006595A6 /* MessageBubbleView.swift */; };
 		C5CC315B29FBB1A2006595A6 /* TalkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC315A29FBB1A2006595A6 /* TalkView.swift */; };
 		C5CC315D29FBB3C4006595A6 /* PreviousQuestionNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC315C29FBB3C4006595A6 /* PreviousQuestionNameView.swift */; };
@@ -62,10 +62,11 @@
 		C56EEB8E2A08E5270048124D /* AnswerTextData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerTextData.swift; sourceTree = "<group>"; };
 		C56EEB922A0A0EE60048124D /* TodayQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayQuestionView.swift; sourceTree = "<group>"; };
 		C56EEB952A0A35340048124D /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
-		C56EEB972A0A354A0048124D /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		C56EEB992A0A35770048124D /* TaskAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskAddView.swift; sourceTree = "<group>"; };
 		C56EEB9B2A0CCC820048124D /* LaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LaunchImage.png; path = ../../../Downloads/LaunchImage.png; sourceTree = "<group>"; };
 		C56EEB9D2A0CCC8F0048124D /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "../../../../Downloads/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		C56EEBA12A134BD50048124D /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Task.swift; path = "../../../../../Downloads/아카이브/Task.swift"; sourceTree = "<group>"; };
+		C56EEBA52A134BF60048124D /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarView.swift; path = "../../../../../Downloads/아카이브/In Calendar/CalendarView.swift"; sourceTree = "<group>"; };
+		C56EEBA72A134BFD0048124D /* TaskAddView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskAddView.swift; path = "../../../../../Downloads/아카이브/In Calendar/TaskAddView.swift"; sourceTree = "<group>"; };
 		C5CC312029FA559E006595A6 /* TestSumone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestSumone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5CC312329FA559E006595A6 /* TestSumoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSumoneApp.swift; sourceTree = "<group>"; };
 		C5CC312529FA559E006595A6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -77,7 +78,6 @@
 		C5CC313E29FA559F006595A6 /* TestSumoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSumoneUITests.swift; sourceTree = "<group>"; };
 		C5CC314029FA559F006595A6 /* TestSumoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSumoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C5CC314D29FA5BE8006595A6 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
-		C5CC315029FA5C09006595A6 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		C5CC315829FBA603006595A6 /* MessageBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleView.swift; sourceTree = "<group>"; };
 		C5CC315A29FBB1A2006595A6 /* TalkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalkView.swift; sourceTree = "<group>"; };
 		C5CC315C29FBB3C4006595A6 /* PreviousQuestionNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousQuestionNameView.swift; sourceTree = "<group>"; };
@@ -120,9 +120,9 @@
 		C56EEB942A0A35220048124D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C56EEBA12A134BD50048124D /* Task.swift */,
 				C5CC31632A00DE45006595A6 /* GlobalVariables.swift */,
 				C56EEB952A0A35340048124D /* DateValue.swift */,
-				C56EEB972A0A354A0048124D /* Task.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -227,8 +227,8 @@
 		C5CC31622A00DC82006595A6 /* In Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				C5CC315029FA5C09006595A6 /* CalendarView.swift */,
-				C56EEB992A0A35770048124D /* TaskAddView.swift */,
+				C56EEBA72A134BFD0048124D /* TaskAddView.swift */,
+				C56EEBA52A134BF60048124D /* CalendarView.swift */,
 			);
 			path = "In Calendar";
 			sourceTree = "<group>";
@@ -387,21 +387,21 @@
 				C5CC312629FA559E006595A6 /* MainView.swift in Sources */,
 				C5CC314E29FA5BE8006595A6 /* QuestionView.swift in Sources */,
 				C5CC31642A00DE45006595A6 /* GlobalVariables.swift in Sources */,
-				C5CC315129FA5C09006595A6 /* CalendarView.swift in Sources */,
 				C5CC31612A00DC6C006595A6 /* AddQuestionView.swift in Sources */,
-				C56EEB982A0A354A0048124D /* Task.swift in Sources */,
 				C5CC31682A023E6B006595A6 /* MessageShowingView.swift in Sources */,
 				C5CC316A2A024761006595A6 /* WaitingQuestionNameView.swift in Sources */,
 				C5CC315D29FBB3C4006595A6 /* PreviousQuestionNameView.swift in Sources */,
 				C5CC316C2A0247E3006595A6 /* QuestionEditingView.swift in Sources */,
 				C5CC312429FA559E006595A6 /* TestSumoneApp.swift in Sources */,
+				C56EEBA22A134BD50048124D /* Task.swift in Sources */,
+				C56EEBA62A134BF60048124D /* CalendarView.swift in Sources */,
 				C5CC316F2A038E56006595A6 /* LoginEmojiView.swift in Sources */,
 				C5CC31662A023058006595A6 /* LoginView.swift in Sources */,
 				C56EEB932A0A0EE60048124D /* TodayQuestionView.swift in Sources */,
 				C56EEB962A0A35340048124D /* DateValue.swift in Sources */,
 				C56EEB8F2A08E5270048124D /* AnswerTextData.swift in Sources */,
 				C5CC315929FBA603006595A6 /* MessageBubbleView.swift in Sources */,
-				C56EEB9A2A0A35770048124D /* TaskAddView.swift in Sources */,
+				C56EEBA82A134BFD0048124D /* TaskAddView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

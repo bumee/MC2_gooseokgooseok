@@ -1,10 +1,3 @@
-//
-//  TalkRow.swift
-//  Test
-//
-//  Created by 박상준 on 2023/04/28.
-//
-
 import SwiftUI
 
 struct TodayQuestionView: View {
@@ -28,14 +21,23 @@ struct TodayQuestionView: View {
                 Text("오늘")
                     .font(.footnote).bold()
                     .foregroundColor(Color(uiColor: .white))
-                //                    .foregroundColor(Color(uiColor: .black))
                 
                 Spacer()
                 
-                Image(systemName: "chevron.right")
-                    .font(.footnote).bold()
-                    .foregroundColor(Color(uiColor: .white))
-                //                    .foregroundColor(Color(uiColor: .black))
+                
+                HStack {
+                    Text("답변하기")
+                        .font(.footnote).bold()
+                        .padding(EdgeInsets(top: 6, leading: 12, bottom: 5, trailing: -4))
+                    
+                    Image(systemName: "chevron.right")
+                        .font(.footnote)
+                        .foregroundColor(Color.accentColor)
+                        .padding(.trailing, 12)
+                }
+                .background(Color.white)
+                .cornerRadius(16)
+                
             }
             .padding(.bottom, -4)
             
@@ -43,14 +45,14 @@ struct TodayQuestionView: View {
                 Text(Question)
                     .font(.title).bold()
                     .foregroundColor(.white)
-                //                    .foregroundColor(.black)
                     .multilineTextAlignment(.leading)
                     .lineSpacing(-4)
+                
                 Spacer()
             }
         }
         .padding()
         .cornerRadius(12)
-        .background(Color(uiColor: .systemGreen))
+        .background(Color.accentColor)
     }
 }

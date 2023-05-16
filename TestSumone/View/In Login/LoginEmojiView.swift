@@ -7,7 +7,7 @@ struct ClickedButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()
-            .background(isSelected ? Color.init(uiColor: .systemGreen) : Color.init(uiColor: .secondarySystemBackground))
+            .background(isSelected ? Color.accentColor : Color.init(uiColor: .secondarySystemBackground))
             .foregroundColor(.white)
             .cornerRadius(12)
     }
@@ -27,7 +27,7 @@ struct LoginEmojiView: View {
                     .foregroundColor(Color(uiColor: .systemGray3))
                 
                 Image(systemName: "2.circle")
-                    .foregroundColor(Color(uiColor: .systemGreen))
+                    .foregroundColor(Color.accentColor)
                 
                 Spacer()
             }
@@ -98,10 +98,11 @@ struct LoginEmojiView: View {
             {
                 Text("완료").bold()
                     .frame(maxWidth: .infinity, maxHeight: 60)
-                    .background(Color(uiColor: .systemGreen))
-                    .foregroundColor(.white)
+                    .background(SelectedEmojiList.contains(true) ? Color.accentColor : Color(uiColor: .secondarySystemBackground))
+                    .foregroundColor(SelectedEmojiList.contains(true) ? .white : .gray)
                     .cornerRadius(16)
             }
+            .disabled(userName == "")
         }
         .padding()
         .toolbar(.hidden, for: .navigationBar)

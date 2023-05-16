@@ -27,6 +27,7 @@ struct MainView: View {
     @State var userName: String = ""
     @State var isLoggedIn : Bool
     @State var SelectedEmojiIdx : Int
+    @State var shouldShowNextView: Bool = false
     
     var body: some View {
         if isLoggedIn {
@@ -58,39 +59,52 @@ struct MainView: View {
         }
         else {
             NavigationView {
-                VStack {
-                    HStack {
-                        Image(systemName: "1.circle")
-                            .foregroundColor(Color.init(uiColor: .systemGreen))
+                if !shouldShowNextView {
+                    VStack {
+                        HStack {
+                            Image(systemName: "1.circle")
+                                .foregroundColor(Color.accentColor)
+                            
+                            Image(systemName: "2.circle")
+                                .foregroundColor(Color(uiColor: .systemGray3))
+                            
+                            Spacer()
+                        }
+                        .padding(.bottom, 24)
                         
-                        Image(systemName: "2.circle")
-                            .foregroundColor(Color(uiColor: .systemGray3))
+                        Text("나는 우리 가족의 ____ 입니다.").bold()
+                            .font(.largeTitle)
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        TextField("별명을 입력해주세요", text: $userName)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .autocorrectionDisabled()
+                            .padding()
+                            .background(Color(uiColor: .secondarySystemBackground))
+                            .cornerRadius(12)
+                            .submitLabel(.next)
+                            .onSubmit {
+                                shouldShowNextView = true
+                            }
                         
                         Spacer()
+                        
+                        NavigationLink(destination: LoginEmojiView(emojiList: _Emojis, userName: userName)){
+                            Text("다음").bold()
+                                .frame(maxWidth: .infinity, maxHeight: 60)
+                                .background(userName != "" ? Color.accentColor : Color(uiColor: .secondarySystemBackground))
+                                .foregroundColor(userName != "" ? .white : .gray)
+                                .cornerRadius(16)
+                        }
+                        .disabled(userName == "")
                     }
-                    .padding(.bottom, 24)
-                    
-                    Text("나는 우리 가족의 ____ 입니다.").bold()
-                        .font(.largeTitle)
-                        .padding()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    TextField("별명을 입력해주세요", text: $userName, axis: .vertical)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .autocorrectionDisabled()
-                        .padding()
-                        .background(Color(uiColor: .secondarySystemBackground))
-                        .cornerRadius(12)
-                    
-                    Spacer()
-                    
-                    NavigationLink(destination: LoginEmojiView(emojiList: _Emojis, userName: userName)){
-                        Text("다음").bold()
-                            .frame(maxWidth: .infinity, maxHeight: 40)
-                            .buttonStyle(.borderedProminent)
-                    }
+                    .padding()
                 }
-                .padding()
+                
+                else {
+                    LoginEmojiView(emojiList: _Emojis, userName: userName)
+                }
             }
         }
     }
