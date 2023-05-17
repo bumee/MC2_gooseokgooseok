@@ -36,10 +36,15 @@ class TaskManager : ObservableObject {
     @Published var tasks : Dictionary<Int, Array<Task>> = [0:[], 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[], 10:[], 11:[], 12:[]]
     
     init() {
-        addTask(dateFrom(5, 5), "어린이날")
         addTask(dateFrom(5, 8), "어버이날")
-        addTask(dateFrom(5, 15), "스승의날")
-        addTask(dateFrom(5, 25), "할머니 생신")
+        addTask(dateFrom(5, 12), "우리딸 생일")
+        addTask(dateFrom(5, 17), "등산동호회: 북한산, 저녁늦게 들어옴")
+        addTask(dateFrom(5, 18), "엄마 염색")
+        addTask(dateFrom(5, 26), "아빠 눈썹 예약")
+        addTask(dateFrom(5, 28), "가족여행, 강릉")
+        addTask(dateFrom(5, 29), "가족여행, 강릉")
+        addTask(dateFrom(5, 30), "차보험 갱신")
+        
     }
     
     func addTask(_ date: Date, _ title: String) {
