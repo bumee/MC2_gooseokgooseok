@@ -10,6 +10,8 @@
 		7335C09A2A149FB70008B76B /* TaskAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7335C0982A149FB70008B76B /* TaskAddView.swift */; };
 		7335C09B2A149FB70008B76B /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7335C0992A149FB70008B76B /* CalendarView.swift */; };
 		7335C09D2A149FC80008B76B /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7335C09C2A149FC80008B76B /* Task.swift */; };
+		7335C09F2A14A0400008B76B /* HelpPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7335C09E2A14A0400008B76B /* HelpPopupView.swift */; };
+		7335C0A22A14A0EF0008B76B /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = 7335C0A12A14A0EF0008B76B /* Popovers */; };
 		C56EEB872A06CE020048124D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C56EEB862A06CE020048124D /* FirebaseAuth */; };
 		C56EEB892A06CE020048124D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C56EEB882A06CE020048124D /* FirebaseFirestore */; };
 		C56EEB8B2A06CE8E0048124D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C56EEB8A2A06CE8E0048124D /* GoogleService-Info.plist */; };
@@ -60,6 +62,7 @@
 		7335C0982A149FB70008B76B /* TaskAddView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskAddView.swift; sourceTree = "<group>"; };
 		7335C0992A149FB70008B76B /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		7335C09C2A149FC80008B76B /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		7335C09E2A14A0400008B76B /* HelpPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpPopupView.swift; sourceTree = "<group>"; };
 		C56EEB8A2A06CE8E0048124D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C56EEB8C2A08E5100048124D /* MessageBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBlockView.swift; sourceTree = "<group>"; };
 		C56EEB8E2A08E5270048124D /* AnswerTextData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerTextData.swift; sourceTree = "<group>"; };
@@ -95,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7335C0A22A14A0EF0008B76B /* Popovers in Frameworks */,
 				C56EEB872A06CE020048124D /* FirebaseAuth in Frameworks */,
 				C56EEB892A06CE020048124D /* FirebaseFirestore in Frameworks */,
 			);
@@ -225,6 +229,7 @@
 		C5CC315F2A00DC60006595A6 /* In Question */ = {
 			isa = PBXGroup;
 			children = (
+				7335C09E2A14A0400008B76B /* HelpPopupView.swift */,
 				C5CC314D29FA5BE8006595A6 /* QuestionView.swift */,
 				C5CC31602A00DC6C006595A6 /* AddQuestionView.swift */,
 				C5CC31692A024761006595A6 /* WaitingQuestionNameView.swift */,
@@ -261,6 +266,7 @@
 			packageProductDependencies = (
 				C56EEB862A06CE020048124D /* FirebaseAuth */,
 				C56EEB882A06CE020048124D /* FirebaseFirestore */,
+				7335C0A12A14A0EF0008B76B /* Popovers */,
 			);
 			productName = TestSumone;
 			productReference = C5CC312029FA559E006595A6 /* TestSumone.app */;
@@ -336,6 +342,7 @@
 			mainGroup = C5CC311729FA559E006595A6;
 			packageReferences = (
 				C56EEB852A06CE020048124D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				7335C0A02A14A0EF0008B76B /* XCRemoteSwiftPackageReference "Popovers" */,
 			);
 			productRefGroup = C5CC312129FA559E006595A6 /* Products */;
 			projectDirPath = "";
@@ -396,6 +403,7 @@
 				C5CC312429FA559E006595A6 /* TestSumoneApp.swift in Sources */,
 				7335C09D2A149FC80008B76B /* Task.swift in Sources */,
 				7335C09B2A149FB70008B76B /* CalendarView.swift in Sources */,
+				7335C09F2A14A0400008B76B /* HelpPopupView.swift in Sources */,
 				C5CC316F2A038E56006595A6 /* LoginEmojiView.swift in Sources */,
 				C5CC31662A023058006595A6 /* LoginView.swift in Sources */,
 				C56EEB932A0A0EE60048124D /* TodayQuestionView.swift in Sources */,
@@ -728,6 +736,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7335C0A02A14A0EF0008B76B /* XCRemoteSwiftPackageReference "Popovers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aheze/Popovers";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		C56EEB852A06CE020048124D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -739,6 +755,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7335C0A12A14A0EF0008B76B /* Popovers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7335C0A02A14A0EF0008B76B /* XCRemoteSwiftPackageReference "Popovers" */;
+			productName = Popovers;
+		};
 		C56EEB862A06CE020048124D /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C56EEB852A06CE020048124D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
