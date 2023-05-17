@@ -54,6 +54,10 @@ struct TalkView: View {
                 .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                 
             }
+            .refreshable {
+                TodayQuestions.fetchTodayQuestions()
+                PreviousQuestions.fetchPreviousQuestions()
+            }
             .navigationTitle("대화")
 //            .navigationBarTitleDisplayMode(.inline)
         }
