@@ -61,7 +61,7 @@ struct AddQuestionView: View {
                                 }
                             }
                             else {
-                                SendLocalNotification(Title: "성공적인 등록", Subtitle: "와우", body: "확인해보세요!")
+                                SendLocalNotification(Title: "Living", Subtitle: "", body: "오늘의 질문이 도착했습니다!")
                             }
                             // Dismiss the modal view
                             self.presentationMode.wrappedValue.dismiss()

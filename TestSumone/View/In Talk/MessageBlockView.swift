@@ -66,27 +66,27 @@ struct MessageBlockView: View {
                     }
                 }
                 .navigationBarTitleDisplayMode(.inline)
-            }
-            VStack {
-                if isWritten {
-                    HStack {
-                        Spacer()
-                        Text(userName)
-                            .font(.footnote)
-                            .padding(.leading, 20)
+                
+                VStack {
+                    if isWritten {
+                        HStack {
+                            Spacer()
+                            Text(userName)
+                                .font(.footnote)
+                                .padding(.leading, 20)
+                                .padding(.trailing, 16)
+                                .padding(.bottom, -4)
+                        }
+                        MessageBubbleView(message: text.note, isFromCurrentUser: true, animate: false)
+                            .padding(.leading, 16)
                             .padding(.trailing, 16)
-                            .padding(.bottom, -4)
+                            .padding(.bottom, 16)
                     }
-                    MessageBubbleView(message: text.note, isFromCurrentUser: true, animate: false)
-                        .padding(.leading, 16)
-                        .padding(.trailing, 16)
-                        .padding(.bottom, 16)
-                }
-                else {
-                    Text("")
+                    else {
+                        Text("")
+                    }
                 }
             }
-            
             Spacer()
             
             if !isWritten {

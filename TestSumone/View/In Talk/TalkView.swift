@@ -12,6 +12,7 @@ struct TalkView: View {
     @EnvironmentObject var PreviousQuestions: PreviousQuestionData
     var userName: String
     @EnvironmentObject var TodayQuestions: TodayQuestionData
+    var items = [1,2,3]
     
     @State private var searchText = ""
     
@@ -25,7 +26,7 @@ struct TalkView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                       
+                   
                 ForEach(TodayQuestions.real_questions.keys.sorted().filter({ searchText.isEmpty || $0.localizedStandardContains(searchText)}), id: \.self) { key in
                     NavigationLink {
                         WhereToGo(key: key)
@@ -54,12 +55,17 @@ struct TalkView: View {
                 .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                 
             }
+            .refreshable {
+                TodayQuestions.fetchTodayQuestions()
+                PreviousQuestions.fetchPreviousQuestions()
+                print("됐나")
+            }
             .navigationTitle("대화")
 //            .navigationBarTitleDisplayMode(.inline)
         }
-        .onAppear {
-            TodayQuestions.fetchTodayQuestions()
-            PreviousQuestions.fetchPreviousQuestions()
-        }
+//        .onAppear {
+//            TodayQuestions.fetchTodayQuestions()
+//            PreviousQuestions.fetchPreviousQuestions()
+//        }
     }
 }
