@@ -40,7 +40,7 @@ struct TalkView: View {
                 Spacer()
                 
                 Section() {
-                    ForEach(PreviousQuestions.questions.keys.sorted().filter({ searchText.isEmpty || $0.localizedStandardContains(searchText)}), id: \.self) { key in
+                    ForEach(PreviousQuestions.sortedQuestions.filter({ searchText.isEmpty || $0.localizedStandardContains(searchText)}), id: \.self) { key in
                         
                         NavigationLink(
                             destination: MessageShowingView(Title: key, MessageList: PreviousQuestions.questions[key]!, userName: userName, date: PreviousQuestions.questions_Date[key]!)

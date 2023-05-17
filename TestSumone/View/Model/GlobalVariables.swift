@@ -363,7 +363,7 @@ class PreviousQuestionData: ObservableObject, RandomAccessCollection {
     
     @Published var questions : [String:[String:String]] = [:]
     @Published var questions_Date : [String:String] = [:]
-    @Published var question_Timestamp : [String:Timestamp] = [:]
+    @Published var question_Timestamp : [String:Date] = [:]
     @Published var sortedQuestions : [String] = []
     @Published var Dates: [String] = []
     let dateFormatter = DateFormatter()
@@ -410,7 +410,8 @@ class PreviousQuestionData: ObservableObject, RandomAccessCollection {
                             InnerInnerDict[Name] = it
                         }
                     }
-                    self.question_Timestamp[Previous_Question] = Timestamps
+                    self.question_Timestamp[Previous_Question] = Date
+                    self.sortedQuestions = self.question_Timestamp.sorted { $0.value > $1.value }.map{ $0.key }
                     
                     self.dateString = self.dateFormatter.string(from: Date)
                     self.questions_Date[Previous_Question] = self.dateString
@@ -418,7 +419,7 @@ class PreviousQuestionData: ObservableObject, RandomAccessCollection {
                 }
             }
         }
-//        self.sortedQuestions = self.question_Timestamp.values.sorted()
+        
         self.Dates = self.Dates.reversed()
     }
     
@@ -499,7 +500,6 @@ class DataManager: ObservableObject, RandomAccessCollection {
                     let Answer = data["Answer"] as? Dictionary ?? [String:String]()
                     
                     let person = Person(Emoji: Emoji, NickName: NickName, Answer: Answer)
-                    print(person)
                     self.Persons.append(person)
                 }
             }
