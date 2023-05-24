@@ -144,7 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				C5CC312229FA559E006595A6 /* Living */,
-				C5CC313329FA559F006595A6 /* LIvingTests */,
+				C5CC313329FA559F006595A6 /* LivingTests */,
 				C5CC313D29FA559F006595A6 /* LivingUITests */,
 				C5CC312129FA559E006595A6 /* Products */,
 			);
@@ -182,12 +182,12 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		C5CC313329FA559F006595A6 /* LIvingTests */ = {
+		C5CC313329FA559F006595A6 /* LivingTests */ = {
 			isa = PBXGroup;
 			children = (
 				C5CC313429FA559F006595A6 /* LivingTests.swift */,
 			);
-			path = LIvingTests;
+			path = LivingTests;
 			sourceTree = "<group>";
 		};
 		C5CC313D29FA559F006595A6 /* LivingUITests */ = {
