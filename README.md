@@ -1,25 +1,30 @@
 
 # MC2-GOOSUKGOOSUK
-![App Poster](https://github.com/mun9769/CodingTest/assets/59304977/72caf2ec-2bd0-48ea-8589-fe43252808b8)
+![App Poster](https://github.com/bumee/MC2_gooseokgooseok/assets/59304977/d9fad898-26d2-4885-a3f5-b77bebf578dc)
 </br>
 </br>
 
 ## Description
-"Image"
-
+![App Screen](https://github.com/bumee/MC2_gooseokgooseok/assets/59304977/1d58c8c8-122d-49ac-a18d-2872c5769f72)
+</br>
+</br>
 
 ## Features
 
-- 가족과 매일매일 
-- Live previews
-- Fullscreen mode
-- Cross platform
-
+- 하루에 한번씩 질문을 받을 수 있습니다.
+- 질문작성을 하면 상대방의 답변을 확인할 수 있습니다.
+- 궁금한 점에 대해 질문을 추가할 수 있습니다.
+- 추가한 질문은 다음날 질문으로 등록됩니다.
+- 가족캘린더에 가족일정을 공유할 수 있습니다.
+</br>
+</br>
 ## Tech Stack
 
 **Client:** SwiftUI, Xcode
 
 **Server:** Firebase FireStore
+</br>
+</br>
 
 ## Folder Structure
 
@@ -52,10 +57,9 @@ Living
         ├── TalkView.swift
         └── TodayQuestionView.swift
 └── LivingApp.swift
-
-
-
 ```
+</br>
+</br>
 ## Authors
 
 <div align="center"> 
